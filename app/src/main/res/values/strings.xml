@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Kinovod</string>
+    <string name="description_poster_movie">Постер к фильму</string>
+    <string name="rating_star_poster">⭐ %s</string>
+    <string name="tag_and_time">%sч %sм</string>
+    <string name="rating_poster_kinopoinsk">KP %s</string>
+    <string name="rating_poster_IMDb">IMDb %s</string>
 </resources>

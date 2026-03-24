@@ -1,0 +1,8 @@
+package com.thedach.kinovod.presentation
+
+import androidx.fragment.app.Fragment
+
+class ProfileFragment: Fragment() {
+
+
+}
