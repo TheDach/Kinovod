@@ -2,8 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_simple_image_poster_light_grey">#F3F4F6FF</color>
-    <color name="card_background">#f8fafc</color>
-    <color name="tags_text_grey">#64748b</color>
-    <color name="text_rating_chips">#1e293b</color>
+    <color name="background_simple_image_poster_light_grey_poster">#F3F4F6FF</color>
+    <color name="card_background_poster">#f8fafc</color>
+    <color name="tags_text_grey_poster">#64748b</color>
+    <color name="text_rating_chips_poster">#1e293b</color>
 </resources>

@@ -4,5 +4,5 @@
     <corners android:radius="20dp" />
     <stroke
         android:width="0.5dp"
-        android:color="@color/tags_text_grey_poster" />
+        android:color="#e2e8f0" />
 </shape>

@@ -5,10 +5,10 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="10dp"
     android:foreground="?attr/selectableItemBackground"
 
-    app:cardBackgroundColor="@color/card_background"
+    app:cardBackgroundColor="@color/card_background_poster"
     app:cardCornerRadius="24dp"
     app:cardElevation="4dp">
 
@@ -22,14 +22,15 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:background="@color/background_simple_image_poster_light_grey">
+            android:background="@color/background_simple_image_poster_light_grey_poster">
 
             <ImageView
                 android:id="@+id/image_view_movie_poster"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/description_poster_movie"
+                android:layout_gravity="center"
+                android:contentDescription="@string/description_poster"
 
                 android:src="@drawable/ic_simple_image" />
 
@@ -46,7 +47,7 @@
                 android:paddingVertical="4dp"
                 android:text="@string/rating_star_poster"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="12sp"
 
                 android:textStyle="bold"
 
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:textColor="@android:color/black"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
 
                 tools:text="Дюна 2" />
@@ -83,8 +84,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/tags_text_grey"
-                    android:textSize="18sp"
+                    android:textColor="@color/tags_text_grey_poster"
+                    android:textSize="12sp"
 
                     tools:text="🎬 фантастика" />
 
@@ -93,9 +94,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
-                    android:text="@string/tag_and_time"
-                    android:textColor="@color/tags_text_grey"
-                    android:textSize="18sp"
+                    android:text="@string/tag_and_time_poster"
+                    android:textColor="@color/tags_text_grey_poster"
+                    android:textSize="12sp"
 
                     tools:text="1ч 46м" />
 
@@ -111,9 +112,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rating_poster_kinopoinsk"
-                    android:textColor="@color/text_rating_chips"
-                    android:textSize="16sp"
+                    android:text="@string/rating_poster_kinopoinsk_poster"
+                    android:textColor="@color/text_rating_chips_poster"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
@@ -125,8 +126,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rating_poster_IMDb"
-                    android:textSize="16sp"
+                    android:text="@string/rating_poster_IMDb_poster"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     android:textColor="#1e293b"
                     android:paddingHorizontal="8dp"

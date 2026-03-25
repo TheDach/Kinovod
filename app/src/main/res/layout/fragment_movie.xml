@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:paddingBottom="8dp"
+
+    tools:context=".presentation.MovieFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/tv_films_movie"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <!-- Search and Settings Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view_movie"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_background"
+
+            android:paddingHorizontal="4dp"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@null"
+            app:queryHint="Найти фильм, сериал..."
+            app:queryHintTextColor="#94a3b8"
+
+
+            />
+
+        <LinearLayout
+            android:id="@+id/button_settings"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/search_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/description_settings_movie"
+                android:src="@drawable/ic_settings_svg" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!-- Filters -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp"
+
+            app:chipSpacing="8dp"
+            app:singleLine="true">
+
+            <!-- will delete -->
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IMDb > 7.5"
+                android:textSize="13sp"
+                android:textColor="#5b21b6"
+                app:chipBackgroundColor="#ede9fe"
+                app:chipCornerRadius="30dp"
+                app:chipMinHeight="36dp"
+                app:chipStrokeColor="@null"
+                app:closeIconEnabled="true"
+                app:closeIconSize="16dp"
+                app:closeIconTint="#5b21b6"
+                tools:visibility="visible" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024"
+                android:textSize="13sp"
+                android:textColor="#5b21b6"
+                app:chipBackgroundColor="#ede9fe"
+                app:chipCornerRadius="30dp"
+                app:chipMinHeight="36dp"
+                app:closeIconEnabled="true"
+                app:closeIconSize="16dp"
+                app:closeIconTint="#5b21b6"
+                tools:visibility="visible" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+
+        tools:listitem="@layout/movie_item" />
+
+
+</LinearLayout>
