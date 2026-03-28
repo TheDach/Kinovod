@@ -84,33 +84,63 @@
                 android:layout_height="wrap_content"
                 android:text="IMDb > 7.5"
                 android:textSize="13sp"
-                android:textColor="#5b21b6"
+                android:textColor="@color/dark_purple_movie"
                 app:chipBackgroundColor="#ede9fe"
                 app:chipCornerRadius="30dp"
                 app:chipMinHeight="36dp"
                 app:chipStrokeColor="@null"
                 app:closeIconEnabled="true"
                 app:closeIconSize="16dp"
-                app:closeIconTint="#5b21b6"
+                app:closeIconTint="@color/dark_purple_movie"
                 tools:visibility="visible" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2024"
+                android:text="2026"
                 android:textSize="13sp"
-                android:textColor="#5b21b6"
+                android:textColor="@color/dark_purple_movie"
                 app:chipBackgroundColor="#ede9fe"
                 app:chipCornerRadius="30dp"
                 app:chipMinHeight="36dp"
                 app:closeIconEnabled="true"
                 app:closeIconSize="16dp"
-                app:closeIconTint="#5b21b6"
+                app:closeIconTint="@color/dark_purple_movie"
                 tools:visibility="visible" />
 
         </com.google.android.material.chip.ChipGroup>
 
     </HorizontalScrollView>
+
+    <FrameLayout
+        android:id="@+id/progressBar_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="300dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/dark_purple_movie" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:text="@string/download_movies"
+            android:textColor="#64748b"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
 
 
     <androidx.recyclerview.widget.RecyclerView

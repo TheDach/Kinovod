@@ -7,4 +7,5 @@
     <string name="rating_poster_IMDb_poster">IMDb %s</string>
     <string name="tv_films_movie">Фильмы</string>
     <string name="description_settings_movie">Настройки</string>
+    <string name="download_movies">Загрузка фильмов...</string>
 </resources>
