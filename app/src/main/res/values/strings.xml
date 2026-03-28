@@ -8,4 +8,7 @@
     <string name="tv_films_movie">Фильмы</string>
     <string name="description_settings_movie">Настройки</string>
     <string name="download_movies">Загрузка фильмов...</string>
+    <string name="tv_label_rooms">Комнаты</string>
+    <string name="btn_create">Создать</string>
+    <string name="btn_connect_rooms">Присоедениться</string>
 </resources>

@@ -7,4 +7,7 @@
     <color name="tags_text_grey_poster">#64748b</color>
     <color name="text_rating_chips_poster">#1e293b</color>
     <color name="dark_purple_movie">#5b21b6</color>
+    <color name="purple_500">#8b5cf6</color>
+    <color name="gray_50">#f8fafc</color>
+    <color name="gray_600">#475569</color>
 </resources>
