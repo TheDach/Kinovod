@@ -10,4 +10,5 @@
     <color name="purple_500">#8b5cf6</color>
     <color name="gray_50">#f8fafc</color>
     <color name="gray_600">#475569</color>
+    <color name="stat_profile">#f1f4f9</color>
 </resources>

@@ -11,4 +11,17 @@
     <string name="tv_label_rooms">Комнаты</string>
     <string name="btn_create">Создать</string>
     <string name="btn_connect_rooms">Присоедениться</string>
+    <string name="tv_profile">Профиль</string>
+    <string name="tv_username_and_date">\@%s · с %s %s</string>
+    <string name="tv_watched">просмотрено</string>
+    <string name="tv_friends">друзей</string>
+    <string name="tv_wishlist">хочу</string>
+    <string name="tv_all_friends">Все %s →</string>
+    <string name="label_friends">Друзья</string>
+    <string name="label_wish_list">Хочу посмотреть</string>
+    <string name="tv_all_wish_list">Все %s →</string>
+    <string name="tv_all_watched_list">Все %s →</string>
+    <string name="tv_label_watched_list">Просмотрено</string>
+    <string name="tv_general_movies_friend_profile">%s общих фильма</string>
+    <string name="tv_all_friends_profile">Все %s →</string>
 </resources>
