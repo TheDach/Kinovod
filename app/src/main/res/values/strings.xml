@@ -24,4 +24,7 @@
     <string name="tv_label_watched_list">Просмотрено</string>
     <string name="tv_general_movies_friend_profile">%s общих фильма</string>
     <string name="tv_all_friends_profile">Все %s →</string>
+    <string name="menu_rooms">Комнаты</string>
+    <string name="menu_movies">Каталог</string>
+    <string name="menu_profile">Профиль</string>
 </resources>

@@ -8,18 +8,15 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="20dp"
-    android:paddingBottom="8dp"
 
     tools:context=".presentation.MovieFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
         android:text="@string/tv_films_movie"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        android:textStyle="bold" />
+        style="@style/MainLabels"
+        />
 
     <!-- Search and Settings Row -->
     <LinearLayout
@@ -37,9 +34,6 @@
             app:iconifiedByDefault="false"
             app:queryBackground="@null"
             app:queryHint="Найти фильм, сериал..."
-            app:queryHintTextColor="#94a3b8"
-
-
             />
 
         <LinearLayout
