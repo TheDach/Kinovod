@@ -27,4 +27,21 @@
     <string name="menu_rooms">Комнаты</string>
     <string name="menu_movies">Каталог</string>
     <string name="menu_profile">Профиль</string>
+    <string name="description_comeback">Назад</string>
+    <string name="label_new_room">Новая комната</string>
+    <string name="label_name_room">Название комнаты</string>
+    <string name="hint_example_new_room">Например: Комедийный вечер</string>
+    <string name="label_player">Участники</string>
+    <string name="chip_plus_friends">+ друзья</string>
+    <string name="chip_add_friends">+ друзья</string>
+    <string name="chip_multi_vote">Множественный</string>
+    <string name="chip_single_vote">Одиночный</string>
+    <string name="chip_priority_vote">Приоритет</string>
+    <string name="label_type_vote">Тип голосования</string>
+    <string name="label_voting_period">Срок голосования</string>
+    <string name="label_compare_wishlists">Сравнить понравившиеся</string>
+    <string name="label_anonymous_vote">Анонимное голосование</string>
+    <string name="chip_add">+ добавить</string>
+    <string name="label_filters">Фильтры (жанры, рейтинг)</string>
+    <string name="label_limit_movies">Лимит предложенных фильмов</string>
 </resources>

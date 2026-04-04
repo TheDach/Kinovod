@@ -11,4 +11,6 @@
     <color name="gray_50">#f8fafc</color>
     <color name="gray_600">#475569</color>
     <color name="stat_profile">#f1f4f9</color>
+    <color name="bg_chip_choice">#EDE9FE</color>
+    <color name="bg_chip_non_choice">#F1F5F9</color>
 </resources>

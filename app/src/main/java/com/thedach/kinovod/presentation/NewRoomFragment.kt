@@ -6,23 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.thedach.kinovod.R
-import com.thedach.kinovod.databinding.FragmentRoomsBinding
-import java.lang.RuntimeException
+import com.thedach.kinovod.databinding.FragmentNewRoomBinding
 
-class RoomsFragment: Fragment() {
+class NewRoomFragment: Fragment() {
 
-
-    private var _binding: FragmentRoomsBinding? = null
-    private val binding: FragmentRoomsBinding
-        get() = _binding ?: throw RuntimeException("FragmentRoomsBinding == null")
+    private var _binding: FragmentNewRoomBinding? = null
+    private val binding: FragmentNewRoomBinding
+        get() = _binding ?: throw RuntimeException("FragmentNewRoomBinding == null")
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRoomsBinding.inflate(inflater, container, false)
+        _binding = FragmentNewRoomBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,15 +29,15 @@ class RoomsFragment: Fragment() {
         setupClickListeners()
     }
 
+
     private fun setupClickListeners() {
-        binding.buttonCreateRooms.setOnClickListener {
-            launchNewRoomFragment()
+        binding.btnBackNewRoom.setOnClickListener {
+            launchRoomsFragment()
         }
     }
 
-
-    private fun launchNewRoomFragment() {
-        findNavController().navigate(R.id.action_roomsFragment_to_newRoomFragment)
+    private fun launchRoomsFragment() {
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {
