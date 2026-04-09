@@ -77,7 +77,7 @@
             android:layout_weight="1"
             android:paddingVertical="20dp"
 
-            tools:listitem="@layout/room_item"/>
+            tools:listitem="@layout/item_room"/>
 
         <ProgressBar
             android:id="@+id/progressBar_rooms"

@@ -210,7 +210,7 @@
                     <!-- Movie 1 -->
                     <include
                         android:id="@+id/item_movie_watchlist_1_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -218,7 +218,7 @@
                     <!-- Movie 2 -->
                     <include
                         android:id="@+id/item_movie_watchlist_2_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -226,7 +226,7 @@
                     <!-- Movie 3 -->
                     <include
                         android:id="@+id/item_movie_watchlist_3_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -234,7 +234,7 @@
                     <!-- Movie 4 -->
                     <include
                         android:id="@+id/item_movie_watchlist_4_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -242,7 +242,7 @@
                     <!-- Movie 5 -->
                     <include
                         android:id="@+id/item_movie_watchlist_5_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -295,7 +295,7 @@
                     <!-- Movie 1 -->
                     <include
                         android:id="@+id/movie_watched_1_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -303,7 +303,7 @@
                     <!-- Movie 2 -->
                     <include
                         android:id="@+id/movie_watched_2_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -311,7 +311,7 @@
                     <!-- Movie 3 -->
                     <include
                         android:id="@+id/movie_watched_3_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -319,7 +319,7 @@
                     <!-- Movie 4 -->
                     <include
                         android:id="@+id/movie_watched_4_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -327,7 +327,7 @@
                     <!-- Movie 5 -->
                     <include
                         android:id="@+id/movie_watched_5_profile"
-                        layout="@layout/movie_item"
+                        layout="@layout/item_movie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
@@ -375,7 +375,7 @@
                 <!-- Friend 1 -->
                 <include
                     android:id="@+id/friend_item_1_profile"
-                    layout="@layout/friend_item"
+                    layout="@layout/item_friend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp" />
@@ -383,7 +383,7 @@
                 <!-- Friend 2 -->
                 <include
                     android:id="@+id/friend_item_2_profile"
-                    layout="@layout/friend_item"
+                    layout="@layout/item_friend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp" />
@@ -391,7 +391,7 @@
                 <!-- Friend 3 -->
                 <include
                     android:id="@+id/friend_item_3_profile"
-                    layout="@layout/friend_item"
+                    layout="@layout/item_friend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

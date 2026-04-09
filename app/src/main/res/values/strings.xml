@@ -47,4 +47,5 @@
     <string name="btn_create_room">✨ Создать комнату</string>
     <string name="btn_delete_account">Удалить аккаунт</string>
     <string name="btn_logout">Выйти</string>
+    <string name="description_avatar_image_placeholder">avatar image placeholder</string>
 </resources>
