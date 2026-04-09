@@ -44,4 +44,5 @@
     <string name="chip_add">+ добавить</string>
     <string name="label_filters">Фильтры (жанры, рейтинг)</string>
     <string name="label_limit_movies">Лимит предложенных фильмов</string>
+    <string name="btn_create_room">✨ Создать комнату</string>
 </resources>

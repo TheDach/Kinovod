@@ -178,8 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingVertical="4dp"
-                app:chipSpacing="8dp"
-                app:singleLine="true">
+                app:chipSpacing="8dp">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_single_vote"
@@ -191,8 +190,7 @@
                     android:textSize="13sp"
                     app:chipBackgroundColor="@color/bg_chip_choice"
                     app:chipCornerRadius="30dp"
-                    app:chipMinHeight="36dp"
-                    app:closeIconEnabled="false" />
+                    app:chipMinHeight="36dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_multiple_vote"
@@ -204,8 +202,7 @@
                     android:textSize="13sp"
                     app:chipBackgroundColor="@color/bg_chip_non_choice"
                     app:chipCornerRadius="30dp"
-                    app:chipMinHeight="36dp"
-                    app:closeIconEnabled="false" />
+                    app:chipMinHeight="36dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_priority_vote"
@@ -217,8 +214,7 @@
                     android:textSize="13sp"
                     app:chipBackgroundColor="@color/bg_chip_non_choice"
                     app:chipCornerRadius="30dp"
-                    app:chipMinHeight="36dp"
-                    app:closeIconEnabled="false" />
+                    app:chipMinHeight="36dp" />
 
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
@@ -247,10 +243,10 @@
                 android:id="@+id/tvVotingDeadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="до завтра 20:00 ⌄"
                 android:textColor="@color/purple_500"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="до завтра 20:00 ⌄" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- Сравнить wishlists (Switch) -->
@@ -275,9 +271,9 @@
                 android:id="@+id/switch_compare_wishlists"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:thumb="@drawable/switch_thumb"
-                app:thumbTint="@color/white"
-                app:trackTint="#CBD5E1" />
+                android:thumb="@drawable/switch_thumb_selector"
+                app:track="@drawable/switch_track_selector"
+                app:thumbTint="@null" />
         </LinearLayout>
 
         <!-- Анонимное голосование (Switch) -->
@@ -303,9 +299,9 @@
                 android:id="@+id/switch_anonymous_voting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:thumb="@drawable/switch_thumb"
-                app:thumbTint="@color/white"
-                app:trackTint="@color/purple_500" />
+                android:thumb="@drawable/switch_thumb_selector"
+                app:track="@drawable/switch_track_selector"
+                app:thumbTint="@null" />
         </LinearLayout>
 
         <!-- Фильтры -->
@@ -325,105 +321,104 @@
                 android:textStyle="bold" />
 
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chipGroupFilters"
-                    android:layout_width="match_parent"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupFilters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="4dp"
+                app:chipSpacing="8dp">
+
+                <!-- Чип для добавления нового фильтра -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_add_filter"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="4dp"
-                    app:chipSpacing="8dp">
+                    android:text="@string/chip_add"
+                    android:textColor="@color/text_rating_chips_poster"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/bg_chip_non_choice"
+                    app:chipCornerRadius="30dp"
+                    app:chipMinHeight="36dp"
+                    app:closeIconEnabled="false" />
 
-                    <!-- Чип для добавления нового фильтра -->
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip_add_filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/chip_add"
-                        android:textColor="@color/text_rating_chips_poster"
-                        android:textSize="13sp"
-                        app:chipBackgroundColor="@color/bg_chip_non_choice"
-                        app:chipCornerRadius="30dp"
-                        app:chipMinHeight="36dp"
-                        app:closeIconEnabled="false" />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Фантастика"
+                    android:textColor="@color/dark_purple_movie"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/bg_chip_choice"
+                    app:chipCornerRadius="30dp"
+                    app:chipMinHeight="36dp"
+                    app:closeIconEnabled="true"
+                    app:closeIconSize="16dp"
+                    app:closeIconTint="@color/dark_purple_movie" />
 
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Фантастика"
-                        android:textColor="@color/dark_purple_movie"
-                        android:textSize="13sp"
-                        app:chipBackgroundColor="@color/bg_chip_choice"
-                        app:chipCornerRadius="30dp"
-                        app:chipMinHeight="36dp"
-                        app:closeIconEnabled="true"
-                        app:closeIconSize="16dp"
-                        app:closeIconTint="@color/dark_purple_movie" />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Боевик"
+                    android:textColor="@color/dark_purple_movie"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/bg_chip_choice"
+                    app:chipCornerRadius="30dp"
+                    app:chipMinHeight="36dp"
+                    app:closeIconEnabled="true"
+                    app:closeIconSize="16dp"
+                    app:closeIconTint="@color/dark_purple_movie" />
 
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Боевик"
-                        android:textColor="@color/dark_purple_movie"
-                        android:textSize="13sp"
-                        app:chipBackgroundColor="@color/bg_chip_choice"
-                        app:chipCornerRadius="30dp"
-                        app:chipMinHeight="36dp"
-                        app:closeIconEnabled="true"
-                        app:closeIconSize="16dp"
-                        app:closeIconTint="@color/dark_purple_movie" />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Драма"
+                    android:textColor="@color/dark_purple_movie"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/bg_chip_choice"
+                    app:chipCornerRadius="30dp"
+                    app:chipMinHeight="36dp"
+                    app:closeIconEnabled="true"
+                    app:closeIconSize="16dp"
+                    app:closeIconTint="@color/dark_purple_movie" />
 
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Драма"
-                        android:textColor="@color/dark_purple_movie"
-                        android:textSize="13sp"
-                        app:chipBackgroundColor="@color/bg_chip_choice"
-                        app:chipCornerRadius="30dp"
-                        app:chipMinHeight="36dp"
-                        app:closeIconEnabled="true"
-                        app:closeIconSize="16dp"
-                        app:closeIconTint="@color/dark_purple_movie" />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IMDb >7"
+                    android:textColor="@color/dark_purple_movie"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/bg_chip_choice"
+                    app:chipCornerRadius="30dp"
+                    app:chipMinHeight="36dp"
+                    app:closeIconEnabled="true"
+                    app:closeIconSize="16dp"
+                    app:closeIconTint="@color/dark_purple_movie" />
 
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="IMDb >7"
-                        android:textColor="@color/dark_purple_movie"
-                        android:textSize="13sp"
-                        app:chipBackgroundColor="@color/bg_chip_choice"
-                        app:chipCornerRadius="30dp"
-                        app:chipMinHeight="36dp"
-                        app:closeIconEnabled="true"
-                        app:closeIconSize="16dp"
-                        app:closeIconTint="@color/dark_purple_movie" />
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Мультфильмы"
-                        android:textColor="@color/dark_purple_movie"
-                        android:textSize="13sp"
-                        app:chipBackgroundColor="@color/bg_chip_choice"
-                        app:chipCornerRadius="30dp"
-                        app:chipMinHeight="36dp"
-                        app:closeIconEnabled="true"
-                        app:closeIconSize="16dp"
-                        app:closeIconTint="@color/dark_purple_movie" />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Мультфильмы"
+                    android:textColor="@color/dark_purple_movie"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/bg_chip_choice"
+                    app:chipCornerRadius="30dp"
+                    app:chipMinHeight="36dp"
+                    app:closeIconEnabled="true"
+                    app:closeIconSize="16dp"
+                    app:closeIconTint="@color/dark_purple_movie" />
 
 
-
-                </com.google.android.material.chip.ChipGroup>
+            </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
         <!-- Лимит предложенных фильмов -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginBottom="32dp"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:layout_marginBottom="32dp">
+            android:paddingBottom="14dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -431,20 +426,34 @@
                 android:layout_weight="1"
                 android:text="@string/label_limit_movies"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvMoviesLimit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="5 на пользователей ⌄"
+                android:text="5 на пользователей ⌄"
                 android:textColor="@color/purple_500"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_create_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="@string/btn_create_room"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:translationZ="0dp"
 
+            app:backgroundTint="@color/purple_500"
+            app:cornerRadius="40dp"
+            app:elevation="0dp" />
     </LinearLayout>
 
 </ScrollView>
