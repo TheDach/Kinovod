@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +15,10 @@
         android:padding="20dp">
 
         <TextView
+            style="@style/MainLabels"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tv_profile"
-            style="@style/MainLabels"/>
+            android:text="@string/tv_profile" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -254,32 +254,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/tv_label_watched_list"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_watched_see_all_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_all_watched_list"
-                    android:textSize="14sp"
                     android:textColor="@color/purple_500"
-                    tools:text="Все 124 →"/>
+                    android:textSize="14sp"
+                    tools:text="Все 124 →" />
             </LinearLayout>
 
             <HorizontalScrollView
@@ -298,7 +298,7 @@
                         layout="@layout/movie_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"/>
+                        android:layout_margin="5dp" />
 
                     <!-- Movie 2 -->
                     <include
@@ -306,7 +306,7 @@
                         layout="@layout/movie_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"/>
+                        android:layout_margin="5dp" />
 
                     <!-- Movie 3 -->
                     <include
@@ -314,7 +314,7 @@
                         layout="@layout/movie_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"/>
+                        android:layout_margin="5dp" />
 
                     <!-- Movie 4 -->
                     <include
@@ -322,7 +322,7 @@
                         layout="@layout/movie_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"/>
+                        android:layout_margin="5dp" />
 
                     <!-- Movie 5 -->
                     <include
@@ -330,7 +330,7 @@
                         layout="@layout/movie_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"/>
+                        android:layout_margin="5dp" />
                 </LinearLayout>
             </HorizontalScrollView>
         </LinearLayout>
@@ -339,32 +339,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="28dp">
+            android:layout_marginBottom="28dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/label_friends"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_friends_see_all_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_all_friends_profile"
-                    android:textSize="14sp"
                     android:textColor="@color/purple_500"
-                    tools:text="Все 48 →"/>
+                    android:textSize="14sp"
+                    tools:text="Все 48 →" />
             </LinearLayout>
 
             <LinearLayout
@@ -397,6 +397,56 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_logout"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="@string/btn_logout"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@android:color/white"
+                app:cornerRadius="60dp"
+                app:icon="@drawable/ic_logout_line_svg"
+                app:iconGravity="textStart"
+                app:iconPadding="4dp"
+                app:iconSize="18dp"
+                app:iconTint="@color/black"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1.5dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete_account"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1.5"
+                android:paddingVertical="16dp"
+                android:text="@string/btn_delete_account"
+                android:textColor="@color/red_500"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@android:color/white"
+                app:cornerRadius="60dp"
+                app:icon="@drawable/ic_trash_svg"
+                app:iconGravity="textStart"
+                app:iconPadding="4dp"
+                app:iconSize="18dp"
+                app:iconTint="@color/red_500"
+                app:strokeColor="@color/red_500"
+                app:strokeWidth="1.5dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
