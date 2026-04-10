@@ -26,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/image_view_movie_poster"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:contentDescription="@string/description_poster"
@@ -110,6 +110,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_rating_kinopoisk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rating_poster_kinopoinsk_poster"
@@ -124,6 +125,7 @@
                     tools:text="KP 8.7" />
 
                 <TextView
+                    android:id="@+id/tv_rating_imdb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rating_poster_IMDb_poster"

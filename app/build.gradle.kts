@@ -59,6 +59,10 @@ dependencies {
     // SwipeRefreshLayout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0")
 
+    // RxJava Gson
+    implementation("com.squareup.retrofit2:adapter-rxjava2:3.0.0")
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+
 
     implementation(libs.androidx.fragment)
 

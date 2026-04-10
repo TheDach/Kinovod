@@ -1,0 +1,13 @@
+package com.thedach.network.models
+
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
+data class PersonDto(
+    @SerializedName("name")
+    @Expose
+    val name: String,
+    @SerializedName("photo")
+    @Expose
+    val photo: String
+)

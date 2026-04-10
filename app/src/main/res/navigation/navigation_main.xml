@@ -22,9 +22,17 @@
         android:id="@+id/movieFragment"
         android:name="com.thedach.kinovod.presentation.MovieFragment"
         android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie" >
+        <action
+            android:id="@+id/action_movieFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newRoomFragment"
         android:name="com.thedach.kinovod.presentation.NewRoomFragment"
         android:label="NewRoomFragment" />
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.thedach.kinovod.presentation.MovieDetailsFragment"
+        android:label="MovieDetailsFragment" />
 </navigation>

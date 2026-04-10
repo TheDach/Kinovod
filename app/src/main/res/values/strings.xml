@@ -48,4 +48,22 @@
     <string name="btn_delete_account">Удалить аккаунт</string>
     <string name="btn_logout">Выйти</string>
     <string name="description_avatar_image_placeholder">avatar image placeholder</string>
+    <string name="tv_movie_name">Дюна: \nЧасть вторая</string>
+    <string name="description_movie_poster">movie poster</string>
+    <string name="tv_rating_kinopoisk">⭐ Кинопоиск %s</string>
+    <string name="tv_rating_friends">👥 Друзья %s</string>
+    <string name="tv_rating_imdb">🎬 IMDb %s</string>
+    <string name="label_my_rating">Моя оценка:</string>
+    <string name="label_description">Описание</string>
+    <string name="tv_time_movie_detail">🕒 %sч %sмин</string>
+    <string name="tv_tag_movie_detail">🎭 %s</string>
+    <string name="tv_age_limit_movie_detail">🔞 %s+</string>
+    <string name="btn_want_watch">Хочу посмотреть</string>
+    <string name="btn_watched">Просмотрено</string>
+    <string name="label_actors">Актёры</string>
+    <string name="label_where_to_watch">Где посмотреть</string>
+    <string name="label_trailers">Трейлеры</string>
+    <string name="label_kinopoisk">Кинопоиск</string>
+    <string name="label_reviews">Отзывы</string>
+    <string name="tv_year_movie">Год выпуска: %s</string>
 </resources>

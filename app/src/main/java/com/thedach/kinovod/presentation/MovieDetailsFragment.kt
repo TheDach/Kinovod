@@ -6,21 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.thedach.kinovod.R
-import com.thedach.kinovod.databinding.FragmentMovieBinding
+import com.thedach.kinovod.databinding.FragmentMovieDetailBinding
 
-class MovieFragment : Fragment() {
+class MovieDetailsFragment: Fragment() {
 
-    private var _binding: FragmentMovieBinding? = null
-    private val binding: FragmentMovieBinding
-        get() = _binding ?: throw RuntimeException("FragmentMovieBinding == null")
+    private var _binding: FragmentMovieDetailBinding? = null
+    private val binding: FragmentMovieDetailBinding
+        get() = _binding ?: throw RuntimeException("FragmentMovieDetailBinding == null")
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMovieBinding.inflate(inflater, container, false)
+        _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,14 +31,11 @@ class MovieFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        binding.buttonSettings.setOnClickListener {
-            launchMovieDetailsFragment()
+        binding.btnComeBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
-    private fun launchMovieDetailsFragment() {
-        findNavController().navigate(R.id.action_movieFragment_to_movieDetailsFragment)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
