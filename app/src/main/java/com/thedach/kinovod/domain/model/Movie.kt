@@ -7,10 +7,10 @@ data class Movie(
     val description: String,
     val movieLengthMin: Int,
     val movieLengthHour: Int,
-    val ageRating: Int?,
+    val ageRating: Int,
     val poster: String,
     val rating: MovieRating,
     val trailers: List<Trailer>,
     val persons: List<Person>,
-    val genres: List<String>?
+    val genres: List<String>
 )

@@ -19,12 +19,12 @@ class MovieMapper {
         description = dto.description,
         movieLengthMin = convertTimeOfMoviePerMin(dto.movieLength),
         movieLengthHour = convertTimeOfMoviePerHour(dto.movieLength),
-        ageRating = dto.ageRating,
+        ageRating = dto.ageRating ?: NO_AGE_RATING,
         poster = dto.poster.url,
         rating = MovieRating(dto.rating.kp, dto.rating.imdb),
         trailers = mapTrailers(dto.trailersList),
         persons = mapPersons(dto.persons),
-        genres = mapGenres(dto.genres),
+        genres = mapGenres(dto.genres)
     )
 
     private fun mapTrailers(trailersList: TrailersListDto?): List<Trailer> {
@@ -45,10 +45,10 @@ class MovieMapper {
         } ?: emptyList()
     }
 
-    private fun mapGenres(genresDto: List<GenresDto>?): List<String>? {
+    private fun mapGenres(genresDto: List<GenresDto>?): List<String> {
         return genresDto?.map { genreDto ->
             genreDto.name
-        }
+        } ?: emptyList()
     }
 
     private fun convertTimeOfMoviePerHour(movieLength: Int): Int {
@@ -56,5 +56,10 @@ class MovieMapper {
     }
     private fun convertTimeOfMoviePerMin(movieLength: Int): Int {
         return movieLength % 60
+    }
+
+    companion object {
+
+        private const val NO_AGE_RATING = -1
     }
 }
