@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 data class PersonDto(
     @SerializedName("name")
     @Expose
-    val name: String,
+    val name: String?,
     @SerializedName("photo")
     @Expose
-    val photo: String
+    val photo: String?
 )

@@ -21,7 +21,7 @@ class MovieMapper {
         movieLengthHour = convertTimeOfMoviePerHour(dto.movieLength),
         ageRating = dto.ageRating ?: NO_AGE_RATING,
         poster = dto.poster.url,
-        rating = MovieRating(dto.rating.kp, dto.rating.imdb),
+        rating = MovieRating(dto.rating.kp.toString(), dto.rating.imdb.toString()),
         trailers = mapTrailers(dto.trailersList),
         persons = mapPersons(dto.persons),
         genres = mapGenres(dto.genres)
@@ -39,8 +39,8 @@ class MovieMapper {
     private fun mapPersons(personsDto: List<PersonDto>?): List<Person> {
         return personsDto?.map { personDto ->
             Person(
-                name = personDto.name,
-                photo = personDto.photo
+                name = personDto.name ?: "no name",
+                photo = personDto.photo ?: "https://st.kp.yandex.net/images/actor_iphone/iphone360_3084680.jpg"
             )
         } ?: emptyList()
     }
