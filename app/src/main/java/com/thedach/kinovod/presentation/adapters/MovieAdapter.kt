@@ -41,9 +41,12 @@ class MovieAdapter(
                 tvMovieTime.text = context.resources.getString(R.string.tag_and_time_poster)
                     .format(movieLengthHour, movieLengthMin)
 
-                tvRatingKinopoisk.text = rating.kp
-                tvRatingImdb.text = rating.imdb
-                tvRatingStarPoster.text = rating.kp
+                tvRatingKinopoisk.text = context.resources.getString(R.string.rating_poster_kinopoinsk_poster)
+                    .format(rating.kp)
+                tvRatingImdb.text = context.resources.getString(R.string.rating_poster_IMDb_poster)
+                    .format(rating.imdb)
+                tvRatingStarPoster.text = context.resources.getString(R.string.rating_star_poster)
+                    .format(rating.kp)
 
                 Picasso.get().load(poster).into(imageViewMoviePoster)
 

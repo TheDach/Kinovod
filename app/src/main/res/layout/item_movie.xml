@@ -21,7 +21,7 @@
         <!-- Movie Image -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="wrap_content"
             android:background="@color/background_simple_image_poster_light_grey_poster">
 
             <ImageView
@@ -29,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="250dp"
+                android:adjustViewBounds="true"
 
                 android:layout_gravity="center"
                 android:contentDescription="@string/description_poster"

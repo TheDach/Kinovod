@@ -6,8 +6,12 @@ import com.thedach.kinovod.domain.model.Person
 import com.thedach.kinovod.domain.model.Trailer
 import com.thedach.network.models.GenresDto
 import com.thedach.network.models.MovieDto
+import com.thedach.network.models.MovieRatingDto
 import com.thedach.network.models.PersonDto
 import com.thedach.network.models.TrailersListDto
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
 class MovieMapper {
 
@@ -21,7 +25,7 @@ class MovieMapper {
         movieLengthHour = convertTimeOfMoviePerHour(dto.movieLength),
         ageRating = dto.ageRating ?: NO_AGE_RATING,
         poster = dto.poster.url,
-        rating = MovieRating(dto.rating.kp.toString(), dto.rating.imdb.toString()),
+        rating = mapRating(dto.rating),
         trailers = mapTrailers(dto.trailersList),
         persons = mapPersons(dto.persons),
         genres = mapGenres(dto.genres)
@@ -49,6 +53,14 @@ class MovieMapper {
         return genresDto?.map { genreDto ->
             genreDto.name
         } ?: emptyList()
+    }
+
+    private fun mapRating(ratingDto: MovieRatingDto): MovieRating {
+        val df = DecimalFormat("0.0", DecimalFormatSymbols.getInstance(Locale.US))
+        return MovieRating(
+            kp = df.format(ratingDto.kp),
+            imdb = df.format(ratingDto.imdb)
+        )
     }
 
     private fun convertTimeOfMoviePerHour(movieLength: Int): Int {
