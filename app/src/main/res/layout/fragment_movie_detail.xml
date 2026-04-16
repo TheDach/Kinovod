@@ -87,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tv_rating_kinopoisk"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     app:chipBackgroundColor="@color/bg_trailers"
                     app:chipStrokeColor="@android:color/transparent"
                     tools:text="⭐ Кинопоиск 8.7" />
@@ -95,6 +96,7 @@
                     android:id="@+id/chip_rating_imdb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="@string/tv_rating_imdb"
                     android:textSize="18sp"
                     app:chipBackgroundColor="@color/bg_trailers"
@@ -105,6 +107,7 @@
                     android:id="@+id/chip_rating_friends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="@string/tv_rating_friends"
                     android:textSize="18sp"
                     app:chipBackgroundColor="@color/bg_trailers"
@@ -115,6 +118,7 @@
                     android:id="@+id/chip_year_movie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="@string/tv_year_movie"
                     android:textSize="18sp"
                     app:chipBackgroundColor="@color/bg_trailers"
@@ -143,6 +147,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:text="@string/label_my_rating"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -183,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginEnd="10dp"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1.2"
                     android:text="@string/btn_want_watch"
                     android:textColor="@color/black"
                     app:icon="@drawable/ic_plus_svg"
@@ -229,6 +234,7 @@
                     tools:text="🎭 Фантастика" />
 
                 <TextView
+                    android:id="@+id/tv_age_limit_movie_detail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -244,6 +250,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
                 android:text="@string/label_description"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -263,6 +270,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="@string/label_actors"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -281,6 +289,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
+                android:textColor="@color/black"
                 android:text="@string/label_where_to_watch"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -299,6 +308,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:text="@string/label_trailers"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -316,6 +326,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/label_reviews"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

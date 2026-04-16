@@ -1,5 +1,9 @@
 package com.thedach.kinovod.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Movie(
     val id: Int,
     val name: String,
@@ -13,4 +17,4 @@ data class Movie(
     val trailers: List<Trailer>,
     val persons: List<Person>,
     val genres: List<String>
-)
+): Parcelable

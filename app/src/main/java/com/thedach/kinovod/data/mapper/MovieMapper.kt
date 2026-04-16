@@ -43,6 +43,7 @@ class MovieMapper {
     private fun mapPersons(personsDto: List<PersonDto>?): List<Person> {
         return personsDto?.map { personDto ->
             Person(
+                id = personDto.id,
                 name = personDto.name ?: "no name",
                 photo = personDto.photo ?: "https://st.kp.yandex.net/images/actor_iphone/iphone360_3084680.jpg"
             )

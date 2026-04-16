@@ -34,5 +34,9 @@
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.thedach.kinovod.presentation.MovieDetailsFragment"
-        android:label="MovieDetailsFragment" />
+        android:label="MovieDetailsFragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.thedach.kinovod.domain.model.Movie" />
+    </fragment>
 </navigation>

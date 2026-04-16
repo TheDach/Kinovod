@@ -19,13 +19,40 @@ class MovieViewModel : ViewModel() {
     val movieList: LiveData<List<Movie>>
         get() = _movieList
 
-    private suspend fun loadMovies() {
-        _movieList.value = getMovieListUseCase()
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _isRefreshing = MutableLiveData<Boolean>()
+    val isRefreshing: LiveData<Boolean> = _isRefreshing
+
+    private val _error = MutableLiveData<String?>(null)
+    val error: LiveData<String?> = _error
+
+    private fun loadMovies() {
+        viewModelScope.launch {
+
+            _isLoading.value = true
+            _error.value = null
+
+            try{
+                _movieList.value = getMovieListUseCase()
+
+            } catch (ex: Exception) {
+                _error.value = ex.message
+
+            } finally {
+                _isRefreshing.value = false
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun refreshMovies() {
+        _isRefreshing.value = true
+        loadMovies()
     }
 
     init {
-        viewModelScope.launch {
-            loadMovies()
-        }
+        loadMovies()
     }
 }

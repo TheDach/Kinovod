@@ -10,4 +10,10 @@ interface MovieRepository {
         ratingKp: String? = null,
         genreName: String? = null
     ): List<Movie>
+
+    /*suspend fun loadNextPage(
+        selectFields: String? = null,
+        ratingKp: String? = null,
+        genreName: String? = null
+    ):*/
 }

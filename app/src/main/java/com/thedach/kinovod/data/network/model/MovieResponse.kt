@@ -7,5 +7,13 @@ data class MovieResponse(
 
     @SerializedName("docs")
     @Expose
-    val movies: List<MovieDto>? = null
+    val movies: List<MovieDto>? = null,
+
+    @SerializedName("next")
+    @Expose
+    val nextMovies: String? = null,
+
+    @SerializedName("hasNext")
+    @Expose
+    val hasNext: Boolean = false
 )

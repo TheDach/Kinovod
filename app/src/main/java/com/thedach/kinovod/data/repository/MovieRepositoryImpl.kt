@@ -12,6 +12,10 @@ class MovieRepositoryImpl: MovieRepository {
     private val apiService = ApiFactory.apiService
     private val mapper = MovieMapper()
 
+    private var nextCursor: String? = null
+    private var hasNext = true
+    private var isFirstLoad = true
+
     override suspend fun getMovieList(
         selectFields: String?,
         ratingKp: String?,
