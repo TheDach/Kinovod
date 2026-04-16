@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class MovieViewModel : ViewModel() {
 
-    private val movieRepository = MovieRepositoryImpl()
+    private val movieRepository = MovieRepositoryImpl
 
     private val getMovieListUseCase = GetMovieListUseCase(movieRepository)
 
@@ -39,6 +39,7 @@ class MovieViewModel : ViewModel() {
 
             } catch (ex: Exception) {
                 _error.value = ex.message
+                ex.printStackTrace()
 
             } finally {
                 _isRefreshing.value = false

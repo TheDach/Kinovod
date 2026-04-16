@@ -2,6 +2,7 @@ package com.thedach.kinovod.domain
 
 import androidx.lifecycle.LiveData
 import com.thedach.kinovod.domain.model.Movie
+import com.thedach.kinovod.domain.model.Review
 
 interface MovieRepository {
 
@@ -10,6 +11,10 @@ interface MovieRepository {
         ratingKp: String? = null,
         genreName: String? = null
     ): List<Movie>
+
+    suspend fun getReviewListMovie(
+        movieId: Int
+    ): List<Review>
 
     /*suspend fun loadNextPage(
         selectFields: String? = null,

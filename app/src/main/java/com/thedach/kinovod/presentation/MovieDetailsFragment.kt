@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentMovieDetailBinding
 import com.thedach.kinovod.presentation.adapters.ActorsAdapter
-import com.thedach.kinovod.presentation.adapters.MovieAdapter
-import kotlin.getValue
+import com.thedach.kinovod.presentation.adapters.ReviewAdapter
 
 class MovieDetailsFragment: Fragment() {
 
@@ -23,6 +23,17 @@ class MovieDetailsFragment: Fragment() {
     private val args by navArgs<MovieDetailsFragmentArgs>()
 
     private lateinit var actorsAdapter: ActorsAdapter
+    private lateinit var reviewAdapter: ReviewAdapter
+
+    private val viewModelFactory: MovieDetailsViewModelFactory by lazy {
+        MovieDetailsViewModelFactory(
+            args.movie.id
+        )
+    }
+
+    private val viewModel: MovieDetailsViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[MovieDetailsViewModel::class.java]
+    }
 
 
     override fun onCreateView(
@@ -39,11 +50,35 @@ class MovieDetailsFragment: Fragment() {
 
         setupClickListeners()
         bindViews()
+        observeViewModel()
     }
 
     private fun setupClickListeners() {
         binding.btnComeBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.tabFriends.setOnClickListener {
+            binding.tabFriends.setTextColor(
+                resources.getColor(R.color.purple_500, null)
+            )
+            binding.tabKinopoisk.setTextColor(
+                resources.getColor(R.color.tags_text_grey_poster, null)
+            )
+        }
+        binding.tabKinopoisk.setOnClickListener {
+            binding.tabKinopoisk.setTextColor(
+                resources.getColor(R.color.purple_500, null)
+            )
+            binding.tabFriends.setTextColor(
+                resources.getColor(R.color.tags_text_grey_poster, null)
+            )
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.reviewList.observe(viewLifecycleOwner) {reviews ->
+            reviewAdapter.submitList(reviews)
         }
     }
 
@@ -81,6 +116,9 @@ class MovieDetailsFragment: Fragment() {
         actorsAdapter = ActorsAdapter()
         binding.recyclerViewActors.adapter = actorsAdapter
         actorsAdapter.submitList(args.movie.persons)
+
+        reviewAdapter = ReviewAdapter(requireContext())
+        binding.recyclerViewReviews.adapter = actorsAdapter
     }
 
 

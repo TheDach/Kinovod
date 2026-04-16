@@ -16,4 +16,10 @@
     <color name="red_500">#ef4444</color>
     <color name="review_stars">#fbbf24</color>
     <color name="bg_trailers">#EEF2FF</color>
+
+    <color name="bg_review_positive">#D7FFD1</color>
+    <color name="bg_review_negative">#FFDCDC</color>
+    <color name="bg_review_neutral">#FFF9BE</color>
+
+
 </resources>

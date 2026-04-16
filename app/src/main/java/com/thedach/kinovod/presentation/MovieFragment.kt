@@ -49,8 +49,8 @@ class MovieFragment : Fragment() {
 
 
     private fun observeViewModel() {
-        viewModel.movieList.observe(viewLifecycleOwner) {
-            movieAdapter.submitList(it)
+        viewModel.movieList.observe(viewLifecycleOwner) {movies ->
+            movieAdapter.submitList(movies)
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {isLoading ->

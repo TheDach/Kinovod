@@ -11,9 +11,11 @@
     app:cardElevation="0dp">
 
     <LinearLayout
+        android:id="@+id/linear_layout_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/bg_review_positive"
         android:padding="12dp">
 
         <LinearLayout
@@ -36,9 +38,10 @@
                 android:id="@+id/tv_review_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/review_stars"
+                android:textStyle="italic"
+                android:textColor="@color/black"
                 android:textSize="14sp"
-                tools:text="★★★★★" />
+                tools:text="Позитвный" />
 
         </LinearLayout>
 
