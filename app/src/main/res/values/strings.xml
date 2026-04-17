@@ -76,4 +76,7 @@
     <string name="btn_enter">Войти</string>
     <string name="label_no_account">Нет аккаунта?</string>
     <string name="tv_registration">Зарегистрироваться</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="already_have_account">Уже есть аккаунт?</string>
 </resources>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
-    android:padding="15dp">
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,32 +44,31 @@
         android:padding="12dp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
-            style="@style/Widget.Material3.Button"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="@string/enter"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/purple_500"
-            app:cornerRadius="40dp" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="@string/registration"
+            android:text="@string/enter"
             android:textColor="@color/tags_text_grey_poster"
             android:textSize="16sp"
             android:textStyle="bold"
             app:backgroundTint="@color/bg_trailers"
             app:cornerRadius="40dp" />
-    </LinearLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="@string/registration"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/purple_500"
+            app:cornerRadius="40dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,7 +89,32 @@
             app:hintTextColor="@color/tags_text_grey_poster">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_edit_text_email"
+                android:id="@+id/text_input_edit_text_username_registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:textSize="16sp"
+                tools:text="Александр" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/label_email"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp"
+            app:boxStrokeColor="@color/gray_50"
+            app:hintTextColor="@color/tags_text_grey_poster">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_edit_text_email_registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -113,7 +137,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_edit_text_password"
+                android:id="@+id/text_input_edit_text_password_registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -132,7 +156,7 @@
             android:layout_marginBottom="16dp"
             android:elevation="10dp"
             android:stateListAnimator="@null"
-            android:text="@string/btn_enter"
+            android:text="@string/tv_registration"
             android:textSize="18sp"
             android:textStyle="bold"
             app:backgroundTint="@color/purple_500"
@@ -148,7 +172,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_no_account"
+                android:text="@string/already_have_account"
                 android:textColor="@color/tags_text_grey_poster"
                 android:textSize="14sp" />
 
@@ -157,7 +181,7 @@
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_registration"
+                android:text="@string/btn_enter"
                 android:layout_marginStart="20dp"
                 android:textColor="@color/purple_500"
                 android:textStyle="bold"
@@ -166,6 +190,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 
 </LinearLayout>
