@@ -211,7 +211,7 @@
                     <include
                         android:id="@+id/item_movie_watchlist_1_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -219,7 +219,7 @@
                     <include
                         android:id="@+id/item_movie_watchlist_2_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -227,7 +227,7 @@
                     <include
                         android:id="@+id/item_movie_watchlist_3_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -235,7 +235,7 @@
                     <include
                         android:id="@+id/item_movie_watchlist_4_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -243,7 +243,7 @@
                     <include
                         android:id="@+id/item_movie_watchlist_5_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
                 </LinearLayout>
@@ -296,7 +296,7 @@
                     <include
                         android:id="@+id/movie_watched_1_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -304,7 +304,7 @@
                     <include
                         android:id="@+id/movie_watched_2_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -312,7 +312,7 @@
                     <include
                         android:id="@+id/movie_watched_3_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -320,7 +320,7 @@
                     <include
                         android:id="@+id/movie_watched_4_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
 
@@ -328,7 +328,7 @@
                     <include
                         android:id="@+id/movie_watched_5_profile"
                         layout="@layout/item_movie"
-                        android:layout_width="wrap_content"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp" />
                 </LinearLayout>
