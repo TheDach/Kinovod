@@ -66,4 +66,14 @@
     <string name="label_kinopoisk">Кинопоиск</string>
     <string name="label_reviews">Отзывы</string>
     <string name="tv_year_movie">Год выпуска: %s</string>
+    <string name="label_kinovod">Киновод</string>
+    <string name="app_logo">Логотип приложения</string>
+    <string name="tv_find_movie_for_company">Найди кино для компании</string>
+    <string name="enter">Вход</string>
+    <string name="registration">Регистрация</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Пароль</string>
+    <string name="btn_enter">Войти</string>
+    <string name="label_no_account">Нет аккаунта?</string>
+    <string name="tv_registration">Зарегистрироваться</string>
 </resources>
