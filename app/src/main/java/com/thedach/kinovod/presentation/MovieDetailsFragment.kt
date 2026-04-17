@@ -118,7 +118,7 @@ class MovieDetailsFragment: Fragment() {
         actorsAdapter.submitList(args.movie.persons)
 
         reviewAdapter = ReviewAdapter(requireContext())
-        binding.recyclerViewReviews.adapter = actorsAdapter
+        binding.recyclerViewReviews.adapter = reviewAdapter
     }
 
 

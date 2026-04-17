@@ -37,7 +37,7 @@ class ReviewAdapter(
 
             val colorId = when(review.typeRating) {
                 TYPE_POSITIVE -> context.resources.getColor(
-                    R.color.bg_review_negative,
+                    R.color.bg_review_positive,
                     null
                 )
                 TYPE_NEUTRAL -> context.resources.getColor(
