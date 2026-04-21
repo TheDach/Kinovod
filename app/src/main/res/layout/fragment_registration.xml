@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:hint="@string/label_email"
+            android:hint="@string/username"
             app:boxCornerRadiusBottomEnd="40dp"
             app:boxCornerRadiusBottomStart="40dp"
             app:boxCornerRadiusTopEnd="40dp"

@@ -14,10 +14,17 @@ interface ApiService {
     @GET("movies")
     suspend fun getMovies(
         @Query(QUERY_PARAM_SELECT_FIELDS) selectFields: String? = null,
-        @Query(QUERY_PARAM_RATING_KP) ratingKp: String? = null,
+        @Query(QUERY_PARAM_RATING_KP) ratingKp: String? = DEFAULT_RATING_KP,
         @Query(QUERY_PARAM_GENRES_NAME) genreName: String? = null,
         @Query(QUERY_PARAM_NEXT_MOVIES) nextMovies: String? = null
     ): MovieResponse
+
+    @GET("movies")
+    suspend fun getMoviesById(
+        @Query(QUERY_PARAM_MOVIE_ID) movieId: Int
+    ): MovieResponse
+
+
 
     @GET("reviewsAPI")
     suspend fun getReviews(
@@ -30,5 +37,7 @@ interface ApiService {
         private const val QUERY_PARAM_GENRES_NAME = "genres.name"
         private const val QUERY_PARAM_NEXT_MOVIES = "next"
         private const val QUERY_PARAM_MOVIE_ID = "movieId"
+
+        private const val DEFAULT_RATING_KP = "7-10"
     }
 }

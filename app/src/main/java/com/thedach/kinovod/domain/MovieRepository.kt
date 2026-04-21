@@ -12,9 +12,15 @@ interface MovieRepository {
         genreName: String? = null
     ): List<Movie>
 
+    suspend fun getMovieListById(
+        movieId: Int
+    ): List<Movie>
+
     suspend fun getReviewListMovie(
         movieId: Int
     ): List<Review>
+
+
 
     /*suspend fun loadNextPage(
         selectFields: String? = null,

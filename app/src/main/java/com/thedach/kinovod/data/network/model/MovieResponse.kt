@@ -15,5 +15,5 @@ data class MovieResponse(
 
     @SerializedName("hasNext")
     @Expose
-    val hasNext: Boolean = false
+    val hasNext: Boolean? = false
 )
