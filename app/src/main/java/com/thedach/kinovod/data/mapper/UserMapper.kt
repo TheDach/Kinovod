@@ -34,9 +34,9 @@ class UserMapper {
             username = domain.username,
             email = domain.email,
             avatar = domain.avatar,
-            watchedList = domain.watchedList,
-            wishList = domain.wishList,
-            friends = domain.friends.map { mapFriendToDto(it) }
+            watchedList = domain.watchedList ?: emptyList(),
+            wishList = domain.wishList ?: emptyList(),
+            friends = domain.friends?.map { mapFriendToDto(it) } ?: emptyList()
         )
     }
 

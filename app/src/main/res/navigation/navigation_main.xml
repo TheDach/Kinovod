@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/movieFragment">
 
 
     <fragment
@@ -12,7 +12,8 @@
         android:label="RoomsFragment" >
         <action
             android:id="@+id/action_roomsFragment_to_newRoomFragment"
-            app:destination="@id/newRoomFragment" />
+            app:destination="@id/newRoomFragment"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -25,7 +26,8 @@
         tools:layout="@layout/fragment_movie" >
         <action
             android:id="@+id/action_movieFragment_to_movieDetailsFragment"
-            app:destination="@id/movieDetailsFragment" />
+            app:destination="@id/movieDetailsFragment"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/newRoomFragment"
@@ -39,26 +41,12 @@
             android:name="movie"
             app:argType="com.thedach.kinovod.domain.model.Movie" />
     </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.thedach.kinovod.presentation.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.thedach.kinovod.presentation.RegistrationFragment"
-        android:label="RegistrationFragment" >
-        <action
-            android:id="@+id/action_registrationFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_registrationFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-    </fragment>
+
+    <!-- Глобальное действие для возврата в MovieFragment -->
+    <action
+        android:id="@+id/action_global_movieFragment"
+        app:destination="@id/movieFragment"
+        app:popUpTo="@id/movieFragment"
+        app:popUpToInclusive="false" />
+
 </navigation>

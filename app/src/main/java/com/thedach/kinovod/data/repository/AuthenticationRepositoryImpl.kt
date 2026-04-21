@@ -12,6 +12,8 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
     private val apiService = ApiFactory.apiService
     private val userMapper = UserMapper()
 
+    private var userRepository = UserRepository
+
     override suspend fun login(
         email: String,
         password: String
@@ -22,7 +24,7 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
                 LoginRequestDto (email, password)
             )
 
-            userMapper.mapUserToDomain(response.user)
+            userMapper.mapUserToDomain(response.user).also { userRepository.setUser(it) }
 
         } catch (ex: Exception) {
             ex.printStackTrace()

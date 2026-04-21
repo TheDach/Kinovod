@@ -71,7 +71,6 @@ class MovieFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), "Ошибка: $it", Toast.LENGTH_SHORT).show()
-                // Или показать Snackbar
             }
         }
 

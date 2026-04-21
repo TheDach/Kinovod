@@ -11,8 +11,8 @@ data class User(
     val email: String,
     val avatar: String?,
 
-    val watchedList: List<Int>,
-    val wishList: List<Int>,
+    val watchedList: List<Int>?,
+    val wishList: List<Int>?,
 
-    val friends: List<Friend>
+    val friends: List<Friend>?
 ) : Parcelable
