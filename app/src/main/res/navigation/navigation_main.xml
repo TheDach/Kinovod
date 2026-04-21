@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/movieFragment">
+    app:startDestination="@id/loginFragment">
 
 
     <fragment
@@ -38,5 +38,27 @@
         <argument
             android:name="movie"
             app:argType="com.thedach.kinovod.domain.model.Movie" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.thedach.kinovod.presentation.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.thedach.kinovod.presentation.RegistrationFragment"
+        android:label="RegistrationFragment" >
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
     </fragment>
 </navigation>

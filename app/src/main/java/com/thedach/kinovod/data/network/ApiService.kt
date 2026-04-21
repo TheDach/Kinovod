@@ -1,8 +1,13 @@
 package com.thedach.network
 
-import com.thedach.kinovod.data.network.model.ReviewResponse
+import com.thedach.kinovod.data.network.model.LoginRequestDto
+import com.thedach.kinovod.data.network.model.RegisterRequestDto
+import com.thedach.kinovod.data.network.model.ReviewResponseDto
+import com.thedach.kinovod.data.network.model.UserResponseDto
 import com.thedach.network.models.MovieResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiService {
@@ -25,11 +30,21 @@ interface ApiService {
     ): MovieResponse
 
 
-
     @GET("reviewsAPI")
     suspend fun getReviews(
         @Query(QUERY_PARAM_MOVIE_ID) movieId: Int
-    ): ReviewResponse
+    ): ReviewResponseDto
+
+
+    @POST("auth/login")
+    suspend fun login(
+        @Body request: LoginRequestDto
+    ) : UserResponseDto
+
+    @POST("auth/register")
+    suspend fun registration(
+        @Body request: RegisterRequestDto
+    ) : UserResponseDto
 
     companion object {
         private const val QUERY_PARAM_SELECT_FIELDS = "selectFields"
