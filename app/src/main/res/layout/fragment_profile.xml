@@ -145,7 +145,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_watchlist_count_profile"
+                    android:id="@+id/tv_wishlist_count_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
@@ -188,7 +188,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_watchlist_see_all"
+                    android:id="@+id/tv_wishlist_see_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_all_wish_list"

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.thedach.kinovod.R
+import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.databinding.FragmentProfileBinding
 
 class ProfileFragment: Fragment() {
@@ -25,7 +27,27 @@ class ProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        bindViews()
+    }
 
+    private fun bindViews() {
+        with(binding) {
+            val currentUser = UserRepository.currentUser
+
+            tvUserNameProfile.text = currentUser?.username ?: "Гость"
+
+            tvFriendsCountProfile.text = currentUser?.friends?.size?.toString()
+            tvFriendsSeeAllProfile.text = getString(R.string.tv_all_watched_list)
+                .format(currentUser?.friends?.size?.toString())
+
+            tvWatchedCountProfile.text = currentUser?.watchedList?.size.toString()
+            tvWatchedSeeAllProfile.text = getString(R.string.tv_all_watched_list)
+                .format(currentUser?.watchedList?.size?.toString())
+
+            tvWishlistCountProfile.text = currentUser?.wishList?.size?.toString()
+            tvWishlistSeeAll.text = getString(R.string.tv_all_watched_list)
+                .format(currentUser?.wishList?.size?.toString())
+        }
     }
 
     override fun onDestroyView() {

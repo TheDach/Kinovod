@@ -19,11 +19,11 @@ data class UserDto(
     val avatar: String? = null,
 
     @SerialName("watchedList")
-    val watchedList: List<Int> = emptyList(),
+    val watchedList: List<Int>? = emptyList(),
 
     @SerialName("wishList")
-    val wishList: List<Int> = emptyList(),
+    val wishList: List<Int>? = emptyList(),
 
     @SerialName("friends")
-    val friends: List<FriendDto> = emptyList()
+    val friends: List<FriendDto>? = emptyList()
 )

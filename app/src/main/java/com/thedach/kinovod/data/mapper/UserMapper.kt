@@ -13,8 +13,8 @@ class UserMapper {
             username = dto.username,
             email = dto.email,
             avatar = dto.avatar,
-            watchedList = dto.watchedList,
-            wishList = dto.wishList,
+            watchedList = dto.watchedList ?: emptyList(),
+            wishList = dto.wishList ?: emptyList(),
             friends = dto.friends?.map { mapFriendToDomain(it) } ?: emptyList()
         )
     }
