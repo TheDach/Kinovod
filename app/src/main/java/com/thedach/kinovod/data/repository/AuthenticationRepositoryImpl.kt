@@ -7,7 +7,7 @@ import com.thedach.kinovod.domain.AuthenticationRepository
 import com.thedach.kinovod.domain.model.User
 import com.thedach.network.ApiFactory
 
-class AuthenticationRepositoryImpl: AuthenticationRepository {
+class AuthenticationRepositoryImpl : AuthenticationRepository {
 
     private val apiService = ApiFactory.apiService
     private val userMapper = UserMapper()
@@ -21,10 +21,10 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
         return try {
 
             val response = apiService.login(
-                LoginRequestDto (email, password)
+                LoginRequestDto(email, password)
             )
 
-            userMapper.mapUserToDomain(response.user).also { userRepository.setUser(it) }
+            userMapper.mapUserToDomain(response.user).also { saveUser(it) }
 
         } catch (ex: Exception) {
             ex.printStackTrace()
@@ -43,14 +43,19 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
         return try {
 
             val response = apiService.registration(
-                RegisterRequestDto (username, userTag, email, password)
+                RegisterRequestDto(username, userTag, email, password)
             )
 
-            userMapper.mapUserToDomain(response.user).also { userRepository.setUser(it) }
+            userMapper.mapUserToDomain(response.user).also { saveUser(it)}
 
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw ex
         }
+    }
+
+
+    private fun saveUser(user: User) {
+        userRepository.setUser(user)
     }
 }

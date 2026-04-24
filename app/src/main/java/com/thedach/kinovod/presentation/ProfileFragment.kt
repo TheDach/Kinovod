@@ -32,21 +32,22 @@ class ProfileFragment: Fragment() {
 
     private fun bindViews() {
         with(binding) {
-            val currentUser = UserRepository.currentUser
+            UserRepository.currentUser.observe(viewLifecycleOwner) {user ->
 
-            tvUserNameProfile.text = currentUser?.username ?: "Гость"
+                tvUserNameProfile.text = user.username
 
-            tvFriendsCountProfile.text = currentUser?.friends?.size?.toString()
-            tvFriendsSeeAllProfile.text = getString(R.string.tv_all_watched_list)
-                .format(currentUser?.friends?.size?.toString())
+                tvFriendsCountProfile.text = user.friends?.size?.toString()
+                tvFriendsSeeAllProfile.text = getString(R.string.tv_all_watched_list)
+                    .format(user.friends?.size?.toString())
 
-            tvWatchedCountProfile.text = currentUser?.watchedList?.size.toString()
-            tvWatchedSeeAllProfile.text = getString(R.string.tv_all_watched_list)
-                .format(currentUser?.watchedList?.size?.toString())
+                tvWatchedCountProfile.text = user.watchedList?.size.toString()
+                tvWatchedSeeAllProfile.text = getString(R.string.tv_all_watched_list)
+                    .format(user.watchedList?.size?.toString())
 
-            tvWishlistCountProfile.text = currentUser?.wishList?.size?.toString()
-            tvWishlistSeeAll.text = getString(R.string.tv_all_watched_list)
-                .format(currentUser?.wishList?.size?.toString())
+                tvWishlistCountProfile.text = user.wishList?.size?.toString()
+                tvWishlistSeeAll.text = getString(R.string.tv_all_watched_list)
+                    .format(user.wishList?.size?.toString())
+            }
         }
     }
 
