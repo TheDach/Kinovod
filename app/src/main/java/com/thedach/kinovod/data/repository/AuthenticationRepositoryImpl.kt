@@ -36,16 +36,17 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
 
     override suspend fun registration(
         username: String,
+        userTag: String,
         email: String,
         password: String
     ): User {
         return try {
 
             val response = apiService.registration(
-                RegisterRequestDto (username, email, password)
+                RegisterRequestDto (username, userTag, email, password)
             )
 
-            userMapper.mapUserToDomain(response.user)
+            userMapper.mapUserToDomain(response.user).also { userRepository.setUser(it) }
 
         } catch (ex: Exception) {
             ex.printStackTrace()

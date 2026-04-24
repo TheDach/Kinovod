@@ -70,11 +70,12 @@ class RegistrationFragment: Fragment() {
             }
             btnRegister.setOnClickListener {
                 val username = textInputEditTextUsernameRegistration.text.toString().trim()
+                val userTag = textInputEditTextUserTagRegistration.text.toString().trim()
                 val email = textInputEditTextEmailRegistration.text.toString().trim()
                 val password = textInputEditTextPasswordRegistration.text.toString()
 
-                if (validateInputs(username, email, password)) {
-                    viewModel.registerNewUser(username, email, password)
+                if (validateInputs(username, userTag, email, password)) {
+                    viewModel.registerNewUser(username, userTag, email, password)
                 }
             }
         }
@@ -90,7 +91,7 @@ class RegistrationFragment: Fragment() {
         }
     }
 
-    private fun validateInputs(username: String, email: String, password: String): Boolean {
+    private fun validateInputs(username: String,  userTag: String, email: String, password: String): Boolean {
         var isValid = true
 
         // Валидация username
@@ -102,6 +103,20 @@ class RegistrationFragment: Fragment() {
             isValid = false
         } else {
             clearErrorForField(binding.textInputLayoutUsername)
+        }
+
+        // Валидация userTag
+        if (userTag.isBlank()) {
+            showErrorForField(binding.textInputLayoutUserTag, "Тег пользователя обязателен")
+            isValid = false
+        } else if (userTag.length < 3) {
+            showErrorForField(binding.textInputLayoutUserTag, "Тег пользователя должен содержать минимум 3 символа")
+            isValid = false
+        } else if (!userTag.matches(Regex("^[a-zA-Z0-9_]+$"))) {
+            showErrorForField(binding.textInputLayoutUserTag, "Тег может содержать только буквы, цифры и символ подчеркивания")
+            isValid = false
+        } else {
+            clearErrorForField(binding.textInputLayoutUserTag)
         }
 
         // Валидация email

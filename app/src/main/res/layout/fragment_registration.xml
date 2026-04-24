@@ -99,6 +99,31 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutUserTag"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/user_tag"
+            app:boxCornerRadiusBottomEnd="40dp"
+            app:boxCornerRadiusBottomStart="40dp"
+            app:boxCornerRadiusTopEnd="40dp"
+            app:boxCornerRadiusTopStart="40dp"
+            app:boxStrokeColor="@color/gray_50"
+            app:hintTextColor="@color/tags_text_grey_poster">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_edit_text_user_tag_registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:textSize="16sp"
+                tools:text="alex_lion" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutEmail"

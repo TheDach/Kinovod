@@ -8,7 +8,8 @@ class RegistrationUseCase(
 
     suspend operator fun invoke(
         username: String,
+        userTag: String,
         email: String,
         password: String
-    ) = repository.registration(username, email, password)
+    ) = repository.registration(username, userTag, email, password)
 }

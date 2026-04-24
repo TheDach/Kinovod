@@ -11,6 +11,7 @@ class UserMapper {
         return User(
             userId = dto.userId,
             username = dto.username,
+            userTag = dto.userTag,
             email = dto.email,
             avatar = dto.avatar,
             watchedList = dto.watchedList ?: emptyList(),
@@ -32,6 +33,7 @@ class UserMapper {
         return UserDto(
             userId = domain.userId,
             username = domain.username,
+            userTag = domain.userTag,
             email = domain.email,
             avatar = domain.avatar,
             watchedList = domain.watchedList ?: emptyList(),

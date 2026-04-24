@@ -12,6 +12,9 @@ data class UserDto(
     @SerialName("username")
     val username: String,
 
+    @SerialName("username")
+    val userTag: String,
+
     @SerialName("email")
     val email: String,
 

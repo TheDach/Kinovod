@@ -25,6 +25,7 @@ class RegistrationViewModel : ViewModel() {
 
     fun registerNewUser(
         username: String,
+        userTag: String,
         email: String,
         password: String
     ) {
@@ -32,6 +33,7 @@ class RegistrationViewModel : ViewModel() {
             try {
                 register.invoke(
                     username,
+                    userTag,
                     email,
                     password
                 )

@@ -8,6 +8,7 @@ data class User(
     val token: String = "",
     val userId: Int,
     val username: String,
+    val userTag: String,
     val email: String,
     val avatar: String?,
 

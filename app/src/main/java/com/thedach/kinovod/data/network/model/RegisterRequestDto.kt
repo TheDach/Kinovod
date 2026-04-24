@@ -8,6 +8,9 @@ data class RegisterRequestDto(
     @SerialName("username")
     val username: String,
 
+    @SerialName("userTag")
+    val userTag: String,
+
     @SerialName("email")
     val email: String,
 

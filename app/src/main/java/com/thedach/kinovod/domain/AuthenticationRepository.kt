@@ -11,6 +11,7 @@ interface AuthenticationRepository {
 
     suspend fun registration(
         username: String,
+        userTag: String,
         email: String,
         password: String
     ): User
