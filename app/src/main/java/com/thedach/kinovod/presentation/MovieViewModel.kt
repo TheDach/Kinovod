@@ -35,6 +35,8 @@ class MovieViewModel : ViewModel() {
 
     private var searchJob: Job? = null
     private var currentQuery = ""
+    private val selectedGenres = mutableListOf<String>()
+    private val activeChips = mutableListOf<String>()
 
     private fun loadMovies() {
         viewModelScope.launch {
@@ -42,8 +44,9 @@ class MovieViewModel : ViewModel() {
             _isLoading.value = true
             _error.value = null
 
-            try{
-                _movieList.value = getMovieListUseCase()
+            try {
+                _movieList.value = getMovieListUseCase(genreName = selectedGenres.toList())
+                applyFilters()
 
             } catch (ex: Exception) {
                 _error.value = ex.message
@@ -56,6 +59,12 @@ class MovieViewModel : ViewModel() {
         }
     }
 
+    fun loadMoviesByGenres(genres: List<String>) {
+        selectedGenres.clear()
+        selectedGenres.addAll(genres)
+        loadMovies()
+    }
+
     fun refreshMovies() {
         _isRefreshing.value = true
         loadMovies()
@@ -63,26 +72,23 @@ class MovieViewModel : ViewModel() {
 
     fun searchMovies(query: String) {
         currentQuery = query
-
         searchJob?.cancel()
-
-        // Запускаем новый поиск с задержкой (debounce)
         searchJob = viewModelScope.launch {
             delay(300)
-            filterMovies(query)
+            applyFilters()
         }
     }
 
-    private fun filterMovies(query: String) {
+    private fun applyFilters() {
         val allMovies = _movieList.value ?: emptyList()
 
-        val filtered = if (query.isBlank()) {
+        val filtered = if (currentQuery.isBlank()) {
             allMovies
         } else {
             allMovies.filter { movie ->
-                movie.name.contains(query, ignoreCase = true) ||
+                movie.name.contains(currentQuery, ignoreCase = true) ||
                         movie.genres.any { genre ->
-                            genre.contains(query, ignoreCase = true)
+                            genre.contains(currentQuery, ignoreCase = true)
                         }
             }
         }
@@ -90,9 +96,27 @@ class MovieViewModel : ViewModel() {
         _filteredMovieList.value = filtered
     }
 
+    fun getActiveChips(): List<String> = activeChips.toList()
+
+    fun addActiveChip(genre: String) {
+        if (!activeChips.contains(genre)) {
+            activeChips.add(genre)
+        }
+    }
+
+    fun removeActiveChip(genre: String) {
+        activeChips.remove(genre)
+    }
+
     fun clearSearch() {
         currentQuery = ""
-        filterMovies("")
+        applyFilters()
+    }
+
+    fun clearGenres() {
+        selectedGenres.clear()
+        activeChips.clear()
+        loadMovies()
     }
 
     init {

@@ -9,7 +9,7 @@ interface MovieRepository {
     suspend fun getMovieList(
         selectFields: String? = null,
         ratingKp: String? = null,
-        genreName: String? = null
+        genreName: List<String>? = null
     ): List<Movie>
 
     suspend fun getMovieListById(

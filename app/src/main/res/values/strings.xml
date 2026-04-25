@@ -81,4 +81,9 @@
     <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="username">Имя пользователя</string>
     <string name="user_tag">Тег</string>
+    <string name="dialog_label_choose_genres">Выберите жанры</string>
+    <string name="label_genres">Жанры</string>
+    <string name="btn_clear">Очистить</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="btn_submit">Применить</string>
 </resources>

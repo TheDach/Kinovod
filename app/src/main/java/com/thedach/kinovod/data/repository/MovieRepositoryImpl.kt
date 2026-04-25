@@ -22,7 +22,7 @@ object MovieRepositoryImpl: MovieRepository {
     override suspend fun getMovieList(
         selectFields: String?,
         ratingKp: String?,
-        genreName: String?
+        genreName: List<String>?
     ): List<Movie> {
 
         return try {

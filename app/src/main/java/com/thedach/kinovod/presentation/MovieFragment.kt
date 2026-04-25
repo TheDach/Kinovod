@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
+import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentMovieBinding
 import com.thedach.kinovod.domain.model.Movie
 import com.thedach.kinovod.presentation.adapters.MovieAdapter
@@ -23,6 +26,7 @@ class MovieFragment : Fragment() {
     }
 
     private lateinit var movieAdapter: MovieAdapter
+    private val chipGroupFilters = mutableListOf<Chip>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +43,7 @@ class MovieFragment : Fragment() {
         setupRecyclerView()
         setupSwipeRefresh()
         setupSearchView()
+        setupFiltersChipGroup()
 
         setupClickListeners()
         observeViewModel()
@@ -46,10 +51,6 @@ class MovieFragment : Fragment() {
 
 
     private fun observeViewModel() {
-        viewModel.movieList.observe(viewLifecycleOwner) {movies ->
-            movieAdapter.submitList(movies)
-        }
-
         viewModel.filteredMovieList.observe(viewLifecycleOwner) { movies ->
             movieAdapter.submitList(movies)
 
@@ -84,7 +85,7 @@ class MovieFragment : Fragment() {
 
     private fun setupClickListeners() {
         binding.buttonSettings.setOnClickListener {
-            TODO()
+            showGenresDialog()
         }
         movieAdapter.onMovieClickListener = { movie ->
             launchMovieDetailsFragment(movie)
@@ -112,6 +113,54 @@ class MovieFragment : Fragment() {
             viewModel.clearSearch()
             false
         }
+    }
+
+    private fun setupFiltersChipGroup() {
+        binding.chipGroupFilters.removeAllViews()
+
+        viewModel.getActiveChips().forEach { genre ->
+            addFilterChip(genre)
+        }
+    }
+
+    private fun addFilterChip(genre: String) {
+        val chip = layoutInflater.inflate(R.layout.item_chip_genre, binding.chipGroupFilters, false) as Chip
+        chip.text = genre
+        chip.isCloseIconVisible  = true
+        chip.setOnCloseIconClickListener {
+
+            binding.chipGroupFilters.removeView(chip)
+            viewModel.removeActiveChip(genre)
+
+            val selectedGenres = binding.chipGroupFilters.children
+                .filterIsInstance<Chip>()
+                .map { it.text.toString() }
+                .toList()
+
+            viewModel.loadMoviesByGenres(selectedGenres)
+        }
+
+        binding.chipGroupFilters.addView(chip)
+        chipGroupFilters.add(chip)
+    }
+
+    private fun showGenresDialog() {
+        val dialog = GenresDialogFragment(
+            selectedGenres = viewModel.getActiveChips(),
+            onApply = { selectedGenres ->
+
+                binding.chipGroupFilters.removeAllViews()
+                chipGroupFilters.clear()
+
+                selectedGenres.forEach { genre ->
+                    addFilterChip(genre)
+                    viewModel.addActiveChip(genre)
+                }
+
+                viewModel.loadMoviesByGenres(selectedGenres)
+            }
+        )
+        dialog.show(childFragmentManager, "GenresDialog")
     }
 
     private fun setupRecyclerView() {

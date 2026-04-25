@@ -20,7 +20,7 @@ interface ApiService {
     suspend fun getMovies(
         @Query(QUERY_PARAM_SELECT_FIELDS) selectFields: String? = null,
         @Query(QUERY_PARAM_RATING_KP) ratingKp: String? = DEFAULT_RATING_KP,
-        @Query(QUERY_PARAM_GENRES_NAME) genreName: String? = null,
+        @Query(QUERY_PARAM_GENRES_NAME) genreName: List<String>? = null,
         @Query(QUERY_PARAM_NEXT_MOVIES) nextMovies: String? = null
     ): MovieResponse
 

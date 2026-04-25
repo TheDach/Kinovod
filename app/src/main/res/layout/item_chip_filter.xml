@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:textAlignment="center"
+    android:textSize="13sp"
+    android:textColor="@color/dark_purple_movie"
+    app:chipBackgroundColor="#ede9fe"
+    app:chipCornerRadius="30dp"
+    app:chipMinHeight="36dp"
+    app:chipStrokeColor="@null"
+    app:closeIconEnabled="true"
+    app:closeIconSize="16dp"
+    app:closeIconTint="@color/dark_purple_movie"
+    tools:text="боевик" />
