@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import com.thedach.kinovod.R
 import com.thedach.kinovod.data.repository.UserRepository
@@ -48,6 +49,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObserver()
+        setupClickListeners()
     }
 
     private fun initIncludeBindings() {
@@ -97,8 +99,46 @@ class ProfileFragment : Fragment() {
             displayWatchedList(watchedList)
         }
         viewModel.error.observe(viewLifecycleOwner) {error ->
-            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+            if (!error.isNullOrBlank()) {
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+    private fun setupClickListeners() {
+        wishlistMovieBindings.forEachIndexed { index, binding ->
+            binding.root.setOnClickListener {
+                val movie = viewModel.movieWishList.value?.getOrNull(index)
+                movie?.let {movie ->
+                    launchMovieDetailsFragment(movie)
+                }
+            }
+        }
+
+        // Клики для фильмов в watched
+        watchedMovieBindings.forEachIndexed { index, binding ->
+            binding.root.setOnClickListener {
+                val movie = viewModel.movieWatchedList.value?.getOrNull(index)
+                movie?.let {movie ->
+                    launchMovieDetailsFragment(movie)
+                }
+            }
+        }
+
+        binding.tvWishlistSeeAll.setOnClickListener {
+
+        }
+        binding.tvWatchedSeeAllProfile.setOnClickListener {
+
+        }
+        binding.tvFriendsSeeAllProfile.setOnClickListener {
+
+        }
+    }
+
+    private fun launchMovieDetailsFragment(movie: Movie) {
+        findNavController().navigate(
+            ProfileFragmentDirections.actionProfileFragmentToMovieDetailsFragment(movie)
+        )
     }
 
     private fun bindViewsUser(user: User) {
