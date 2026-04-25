@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.domain.GetMovieListUseCase
 import com.thedach.kinovod.domain.model.Movie
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MovieViewModel : ViewModel() {
@@ -19,6 +21,9 @@ class MovieViewModel : ViewModel() {
     val movieList: LiveData<List<Movie>>
         get() = _movieList
 
+    private val _filteredMovieList = MutableLiveData<List<Movie>>()
+    val filteredMovieList: LiveData<List<Movie>> = _filteredMovieList
+
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -27,6 +32,9 @@ class MovieViewModel : ViewModel() {
 
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
+
+    private var searchJob: Job? = null
+    private var currentQuery = ""
 
     private fun loadMovies() {
         viewModelScope.launch {
@@ -51,6 +59,40 @@ class MovieViewModel : ViewModel() {
     fun refreshMovies() {
         _isRefreshing.value = true
         loadMovies()
+    }
+
+    fun searchMovies(query: String) {
+        currentQuery = query
+
+        searchJob?.cancel()
+
+        // Запускаем новый поиск с задержкой (debounce)
+        searchJob = viewModelScope.launch {
+            delay(300)
+            filterMovies(query)
+        }
+    }
+
+    private fun filterMovies(query: String) {
+        val allMovies = _movieList.value ?: emptyList()
+
+        val filtered = if (query.isBlank()) {
+            allMovies
+        } else {
+            allMovies.filter { movie ->
+                movie.name.contains(query, ignoreCase = true) ||
+                        movie.genres.any { genre ->
+                            genre.contains(query, ignoreCase = true)
+                        }
+            }
+        }
+
+        _filteredMovieList.value = filtered
+    }
+
+    fun clearSearch() {
+        currentQuery = ""
+        filterMovies("")
     }
 
     init {

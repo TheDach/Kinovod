@@ -24,10 +24,6 @@ class MovieFragment : Fragment() {
 
     private lateinit var movieAdapter: MovieAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +38,7 @@ class MovieFragment : Fragment() {
 
         setupRecyclerView()
         setupSwipeRefresh()
+        setupSearchView()
 
         setupClickListeners()
         observeViewModel()
@@ -51,6 +48,14 @@ class MovieFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.movieList.observe(viewLifecycleOwner) {movies ->
             movieAdapter.submitList(movies)
+        }
+
+        viewModel.filteredMovieList.observe(viewLifecycleOwner) { movies ->
+            movieAdapter.submitList(movies)
+
+            if (movies.isEmpty() && viewModel.movieList.value?.isNotEmpty() == true) {
+                Toast.makeText(requireContext(), "Ничего не найдено", Toast.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {isLoading ->
@@ -86,6 +91,29 @@ class MovieFragment : Fragment() {
         }
     }
 
+    private fun setupSearchView() {
+        binding.searchViewMovie.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+
+                viewModel.searchMovies(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                viewModel.searchMovies(newText)
+                return true
+            }
+        })
+
+        binding.searchViewMovie.setOnCloseListener {
+            viewModel.clearSearch()
+            false
+        }
+    }
+
     private fun setupRecyclerView() {
         movieAdapter = MovieAdapter(requireContext())
         binding.recyclerViewMovie.adapter = movieAdapter
@@ -94,6 +122,9 @@ class MovieFragment : Fragment() {
     private fun setupSwipeRefresh(){
         binding.swipeRefreshLayoutMovie.setOnRefreshListener {
             viewModel.refreshMovies()
+            viewModel.clearSearch()
+            binding.searchViewMovie.setQuery("", false)
+            binding.searchViewMovie.clearFocus()
         }
     }
 
