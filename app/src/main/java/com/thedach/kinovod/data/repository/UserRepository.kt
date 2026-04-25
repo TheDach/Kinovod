@@ -2,6 +2,7 @@ package com.thedach.kinovod.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.thedach.kinovod.domain.model.Movie
 import com.thedach.kinovod.domain.model.User
 
 object UserRepository {
@@ -13,5 +14,13 @@ object UserRepository {
 
     fun setUser(user: User) {
         _currentUser.value = user
+    }
+
+    fun getIdListWatchedMovies(): List<Int> {
+        return currentUser.value?.watchedList ?: emptyList()
+    }
+
+    fun getIdListWishMovies(): List<Int> {
+        return currentUser.value?.wishList ?: emptyList()
     }
 }

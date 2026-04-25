@@ -198,9 +198,12 @@
             </LinearLayout>
 
             <HorizontalScrollView
+                android:id="@+id/wishlistSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="horizontal">
+                android:scrollbars="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -283,9 +286,12 @@
             </LinearLayout>
 
             <HorizontalScrollView
+                android:id="@+id/watchedSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="horizontal">
+                android:scrollbars="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -337,6 +343,7 @@
 
         <!-- Friends -->
         <LinearLayout
+            android:id="@+id/friendsSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dp"

@@ -22,7 +22,7 @@
         tools:backgroundTint="@color/purple_500">
 
         <TextView
-            android:id="@android:id/text1"
+            android:id="@+id/tv_friend_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -54,9 +54,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_general_movies_friend_profile"
+            android:visibility="gone"
             android:textColor="@color/gray_600"
             android:textSize="13sp"
 
+            tools:visibility="visible"
             tools:text="4 общих фильма" />
     </LinearLayout>
 

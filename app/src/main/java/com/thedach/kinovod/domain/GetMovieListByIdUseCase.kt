@@ -4,5 +4,5 @@ class GetMovieListByIdUseCase(
     private val repository: MovieRepository
 ) {
 
-    suspend operator fun invoke(movieId: Int) = repository.getMovieListById(movieId)
+    suspend operator fun invoke(movieId: List<Int>) = repository.getMovieListById(movieId)
 }

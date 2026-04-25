@@ -26,7 +26,7 @@ interface ApiService {
 
     @GET("movies")
     suspend fun getMoviesById(
-        @Query(QUERY_PARAM_MOVIE_ID) movieId: Int
+        @Query(QUERY_PARAM_MOVIE_ID) movieId: List<Int>
     ): MovieResponse
 
 

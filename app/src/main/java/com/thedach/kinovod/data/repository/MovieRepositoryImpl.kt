@@ -40,7 +40,7 @@ object MovieRepositoryImpl: MovieRepository {
         }
     }
 
-    override suspend fun getMovieListById(movieId: Int): List<Movie> {
+    override suspend fun getMovieListById(movieId: List<Int>): List<Movie> {
         return try {
 
             val response = apiService.getMoviesById(movieId)
