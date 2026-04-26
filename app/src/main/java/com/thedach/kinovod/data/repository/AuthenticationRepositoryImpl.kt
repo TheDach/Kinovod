@@ -54,6 +54,27 @@ class AuthenticationRepositoryImpl : AuthenticationRepository {
         }
     }
 
+    override suspend fun logout(userId: Int) {
+        try {
+
+            apiService.logout(userId)
+
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            throw ex
+        }
+    }
+
+    override suspend fun deleteAccount(userId: Int) {
+        try {
+
+            apiService.deleteAccount(userId)
+
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            throw ex
+        }
+    }
 
     private fun saveUser(user: User) {
         userRepository.setUser(user)

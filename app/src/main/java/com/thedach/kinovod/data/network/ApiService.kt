@@ -48,6 +48,17 @@ interface ApiService {
         @Body request: RegisterRequestDto
     ): UserResponseDto
 
+    @POST("auth/deleteAccount")
+    suspend fun deleteAccount(
+        @Body userId: Int
+    )
+
+    @POST("auth/logout")
+    suspend fun logout(
+        @Body userId: Int
+    )
+
+
     @POST("user/sync")
     suspend fun syncUserData(
         @Body request: SyncUserDataRequest

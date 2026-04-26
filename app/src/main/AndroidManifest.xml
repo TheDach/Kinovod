@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Kinovod"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.movie.MainActivity"
             android:exported="false"/>
 
         <activity

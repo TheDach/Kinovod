@@ -10,7 +10,7 @@
     android:paddingHorizontal="10dp"
     android:paddingTop="20dp"
 
-    tools:context=".presentation.MovieFragment">
+    tools:context=".presentation.movie.MovieFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

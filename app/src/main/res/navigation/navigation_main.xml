@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/roomsFragment"
-        android:name="com.thedach.kinovod.presentation.RoomsFragment"
+        android:name="com.thedach.kinovod.presentation.room.RoomsFragment"
         android:label="RoomsFragment" >
         <action
             android:id="@+id/action_roomsFragment_to_newRoomFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.thedach.kinovod.presentation.ProfileFragment"
+        android:name="com.thedach.kinovod.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_movieDetailsFragment"
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.thedach.kinovod.presentation.MovieFragment"
+        android:name="com.thedach.kinovod.presentation.movie.MovieFragment"
         android:label="fragment_movie"
         tools:layout="@layout/fragment_movie" >
         <action
@@ -36,11 +36,11 @@
     </fragment>
     <fragment
         android:id="@+id/newRoomFragment"
-        android:name="com.thedach.kinovod.presentation.NewRoomFragment"
+        android:name="com.thedach.kinovod.presentation.room.NewRoomFragment"
         android:label="NewRoomFragment" />
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="com.thedach.kinovod.presentation.MovieDetailsFragment"
+        android:name="com.thedach.kinovod.presentation.movie.MovieDetailsFragment"
         android:label="MovieDetailsFragment" >
         <argument
             android:name="movie"

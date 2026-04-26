@@ -1,4 +1,4 @@
-package com.thedach.kinovod.presentation
+package com.thedach.kinovod.presentation.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

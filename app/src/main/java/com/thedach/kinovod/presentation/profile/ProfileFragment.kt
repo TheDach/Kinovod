@@ -1,12 +1,12 @@
-package com.thedach.kinovod.presentation
+package com.thedach.kinovod.presentation.profile
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +20,8 @@ import com.thedach.kinovod.databinding.ItemMovieBinding
 import com.thedach.kinovod.domain.model.Friend
 import com.thedach.kinovod.domain.model.Movie
 import com.thedach.kinovod.domain.model.User
+import com.thedach.kinovod.presentation.auth.AuthActivity
+import com.thedach.kinovod.presentation.movie.MainActivity
 
 class ProfileFragment : Fragment() {
 
@@ -89,8 +91,10 @@ class ProfileFragment : Fragment() {
 
     private fun setupObserver() {
         UserRepository.currentUser.observe(viewLifecycleOwner) { user ->
-            bindViewsUser(user)
-            viewModel.refreshMovies()
+            if(user != null) {
+                bindViewsUser(user)
+                viewModel.refreshMovies()
+            }
         }
         viewModel.movieWishList.observe(viewLifecycleOwner) { wishList ->
             displayWishlist(wishList)
@@ -101,6 +105,13 @@ class ProfileFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner) {error ->
             if (!error.isNullOrBlank()) {
                 Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.navigateToAuth.observe(viewLifecycleOwner) { shouldNavigate ->
+            if (shouldNavigate) {
+                launchLoginFragment()
+                viewModel.onNavigationComplete()
             }
         }
     }
@@ -133,12 +144,26 @@ class ProfileFragment : Fragment() {
         binding.tvFriendsSeeAllProfile.setOnClickListener {
 
         }
+
+        binding.btnLogout.setOnClickListener {
+            showLogoutConfirmationDialog()
+        }
+
+        binding.btnDeleteAccount.setOnClickListener {
+            showDeleteAccountConfirmationDialog()
+        }
     }
 
     private fun launchMovieDetailsFragment(movie: Movie) {
         findNavController().navigate(
             ProfileFragmentDirections.actionProfileFragmentToMovieDetailsFragment(movie)
         )
+    }
+
+    private fun launchLoginFragment() {
+        if (activity is MainActivity) {
+            (activity as MainActivity).navigateToAuthActivity()
+        }
     }
 
     private fun bindViewsUser(user: User) {
@@ -223,6 +248,27 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private fun showLogoutConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Выход из аккаунта")
+            .setMessage("Вы уверены, что хотите выйти?")
+            .setPositiveButton("Выйти") { _, _ ->
+                viewModel.logoutAccount()
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+    private fun showDeleteAccountConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Удаление аккаунта")
+            .setMessage("Вы уверены, что хотите удалить аккаунт? Это действие необратимо.")
+            .setPositiveButton("Удалить") { _, _ ->
+                viewModel.deleteAccount()
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+
     private fun bindMovieData(binding: ItemMovieBinding, movie: Movie) {
         with(binding) {
             tvMovieName.text = movie.name
@@ -249,7 +295,7 @@ class ProfileFragment : Fragment() {
             /*Picasso.get().load(friend.avatar).into(binding.text1)*/
         } else {
             binding.friendAvatar.setCardBackgroundColor(
-                androidx.core.content.ContextCompat.getColor(
+                ContextCompat.getColor(
                     requireContext(),
                     R.color.purple_500
                 ) // TODO("менять цвета пользователей")
@@ -273,7 +319,7 @@ class ProfileFragment : Fragment() {
             tvAvatarProfile.isVisible = true
             tvAvatarProfile.text = username.take(1).uppercase()
             cardViewAvatarColorProfile.setCardBackgroundColor(
-                androidx.core.content.ContextCompat.getColor(
+                ContextCompat.getColor(
                     requireContext(),
                     R.color.purple_500
                 ) // TODO("менять цвета пользователей")

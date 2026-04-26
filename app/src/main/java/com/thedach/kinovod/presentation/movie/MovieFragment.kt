@@ -1,10 +1,11 @@
-package com.thedach.kinovod.presentation
+package com.thedach.kinovod.presentation.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -94,7 +95,7 @@ class MovieFragment : Fragment() {
 
     private fun setupSearchView() {
         binding.searchViewMovie.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
 

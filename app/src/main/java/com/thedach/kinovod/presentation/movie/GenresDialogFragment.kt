@@ -1,4 +1,4 @@
-package com.thedach.kinovod.presentation
+package com.thedach.kinovod.presentation.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater

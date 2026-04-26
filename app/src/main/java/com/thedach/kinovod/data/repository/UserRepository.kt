@@ -32,6 +32,10 @@ object UserRepository {
         _currentUser.value = user
     }
 
+    fun getUserId(): Int {
+        return currentUser.value?.userId ?: throw IllegalStateException("User not logged in")
+    }
+
     fun getIdListWatchedMovies(): List<Int> {
         return currentUser.value?.watchedList ?: emptyList()
     }
@@ -218,5 +222,9 @@ object UserRepository {
     private fun cancelPendingSync() {
         syncJob?.cancel()
         hasPendingChanges.set(false)
+    }
+
+    fun clearUser() {
+        _currentUser.value = null
     }
 }
