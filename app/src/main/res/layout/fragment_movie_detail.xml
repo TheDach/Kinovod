@@ -337,17 +337,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tab_friends"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingBottom="4dp"
-                    android:text="@string/label_friends"
-                    android:textColor="@color/purple_500"
-                    android:textStyle="bold" />
-
-                <TextView
                     android:id="@+id/tab_kinopoisk"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -355,6 +344,17 @@
                     android:gravity="center"
                     android:paddingBottom="4dp"
                     android:text="@string/label_kinopoisk"
+                    android:textColor="@color/purple_500"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tab_friends"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingBottom="4dp"
+                    android:text="@string/label_friends"
                     android:textColor="@color/tags_text_grey_poster"
                     android:textStyle="bold" />
 
