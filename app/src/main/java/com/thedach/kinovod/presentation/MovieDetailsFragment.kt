@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -74,11 +75,26 @@ class MovieDetailsFragment: Fragment() {
                 resources.getColor(R.color.tags_text_grey_poster, null)
             )
         }
+
+        binding.btnWantWatch.setOnClickListener {
+            viewModel.toggleWishList(args.movie.id)
+        }
+        binding.btnWatched.setOnClickListener {
+            viewModel.toggleWatchedList(args.movie.id)
+        }
     }
 
     private fun observeViewModel() {
         viewModel.reviewList.observe(viewLifecycleOwner) {reviews ->
             reviewAdapter.submitList(reviews)
+        }
+
+        viewModel.isInWishList.observe(viewLifecycleOwner) { isInWishList ->
+            updateWishListButtonState(isInWishList)
+        }
+
+        viewModel.isInWatchedList.observe(viewLifecycleOwner) { isInWatchedList ->
+            updateWatchedButtonState(isInWatchedList)
         }
     }
 
@@ -106,8 +122,6 @@ class MovieDetailsFragment: Fragment() {
                 tvMovieDescription.text = movie.description
 
                 setupRecyclerView()
-
-
             }
         }
     }
@@ -119,6 +133,34 @@ class MovieDetailsFragment: Fragment() {
 
         reviewAdapter = ReviewAdapter(requireContext())
         binding.recyclerViewReviews.adapter = reviewAdapter
+    }
+
+    private fun updateWishListButtonState(isInList: Boolean) {
+        with(binding.btnWantWatch) {
+            if (isInList) {
+                setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.purple_500))
+                setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+                text = "В списке желаемого ✓"
+            } else {
+                setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+                setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                text = "Хочу посмотреть"
+            }
+        }
+    }
+
+    private fun updateWatchedButtonState(isInList: Boolean) {
+        with(binding.btnWatched) {
+            if (isInList) {
+                setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.purple_500))
+                setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+                text = "Просмотрено ✓"
+            } else {
+                setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+                setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                text = "Просмотрено"
+            }
+        }
     }
 
 

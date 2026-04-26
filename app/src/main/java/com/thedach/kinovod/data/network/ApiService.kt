@@ -3,8 +3,10 @@ package com.thedach.network
 import com.thedach.kinovod.data.network.model.LoginRequestDto
 import com.thedach.kinovod.data.network.model.RegisterRequestDto
 import com.thedach.kinovod.data.network.model.ReviewResponseDto
+import com.thedach.kinovod.data.network.model.SyncUserDataRequest
 import com.thedach.kinovod.data.network.model.UserResponseDto
 import com.thedach.network.models.MovieResponse
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -39,12 +41,17 @@ interface ApiService {
     @POST("auth/login")
     suspend fun login(
         @Body request: LoginRequestDto
-    ) : UserResponseDto
+    ): UserResponseDto
 
     @POST("auth/register")
     suspend fun registration(
         @Body request: RegisterRequestDto
-    ) : UserResponseDto
+    ): UserResponseDto
+
+    @POST("user/sync")
+    suspend fun syncUserData(
+        @Body request: SyncUserDataRequest
+    ): Response<UInt>
 
     companion object {
         private const val QUERY_PARAM_SELECT_FIELDS = "selectFields"

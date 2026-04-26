@@ -39,6 +39,9 @@ class MovieViewModel : ViewModel() {
     private val activeChips = mutableListOf<String>()
 
     private fun loadMovies() {
+
+        if (_isLoading.value == true) return
+
         viewModelScope.launch {
 
             _isLoading.value = true

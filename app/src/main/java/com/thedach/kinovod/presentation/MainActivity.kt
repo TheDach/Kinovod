@@ -3,13 +3,17 @@ package com.thedach.kinovod.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.thedach.kinovod.R
+import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.databinding.ActivityMainBinding
 import com.thedach.kinovod.presentation.auth.AuthActivity
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,9 +38,31 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationViewActivityMain.setupWithNavController(navController)
     }
 
+
+
     override fun onDestroy() {
         super.onDestroy()
+
+        syncDataBeforeClose()
+
         _binding = null
+    }
+
+
+    private fun syncDataBeforeClose() {
+        lifecycleScope.launch {
+            try {
+                // Принудительная синхронизация всех изменений
+                val success = UserRepository.forceSync()
+                if (success) {
+                    Log.d("MainActivity", "Данные успешно синхронизировались")
+                } else {
+                    Log.e("MainActivity", "Ошибка синхронизации данных!")
+                }
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Не предвиденная ошибка синхронизации", e)
+            }
+        }
     }
 
     fun navigateToAuthActivity() {

@@ -25,11 +25,21 @@ class ProfileViewModel : ViewModel() {
     val movieWatchedList: LiveData<List<Movie>>
         get() = _movieWatchedList
 
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
 
     private fun loadMovies() {
+
+        if (_isLoading.value == true) return
+
         viewModelScope.launch {
+
+            _error.value = null
+            _isLoading.value = true
+
             try {
                 _movieWatchedList.value = getMovieListByIdUseCase(userRepository.getIdListWatchedMovies())
                 _movieWishList.value = getMovieListByIdUseCase(userRepository.getIdListWishMovies())
@@ -37,6 +47,8 @@ class ProfileViewModel : ViewModel() {
             } catch (ex: Exception) {
                 _error.value = ex.message
                 ex.printStackTrace()
+            } finally {
+                _isLoading.value = false
             }
         }
     }

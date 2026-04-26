@@ -19,6 +19,9 @@ class RegistrationViewModel : ViewModel() {
     val isRegister: LiveData<Boolean>
         get() = _isRegister
 
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
 
@@ -29,7 +32,13 @@ class RegistrationViewModel : ViewModel() {
         email: String,
         password: String
     ) {
+        if (_isLoading.value == true) return
+
         viewModelScope.launch {
+
+            _error.value = null
+            _isLoading.value = true
+
             try {
                 register.invoke(
                     username,
@@ -42,8 +51,9 @@ class RegistrationViewModel : ViewModel() {
             } catch (ex: Exception) {
                 _error.value = ex.message
                 ex.printStackTrace()
+            } finally {
+                _isLoading.value = false
             }
         }
     }
-
 }
