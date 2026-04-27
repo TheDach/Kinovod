@@ -218,7 +218,7 @@
                     android:id="@+id/tv_time_movie_detail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.6"
                     android:text="@string/tv_time_movie_detail"
                     android:textColor="@color/tags_text_grey_poster"
 
@@ -237,7 +237,7 @@
                     android:id="@+id/tv_age_limit_movie_detail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:text="@string/tv_age_limit_movie_detail"
                     android:textColor="@color/tags_text_grey_poster"
                     tools:text="🔞 16+" />

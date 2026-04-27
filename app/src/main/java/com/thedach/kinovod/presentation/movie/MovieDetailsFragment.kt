@@ -114,8 +114,11 @@ class MovieDetailsFragment: Fragment() {
 
                 tvTimeMovieDetail.text = resources.getString(R.string.tv_time_movie_detail)
                     .format(movie.movieLengthHour, movie.movieLengthMin)
+
+                val genresText = movie.genres.joinToString(" • ")
                 tvTagMovieDetail.text = resources.getString(R.string.tv_tag_movie_detail)
-                    .format(movie.genres[0])
+                    .format(genresText)
+
                 tvAgeLimitMovieDetail.text = resources.getString(R.string.tv_age_limit_movie_detail)
                     .format(movie.ageRating)
 
