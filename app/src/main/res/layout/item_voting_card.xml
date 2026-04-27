@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/tags_text_grey_poster">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <!-- Постер -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/image_view_vote_poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#e2e8f0"
+                android:contentDescription="@string/description_avatar_image_placeholder"
+                tools:src="@drawable/ic_simple_image" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Информация -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_vote_movie_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:text="Дюна: Часть вторая" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_vote_movie_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/tags_text_grey_poster"
+                    tools:text="⭐ 8.7" />
+
+                <TextView
+                    android:id="@+id/tv_vote_movie_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/tags_text_grey_poster"
+                    tools:text="⏱ 2ч 46м" />
+
+                <TextView
+                    android:id="@+id/tv_vote_movie_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/tags_text_grey_poster"
+                    tools:text="2024" />
+            </LinearLayout>
+
+            <!-- Статистика голосов -->
+            <LinearLayout
+                android:id="@+id/layout_vote_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f1f5f9"
+                android:paddingStart="12dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="8dp"
+                app:cornerRadius="40dp"
+                android:layout_marginBottom="6dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_vote_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        tools:text="🗳 5 голосов" />
+
+                    <TextView
+                        android:id="@+id/tv_vote_percentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/purple_500"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="75%" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar_vote"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="6dp"
+                    android:max="100"
+                    android:progressTint="@color/purple_500"
+                    android:secondaryProgressTint="@color/tags_text_grey_poster"
+                    tools:progress="75" />
+            </LinearLayout>
+
+            <!-- Аватары проголосовавших -->
+            <LinearLayout
+                android:id="@+id/layout_voters_users"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

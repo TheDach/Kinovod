@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gradient_header"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <!-- Верхняя панель -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_come_back"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#4D000000"
+                    android:elevation="0dp"
+                    app:cornerRadius="30dp"
+                    app:icon="@drawable/ic_left_arrow_svg"
+                    app:iconGravity="textStart"
+                    app:iconTint="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tv_room_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:alpha="0.9"
+                    android:text="@string/tv_room_id"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    tools:text="ID: 4382" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_room_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:textColor="@android:color/white"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:text="🍿 Пятничный киновечер" />
+
+            <TextView
+                android:id="@+id/tv_room_creator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/chip_background"
+                android:text="@string/tv_room_creator"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="4dp"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                tools:text="👑 создатель: Александр" />
+
+            <!-- Аватарки участников -->
+            <LinearLayout
+                android:id="@+id/layout_participants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal" />
+
+            <!-- Теги -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                app:chipSpacing="8dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp">
+
+            <!-- Фильтры чипсы -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_filters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:chipSpacing="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:text="@string/label_voting"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                tools:listitem="@layout/item_voting_card" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="14dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_suggest_movie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="@string/btn_suggest_movie"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:cornerRadius="60dp"
+                app:backgroundTint="@color/purple_500" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_fFind_match"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="@string/btn_find_matches"
+                android:textColor="#1e293b"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:cornerRadius="60dp"
+                app:strokeColor="#cbd5e1"
+                app:strokeWidth="1dp"
+                app:backgroundTint="@android:color/white" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_leave_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/btn_leave_voting_room"
+            android:textColor="@color/red_500"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:cornerRadius="60dp"
+            app:strokeColor="@color/red_500"
+            app:strokeWidth="1.5dp"
+            app:backgroundTint="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/tv_tap_to_movie_see_details"
+            android:textColor="#94a3b8"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</ScrollView>
