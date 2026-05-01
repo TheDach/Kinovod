@@ -1,0 +1,30 @@
+package com.thedach.kinovod.data.network.model.room
+
+data class RoomResponseDto(
+    val roomId: Int,
+    val name: String?,
+    val description: String?,
+    val createdAt: String?,
+    val expiresAt: String?,
+    val maxMembers: Int?,
+    val maxSuggestionsPerUser: Int?,
+    val votingType: Int,
+    val votingAnonymous: Boolean?,
+    val votingShowResults: Boolean?,
+    val votingAllowChangingVote: Boolean?,
+    val useWishlists: Boolean?,
+    val useWatchedLists: Boolean?,
+    val genres: List<String>?,
+    val yearRangeMin: Int?,
+    val yearRangeMax: Int?,
+    val ratingRangeMin: Int?,
+    val ratingRangeMax: Int?,
+    val movieType: List<Int>?,
+    val countries: List<String>?,
+    val durationRangeMin: Int?,
+    val durationRangeMax: Int?,
+    val isAdmin: Boolean,
+    val members: List<MemberResponseDto>,
+    val suggestions: List<SuggestionResponseDto>,
+    val matches: Map<Int, MatchResponseDto>
+)
