@@ -1,4 +1,4 @@
-package com.thedach.kinovod.data.network.model
+package com.thedach.kinovod.data.network.model.movie
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
