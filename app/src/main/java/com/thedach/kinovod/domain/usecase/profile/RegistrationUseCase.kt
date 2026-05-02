@@ -1,6 +1,6 @@
-package com.thedach.kinovod.domain
+package com.thedach.kinovod.domain.usecase.profile
 
-import com.thedach.kinovod.data.repository.AuthenticationRepositoryImpl
+import com.thedach.kinovod.domain.repository.AuthenticationRepository
 
 class RegistrationUseCase(
     private val repository: AuthenticationRepository

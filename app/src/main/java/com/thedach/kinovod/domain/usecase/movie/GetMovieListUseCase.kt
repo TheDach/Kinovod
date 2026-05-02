@@ -1,4 +1,6 @@
-package com.thedach.kinovod.domain
+package com.thedach.kinovod.domain.usecase.movie
+
+import com.thedach.kinovod.domain.repository.MovieRepository
 
 class GetMovieListUseCase(
     private val repository: MovieRepository

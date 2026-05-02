@@ -2,7 +2,7 @@ package com.thedach.kinovod.data.repository
 
 import com.thedach.kinovod.data.mapper.MovieMapper
 import com.thedach.kinovod.data.mapper.ReviewMapper
-import com.thedach.kinovod.domain.MovieRepository
+import com.thedach.kinovod.domain.repository.MovieRepository
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.movie.Review
 import com.thedach.network.ApiFactory

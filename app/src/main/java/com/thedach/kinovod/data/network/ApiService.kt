@@ -82,13 +82,13 @@ interface ApiService {
     @GET("room/all_room_details")
     suspend fun getAllRoomForUser(
         @Query(QUERY_PARAM_USER_ID) userId: Int
-    ) : BaseResponseDto<UserRoomsResponseDto>
+    ) : UserRoomsResponseDto
 
     @GET("room/details")
     suspend fun getRoomDetails(
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Query(QUERY_PARAM_ROOM_ID) roomId: Int
-    ) : BaseResponseDto<RoomDetailsResponseDto>
+    ) : RoomDetailsResponseDto
 
     @POST("room/create")
     suspend fun createNewRoom(

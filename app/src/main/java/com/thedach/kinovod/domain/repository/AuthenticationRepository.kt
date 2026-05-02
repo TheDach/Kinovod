@@ -1,4 +1,4 @@
-package com.thedach.kinovod.domain
+package com.thedach.kinovod.domain.repository
 
 import com.thedach.kinovod.domain.model.profile.User
 

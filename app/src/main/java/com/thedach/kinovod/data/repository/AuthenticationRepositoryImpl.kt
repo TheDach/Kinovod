@@ -3,7 +3,7 @@ package com.thedach.kinovod.data.repository
 import com.thedach.kinovod.data.mapper.UserMapper
 import com.thedach.kinovod.data.network.model.LoginRequestDto
 import com.thedach.kinovod.data.network.model.RegisterRequestDto
-import com.thedach.kinovod.domain.AuthenticationRepository
+import com.thedach.kinovod.domain.repository.AuthenticationRepository
 import com.thedach.kinovod.domain.model.profile.User
 import com.thedach.network.ApiFactory
 

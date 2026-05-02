@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
-import com.thedach.kinovod.domain.GetReviewListMovieUseCase
+import com.thedach.kinovod.domain.usecase.movie.GetReviewListMovieUseCase
 import com.thedach.kinovod.domain.model.movie.Review
 import kotlinx.coroutines.launch
 

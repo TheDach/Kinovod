@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.AuthenticationRepositoryImpl
 import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
-import com.thedach.kinovod.domain.DeleteAccountUseCase
-import com.thedach.kinovod.domain.GetMovieListByIdUseCase
-import com.thedach.kinovod.domain.LogoutUseCase
+import com.thedach.kinovod.domain.usecase.profile.DeleteAccountUseCase
+import com.thedach.kinovod.domain.usecase.movie.GetMovieListByIdUseCase
+import com.thedach.kinovod.domain.usecase.profile.LogoutUseCase
 import com.thedach.kinovod.domain.model.movie.Movie
 import kotlinx.coroutines.launch
 

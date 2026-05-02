@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.AuthenticationRepositoryImpl
-import com.thedach.kinovod.domain.RegistrationUseCase
+import com.thedach.kinovod.domain.usecase.profile.RegistrationUseCase
 import kotlinx.coroutines.launch
 
 class RegistrationViewModel : ViewModel() {
