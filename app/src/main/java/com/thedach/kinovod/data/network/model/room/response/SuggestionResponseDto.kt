@@ -15,9 +15,9 @@ data class SuggestionResponseDto(
     @SerialName("suggestedBy")
     val suggestedBy: Int?,
 
-    @SerialName("suggestedBuUsername")
+    @SerialName("suggestedByUsername")
     val suggestedByUsername: String?,
 
-    @SerialName("votes")
+    @SerialName("voters")
     val voters: List<Int> // Список ID пользователей, проголосовавших за этот фильм
 )

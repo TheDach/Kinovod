@@ -22,6 +22,13 @@ object UserRepository {
     val currentUser: LiveData<User>
         get() = _currentUser
 
+    private val EMPTY_USER = User(
+        userId = -1,
+        userTag = "",
+        email = "",
+        username = ""
+    )
+
 
     private var syncJob: Job? = null
     private val syncDelay = 5000L
@@ -191,18 +198,21 @@ object UserRepository {
 
             val response = apiService.syncUserData(request)
 
-            if (response.isSuccessful) {
-                Log.d("UserRepository", "Успешная синхронизация")
-                return true
+            if (response.data != null) {
+                if (response.data.isSuccessful) {
+                    Log.d("UserRepository", "Успешная синхронизация")
+                    return true
+                } else {
+                    Log.e("UserRepository", "Ошибка синхронизации: ${response.data.code()}")
+                    return false
+                }
             } else {
-                Log.e("UserRepository", "Ошибка синхронизации: ${response.code()}")
                 return false
             }
-        } catch (e: Exception) {
-            Log.e("UserRepository", "Непредвиденная ошибка синхронизации: ${e.message}")
+        } catch (ex: Exception) {
+            Log.e("UserRepository", "Непредвиденная ошибка синхронизации: ${ex.message}")
             return false
         }
-
     }
 
     private fun scheduleRetry() {
@@ -225,6 +235,7 @@ object UserRepository {
     }
 
     fun clearUser() {
-        _currentUser.value = null
+        _currentUser.value = EMPTY_USER
     }
+
 }

@@ -14,16 +14,16 @@ data class RoomResponseDto(
     @SerialName("description")
     val description: String?,
 
-    @SerialName("createAt")
+    @SerialName("createdAt")
     val createdAt: String?,
 
     @SerialName("expiresAt")
     val expiresAt: String?,
 
-    @SerialName("maxMemvers")
+    @SerialName("maxMembers")
     val maxMembers: Int?,
 
-    @SerialName("MaxSuggestionsPerUser")
+    @SerialName("maxSuggestionsPerUser")
     val maxSuggestionsPerUser: Int?,
 
     @SerialName("votingType")

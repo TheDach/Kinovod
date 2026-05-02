@@ -1,22 +1,30 @@
 package com.thedach.network
 
+import com.thedach.kinovod.data.network.model.BaseResponseDto
 import com.thedach.kinovod.data.network.model.LoginRequestDto
 import com.thedach.kinovod.data.network.model.RegisterRequestDto
-import com.thedach.kinovod.data.network.model.ReviewResponseDto
+import com.thedach.kinovod.data.network.model.SimpleMessageResponse
+import com.thedach.kinovod.data.network.model.movie.ReviewResponseDto
 import com.thedach.kinovod.data.network.model.SyncUserDataRequest
 import com.thedach.kinovod.data.network.model.UserResponseDto
+import com.thedach.kinovod.data.network.model.room.request.AddMembersRequestDto
+import com.thedach.kinovod.data.network.model.room.request.AddSuggestionsRequestDto
+import com.thedach.kinovod.data.network.model.room.request.AddVotesRequestDto
+import com.thedach.kinovod.data.network.model.room.request.CreateRoomRequestDto
+import com.thedach.kinovod.data.network.model.room.response.RoomDetailsResponseDto
+import com.thedach.kinovod.data.network.model.room.response.UserRoomsResponseDto
 import com.thedach.network.models.MovieResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    //https://api.poiskkino.dev/v1.5/movie?
-    // token=&
-    // limit=30&selectFields=id,name,rating,ageRating,movieLength,genres,description,videos,persons,year,poster&
-    // sortField=votes.kp&sortType=-1&rating.kp=7-10&next=...
+
+    // ==================== MOVIES ===================
 
     @GET("movies")
     suspend fun getMovies(
@@ -36,6 +44,9 @@ interface ApiService {
     suspend fun getReviews(
         @Query(QUERY_PARAM_MOVIE_ID) movieId: Int
     ): ReviewResponseDto
+
+
+    // ============== AUTH AND PROFILE ===============
 
 
     @POST("auth/login")
@@ -58,11 +69,69 @@ interface ApiService {
         @Body userId: Int
     )
 
+    // ==================== SYNC =====================
 
     @POST("user/sync")
     suspend fun syncUserData(
         @Body request: SyncUserDataRequest
-    ): Response<UInt>
+    ): BaseResponseDto<Response<UInt>>
+
+
+    // ==================== ROOMS ====================
+
+    @GET("room/all_room_details")
+    suspend fun getAllRoomForUser(
+        @Query(QUERY_PARAM_USER_ID) userId: Int
+    ) : BaseResponseDto<UserRoomsResponseDto>
+
+    @GET("room/details")
+    suspend fun getRoomDetails(
+        @Query(QUERY_PARAM_USER_ID) userId: Int,
+        @Query(QUERY_PARAM_ROOM_ID) roomId: Int
+    ) : BaseResponseDto<RoomDetailsResponseDto>
+
+    @POST("room/create")
+    suspend fun createNewRoom(
+        @Query(QUERY_PARAM_USER_ID) userId: Int,
+        @Body request : CreateRoomRequestDto
+    ) : RoomDetailsResponseDto
+
+    @POST("room/{roomId}/members")
+    suspend fun addMembersToRoom(
+        @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
+        @Query(QUERY_PARAM_USER_ID) userId: Int,
+        @Body request: AddMembersRequestDto
+    ) : SimpleMessageResponse
+
+    @POST("room/{roomId}/votes")
+    suspend fun addUserVotes (
+        @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
+        @Query(QUERY_PARAM_USER_ID) userId: Int,
+        @Body request: AddVotesRequestDto
+    ) : SimpleMessageResponse
+
+
+    @POST("room/{roomId}/suggestions")
+    suspend fun addRoomSuggestions (
+        @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
+        @Query(QUERY_PARAM_USER_ID) userId: Int,
+        @Body request: AddSuggestionsRequestDto
+    ) : SimpleMessageResponse
+
+    @DELETE("room/{roomId}/members/{userIdToRemove}")
+    suspend fun removeUserFromRoom(
+        @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
+        @Path(QUERY_PARAM_USER_ID_TO_REMOVE) userIdToRemove: Int,
+        @Query(QUERY_PARAM_USER_ID) userId: Int
+    ) : SimpleMessageResponse
+
+    @DELETE("room/{roomId}")
+    suspend fun deleteRoom (
+        @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
+        @Query(QUERY_PARAM_USER_ID) userId: Int
+    ) : SimpleMessageResponse
+
+
 
     companion object {
         private const val QUERY_PARAM_SELECT_FIELDS = "selectFields"
@@ -70,6 +139,10 @@ interface ApiService {
         private const val QUERY_PARAM_GENRES_NAME = "genres.name"
         private const val QUERY_PARAM_NEXT_MOVIES = "next"
         private const val QUERY_PARAM_MOVIE_ID = "movieId"
+
+        private const val QUERY_PARAM_USER_ID = "userId"
+        private const val QUERY_PARAM_USER_ID_TO_REMOVE = "userIdToRemove"
+        private const val QUERY_PARAM_ROOM_ID = "roomId"
 
         private const val DEFAULT_RATING_KP = "7-10"
     }
