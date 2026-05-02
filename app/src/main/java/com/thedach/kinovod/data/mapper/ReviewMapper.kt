@@ -1,7 +1,7 @@
 package com.thedach.kinovod.data.mapper
 
 import com.thedach.kinovod.data.network.model.movie.ReviewDto
-import com.thedach.kinovod.domain.model.Review
+import com.thedach.kinovod.domain.model.movie.Review
 
 class ReviewMapper {
 

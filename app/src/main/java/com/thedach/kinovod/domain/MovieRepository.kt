@@ -1,8 +1,7 @@
 package com.thedach.kinovod.domain
 
-import androidx.lifecycle.LiveData
-import com.thedach.kinovod.domain.model.Movie
-import com.thedach.kinovod.domain.model.Review
+import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.model.movie.Review
 
 interface MovieRepository {
 

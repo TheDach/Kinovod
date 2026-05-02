@@ -2,8 +2,8 @@ package com.thedach.kinovod.data.mapper
 
 import com.thedach.kinovod.data.network.model.FriendDto
 import com.thedach.kinovod.data.network.model.UserDto
-import com.thedach.kinovod.domain.model.Friend
-import com.thedach.kinovod.domain.model.User
+import com.thedach.kinovod.domain.model.profile.Friend
+import com.thedach.kinovod.domain.model.profile.User
 
 class UserMapper {
 

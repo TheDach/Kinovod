@@ -10,7 +10,7 @@ import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.domain.DeleteAccountUseCase
 import com.thedach.kinovod.domain.GetMovieListByIdUseCase
 import com.thedach.kinovod.domain.LogoutUseCase
-import com.thedach.kinovod.domain.model.Movie
+import com.thedach.kinovod.domain.model.movie.Movie
 import kotlinx.coroutines.launch
 
 class ProfileViewModel : ViewModel() {

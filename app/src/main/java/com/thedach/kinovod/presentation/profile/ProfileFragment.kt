@@ -17,10 +17,9 @@ import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.databinding.FragmentProfileBinding
 import com.thedach.kinovod.databinding.ItemFriendBinding
 import com.thedach.kinovod.databinding.ItemMovieBinding
-import com.thedach.kinovod.domain.model.Friend
-import com.thedach.kinovod.domain.model.Movie
-import com.thedach.kinovod.domain.model.User
-import com.thedach.kinovod.presentation.auth.AuthActivity
+import com.thedach.kinovod.domain.model.profile.Friend
+import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.model.profile.User
 import com.thedach.kinovod.presentation.movie.MainActivity
 
 class ProfileFragment : Fragment() {

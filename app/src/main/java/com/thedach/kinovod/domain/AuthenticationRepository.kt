@@ -1,6 +1,6 @@
 package com.thedach.kinovod.domain
 
-import com.thedach.kinovod.domain.model.User
+import com.thedach.kinovod.domain.model.profile.User
 
 interface AuthenticationRepository {
 

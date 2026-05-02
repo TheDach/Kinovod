@@ -1,12 +1,10 @@
 package com.thedach.kinovod.data.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.thedach.kinovod.data.mapper.MovieMapper
 import com.thedach.kinovod.data.mapper.ReviewMapper
 import com.thedach.kinovod.domain.MovieRepository
-import com.thedach.kinovod.domain.model.Movie
-import com.thedach.kinovod.domain.model.Review
+import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.model.movie.Review
 import com.thedach.network.ApiFactory
 
 object MovieRepositoryImpl: MovieRepository {

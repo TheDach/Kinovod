@@ -1,6 +1,7 @@
-package com.thedach.kinovod.domain.model
+package com.thedach.kinovod.domain.model.movie
 
 import android.os.Parcelable
+import com.thedach.kinovod.domain.model.profile.Person
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

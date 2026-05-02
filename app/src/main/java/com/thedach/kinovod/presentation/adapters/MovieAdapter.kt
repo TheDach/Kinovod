@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.squareup.picasso.Picasso
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.ItemMovieBinding
-import com.thedach.kinovod.domain.model.Movie
-import kotlin.text.get
+import com.thedach.kinovod.domain.model.movie.Movie
 
 class MovieAdapter(
     private val context: Context

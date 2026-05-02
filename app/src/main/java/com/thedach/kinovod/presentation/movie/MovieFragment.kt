@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentMovieBinding
-import com.thedach.kinovod.domain.model.Movie
+import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.presentation.adapters.MovieAdapter
 
 class MovieFragment : Fragment() {

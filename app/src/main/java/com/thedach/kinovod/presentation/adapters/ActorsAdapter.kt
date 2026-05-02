@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.squareup.picasso.Picasso
 import com.thedach.kinovod.databinding.ItemActorBinding
-import com.thedach.kinovod.domain.model.Person
+import com.thedach.kinovod.domain.model.profile.Person
 
 class ActorsAdapter : ListAdapter<Person, ActorsViewHolder>(ActorsItemDiffCallback) {
 

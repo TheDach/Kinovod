@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.ItemReviewBinding
-import com.thedach.kinovod.domain.model.Review
+import com.thedach.kinovod.domain.model.movie.Review
 
 class ReviewAdapter(
     private val context: Context

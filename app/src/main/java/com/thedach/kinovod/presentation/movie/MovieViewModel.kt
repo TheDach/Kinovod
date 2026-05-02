@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.domain.GetMovieListUseCase
-import com.thedach.kinovod.domain.model.Movie
+import com.thedach.kinovod.domain.model.movie.Movie
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

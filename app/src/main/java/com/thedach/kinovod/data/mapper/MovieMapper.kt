@@ -1,9 +1,9 @@
 package com.thedach.kinovod.data.mapper
 
-import com.thedach.kinovod.domain.model.Movie
-import com.thedach.kinovod.domain.model.MovieRating
-import com.thedach.kinovod.domain.model.Person
-import com.thedach.kinovod.domain.model.Trailer
+import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.model.movie.MovieRating
+import com.thedach.kinovod.domain.model.profile.Person
+import com.thedach.kinovod.domain.model.movie.Trailer
 import com.thedach.network.models.GenresDto
 import com.thedach.network.models.MovieDto
 import com.thedach.network.models.MovieRatingDto

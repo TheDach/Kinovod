@@ -1,4 +1,4 @@
-package com.thedach.kinovod.domain.model
+package com.thedach.kinovod.domain.model.movie
 
 data class Review(
     val id: Int,

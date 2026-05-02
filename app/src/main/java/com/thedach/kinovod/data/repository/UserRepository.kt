@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.thedach.kinovod.data.network.model.SyncUserDataRequest
-import com.thedach.kinovod.domain.model.User
+import com.thedach.kinovod.domain.model.profile.User
 import com.thedach.network.ApiFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -44,7 +44,7 @@
         android:label="MovieDetailsFragment" >
         <argument
             android:name="movie"
-            app:argType="com.thedach.kinovod.domain.model.Movie" />
+            app:argType="com.thedach.kinovod.domain.model.movie.Movie" />
     </fragment>
 
     <!-- Глобальное действие для возврата в MovieFragment -->

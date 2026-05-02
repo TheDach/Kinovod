@@ -1,4 +1,4 @@
-package com.thedach.kinovod.domain.model
+package com.thedach.kinovod.domain.model.movie
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

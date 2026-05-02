@@ -1,7 +1,7 @@
 package com.thedach.kinovod.presentation.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.thedach.kinovod.domain.model.Review
+import com.thedach.kinovod.domain.model.movie.Review
 
 object ReviewItemDiffCallback: DiffUtil.ItemCallback<Review>() {
     override fun areItemsTheSame(
