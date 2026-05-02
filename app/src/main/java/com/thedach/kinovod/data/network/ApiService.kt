@@ -4,9 +4,9 @@ import com.thedach.kinovod.data.network.model.BaseResponseDto
 import com.thedach.kinovod.data.network.model.LoginRequestDto
 import com.thedach.kinovod.data.network.model.RegisterRequestDto
 import com.thedach.kinovod.data.network.model.SimpleMessageResponse
-import com.thedach.kinovod.data.network.model.movie.ReviewResponseDto
 import com.thedach.kinovod.data.network.model.SyncUserDataRequest
 import com.thedach.kinovod.data.network.model.UserResponseDto
+import com.thedach.kinovod.data.network.model.movie.ReviewResponseDto
 import com.thedach.kinovod.data.network.model.room.request.AddMembersRequestDto
 import com.thedach.kinovod.data.network.model.room.request.AddSuggestionsRequestDto
 import com.thedach.kinovod.data.network.model.room.request.AddVotesRequestDto
