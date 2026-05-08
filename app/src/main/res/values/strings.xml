@@ -76,7 +76,7 @@
     <string name="btn_enter">Войти</string>
     <string name="label_no_account">Нет аккаунта?</string>
     <string name="tv_registration">Зарегистрироваться</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="username">Имя пользователя</string>
@@ -93,4 +93,14 @@
     <string name="btn_suggest_movie">Предложить фильм</string>
     <string name="tv_room_creator">👑 создатель: %s</string>
     <string name="tv_room_id">ID: %s</string>
+
+
+    <!-- Типы фильмов -->
+    <string name="movie_type_any">Любой</string>
+    <string name="movie_type_movie">Фильм</string>
+    <string name="movie_type_series">Сериал</string>
+
+    <string name="room_info_format">%1$d участников · %2$d/%3$d фильмов</string>
+
+
 </resources>
