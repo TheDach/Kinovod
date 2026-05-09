@@ -14,6 +14,9 @@
             android:id="@+id/action_roomsFragment_to_newRoomFragment"
             app:destination="@id/newRoomFragment"
             app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_roomsFragment_to_votingRoomFragment"
+            app:destination="@id/votingRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -37,7 +40,14 @@
     <fragment
         android:id="@+id/newRoomFragment"
         android:name="com.thedach.kinovod.presentation.room.NewRoomFragment"
-        android:label="NewRoomFragment" />
+        android:label="NewRoomFragment" >
+        <action
+            android:id="@+id/action_newRoomFragment_to_votingRoomFragment"
+            app:destination="@id/votingRoomFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/roomsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.thedach.kinovod.presentation.movie.MovieDetailsFragment"
@@ -53,5 +63,14 @@
         app:destination="@id/movieFragment"
         app:popUpTo="@id/movieFragment"
         app:popUpToInclusive="false" />
+
+    <fragment
+        android:id="@+id/votingRoomFragment"
+        android:name="com.thedach.kinovod.presentation.room.VotingRoomFragment"
+        android:label="VotingRoomFragment" >
+        <argument
+            android:name="Room"
+            app:argType="com.thedach.kinovod.domain.model.room.Room" />
+    </fragment>
 
 </navigation>

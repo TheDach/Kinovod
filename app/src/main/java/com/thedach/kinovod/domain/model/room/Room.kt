@@ -1,5 +1,9 @@
 package com.thedach.kinovod.domain.model.room
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Room(
     val roomId: Int,
     val name: String?,
@@ -27,4 +31,4 @@ data class Room(
     val members: List<RoomMember>,
     val suggestions: List<RoomSuggestion>,
     val matches: Map<Int, RoomMatch>
-)
+) : Parcelable

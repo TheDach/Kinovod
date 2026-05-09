@@ -65,7 +65,7 @@ class RoomsAdapter : ListAdapter<Room, RoomsViewHolder>(RoomsItemDiffCallback) {
             // Время истечения
             if (!room.expiresAt.isNullOrEmpty()) {
                 chipExpiresAtMovie.visibility = View.VISIBLE
-                chipExpiresAtMovie.text = formatExpiresAt(context, room.expiresAt)
+                chipExpiresAtMovie.text = formatExpiresAt(room.expiresAt)
             } else {
                 chipExpiresAtMovie.visibility = View.GONE
             }
@@ -76,7 +76,7 @@ class RoomsAdapter : ListAdapter<Room, RoomsViewHolder>(RoomsItemDiffCallback) {
         }
     }
 
-    private fun formatExpiresAt(context: android.content.Context, expiresAt: String): String {
+    private fun formatExpiresAt(expiresAt: String): String {
         return try {
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             inputFormat.timeZone = TimeZone.getTimeZone("UTC")
@@ -95,7 +95,7 @@ class RoomsAdapter : ListAdapter<Room, RoomsViewHolder>(RoomsItemDiffCallback) {
         }
     }
 
-    private fun getMovieTypeString(context: android.content.Context, movieType: Int): String {
+    private fun getMovieTypeString(context: Context, movieType: Int): String {
         return when (movieType) {
             0 -> context.getString(R.string.movie_type_any)
             1 -> context.getString(R.string.movie_type_movie)
