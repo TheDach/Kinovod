@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentRoomsBinding
-import com.thedach.kinovod.presentation.adapters.MovieAdapter
+import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.presentation.adapters.RoomsAdapter
 import java.lang.RuntimeException
 
@@ -52,8 +52,8 @@ class RoomsFragment: Fragment() {
             launchNewRoomFragment()
         }
 
-        roomsAdapter.onRoomClickListener = {
-            TODO("переход в VotingRoomFragment")
+        roomsAdapter.onRoomClickListener = {room ->
+            launchVotingRoomFragment(room)
         }
     }
 
@@ -104,6 +104,11 @@ class RoomsFragment: Fragment() {
 
     private fun launchNewRoomFragment() {
         findNavController().navigate(R.id.action_roomsFragment_to_newRoomFragment)
+    }
+    private fun launchVotingRoomFragment(room: Room) {
+        findNavController().navigate(
+            RoomsFragmentDirections.actionRoomsFragmentToVotingRoomFragment(room)
+        )
     }
 
     override fun onDestroyView() {
