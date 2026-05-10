@@ -93,7 +93,7 @@
                 android:id="@+id/layout_vote_stats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#f1f5f9"
+                android:background="@color/white"
                 android:paddingStart="12dp"
                 android:paddingTop="8dp"
                 android:paddingEnd="12dp"
@@ -114,6 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="14sp"
+                        android:text="@string/tv_voting_count"
                         tools:text="🗳 5 голосов" />
 
                     <TextView

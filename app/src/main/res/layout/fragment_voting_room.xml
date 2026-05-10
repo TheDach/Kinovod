@@ -122,9 +122,16 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <ProgressBar
+                android:id="@+id/progress_bar_loading_votes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_voting"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
                 tools:listitem="@layout/item_voting_card" />
 
@@ -155,7 +162,7 @@
                 app:backgroundTint="@color/purple_500" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_fFind_match"
+                android:id="@+id/btn_Find_match"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

@@ -10,7 +10,7 @@ data class Room(
     val description: String?,
     val createdAt: String?,
     val expiresAt: String?,
-    val maxMembers: Int?,
+    val maxMembers: Int,
     val maxSuggestionsPerUser: Int?,
     val votingType: VotingType,
     val votingAnonymous: Boolean?,

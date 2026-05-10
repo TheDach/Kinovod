@@ -34,7 +34,7 @@ class RoomMapper {
             description = roomDto.description,
             createdAt = roomDto.createdAt,
             expiresAt = roomDto.expiresAt,
-            maxMembers = roomDto.maxMembers,
+            maxMembers = roomDto.maxMembers ?: 10,
             maxSuggestionsPerUser = roomDto.maxSuggestionsPerUser,
             votingType = VotingType.fromValue(roomDto.votingType),
             votingAnonymous = roomDto.votingAnonymous,

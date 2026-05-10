@@ -101,6 +101,7 @@
     <string name="movie_type_series">Сериал</string>
 
     <string name="room_info_format">%1$d участников · %2$d/%3$d фильмов</string>
+    <string name="tv_voting_count">🗳 %s голосов</string>
 
 
 </resources>
