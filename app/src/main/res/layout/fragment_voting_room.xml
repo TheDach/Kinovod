@@ -135,7 +135,25 @@
 
                 tools:listitem="@layout/item_voting_card" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_submit_votes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/btn_submit_votes"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:visibility="visible"
+                android:fontFamily="sans-serif-medium"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:cornerRadius="60dp"
+                app:backgroundTint="@color/purple_500"
+                tools:visibility="visible"/>
+
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"

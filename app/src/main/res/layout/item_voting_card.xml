@@ -88,6 +88,7 @@
                     tools:text="2024" />
             </LinearLayout>
 
+
             <!-- Статистика голосов -->
             <LinearLayout
                 android:id="@+id/layout_vote_stats"
@@ -147,6 +148,29 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical" />
+
+            <!-- Маркеры голосования -->
+            <FrameLayout
+                android:id="@+id/layout_vote_marker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_button_vote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_vote"
+                    android:visibility="gone" />
+
+                <CheckBox
+                    android:id="@+id/check_box_vote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_vote"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
         </LinearLayout>
     </LinearLayout>

@@ -12,7 +12,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.marginEnd
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -24,6 +23,7 @@ import com.thedach.kinovod.databinding.FragmentVotingRoomBinding
 import com.thedach.kinovod.domain.model.room.MemberRole
 import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.model.room.RoomMember
+import com.thedach.kinovod.domain.model.room.VotingType
 import com.thedach.kinovod.presentation.adapters.VotingAdapter
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -39,14 +39,13 @@ class VotingRoomFragment : Fragment() {
 
     private val viewModelFactory: VotingRoomViewModelFactory by lazy {
         VotingRoomViewModelFactory(
-            roomArgs.room.roomId
+            roomArgs.roomId
         )
     }
 
-    private val viewModel : VotingRoomViewModel by lazy {
+    private val viewModel: VotingRoomViewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[VotingRoomViewModel::class.java]
     }
-
 
 
     private lateinit var votingAdapter: VotingAdapter
@@ -63,7 +62,6 @@ class VotingRoomFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         setupRecyclerView()
 
         observeViewModel()
@@ -72,11 +70,15 @@ class VotingRoomFragment : Fragment() {
 
 
     private fun observeViewModel() {
-        viewModel.room.observe(viewLifecycleOwner) {room ->
+        viewModel.room.observe(viewLifecycleOwner) { room ->
             setupRoomData(room)
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) {loading ->
+        viewModel.isSuccessLeaving.observe(viewLifecycleOwner) {isSuccessLeaving ->
+            launchRoomsFragment()
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
             if (loading) {
                 binding.progressBarLoadingVotes.visibility = View.VISIBLE
             } else {
@@ -84,36 +86,62 @@ class VotingRoomFragment : Fragment() {
             }
         }
 
-        viewModel.suggestionWithMovie.observe(viewLifecycleOwner) {suggestionWithMovies ->
+        viewModel.suggestionWithMovie.observe(viewLifecycleOwner) { suggestionWithMovies ->
             votingAdapter.submitList(suggestionWithMovies)
+            votingAdapter.clearSelections()
         }
+
     }
 
     private fun setupClickListeners() {
         binding.btnComeBack.setOnClickListener {
-            findNavController().navigateUp()
+            launchRoomsFragment()
         }
 
         binding.btnSuggestMovie.setOnClickListener {
             // Заглушка
-            Toast.makeText(requireContext(), "Предложить фильм (в разработке)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Предложить фильм (в разработке)", Toast.LENGTH_SHORT)
+                .show()
         }
 
         binding.btnFindMatch.setOnClickListener {
             // Заглушка
-            Toast.makeText(requireContext(), "Поиск совпадений (в разработке)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Поиск совпадений (в разработке)", Toast.LENGTH_SHORT)
+                .show()
         }
 
         binding.btnLeaveRoom.setOnClickListener {
-            // Заглушка
-            Toast.makeText(requireContext(), "Покинуть комнату (в разработке)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Выход из комнаты...", Toast.LENGTH_SHORT).show()
+            viewModel.leaveRoom()
+        }
+
+        binding.btnSubmitVotes.setOnClickListener {
+            val selectedMovieIds = votingAdapter.getSelectedMovieIds()
+            if (selectedMovieIds.isEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "Выберите фильмы для голосования",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+            viewModel.submitVote(selectedMovieIds)
         }
     }
 
     private fun setupRecyclerView() {
-        votingAdapter = VotingAdapter(requireContext())
+        votingAdapter = VotingAdapter(
+            requireContext(),
+            onVoteClick = { suggestionId, movieId, isSelected ->
+                android.util.Log.d(
+                    "Voting",
+                    "Selected: suggestionId=$suggestionId, movieId=$movieId"
+                )
+            }
+        )
         binding.recyclerViewVoting.adapter = votingAdapter
     }
+
 
     private fun setupRoomData(room: Room) {
 
@@ -144,9 +172,9 @@ class VotingRoomFragment : Fragment() {
         }
 
         val votingTypeString = when (room.votingType) {
-            com.thedach.kinovod.domain.model.room.VotingType.SINGLE -> "Одиночный"
-            com.thedach.kinovod.domain.model.room.VotingType.MULTIPLE -> "Множественный"
-            com.thedach.kinovod.domain.model.room.VotingType.PRIORITY -> "Приоритетный"
+            VotingType.SINGLE -> "Одиночный"
+            VotingType.MULTIPLE -> "Множественный"
+            VotingType.PRIORITY -> "Приоритетный"
         }
         binding.chipGroupTags.addView(createTagChip(votingTypeString))
 
@@ -168,6 +196,7 @@ class VotingRoomFragment : Fragment() {
             binding.chipGroupTags.addView(createTagChip(typeString))
         }
     }
+
     private fun createTagChip(text: String): Chip {
         return Chip(requireContext()).apply {
             this.text = text
@@ -177,6 +206,7 @@ class VotingRoomFragment : Fragment() {
             isClickable = false
         }
     }
+
     private fun setupParticipantsAvatars(members: List<RoomMember>) {
         binding.layoutParticipants.removeAllViews()
 
@@ -241,6 +271,7 @@ class VotingRoomFragment : Fragment() {
             binding.layoutParticipants.addView(container)
         }
     }
+
     private fun setupFilters(room: Room) {
         binding.chipGroupFilters.removeAllViews()
 
@@ -270,10 +301,12 @@ class VotingRoomFragment : Fragment() {
             binding.chipGroupFilters.addView(chip)
         }
     }
+
     // для конвертации dp в px
     private fun Int.dpToPx(): Int {
         return (this * resources.displayMetrics.density).toInt()
     }
+
     private fun formatExpiresAt(expiresAt: String): String {
         return try {
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
@@ -294,7 +327,9 @@ class VotingRoomFragment : Fragment() {
     }
     // ==================================================================
 
-
+    private fun launchRoomsFragment() {
+        findNavController().navigateUp()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

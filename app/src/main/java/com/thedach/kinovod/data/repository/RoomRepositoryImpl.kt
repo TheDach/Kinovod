@@ -1,5 +1,6 @@
 package com.thedach.kinovod.data.repository
 
+import android.util.Log
 import com.thedach.kinovod.data.mapper.RoomMapper
 import com.thedach.kinovod.data.network.model.room.request.AddMembersRequestDto
 import com.thedach.kinovod.data.network.model.room.request.AddSuggestionsRequestDto
@@ -107,9 +108,8 @@ class RoomRepositoryImpl : RoomRepository {
                 request = AddMembersRequestDto(userIds = userIds)
             )
 
-            if (response.message != null) {
-                throw Exception(response.message)
-            }
+
+            Log.d("addMembersToRoom: ", response)
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to add members: ${ex.message}")
@@ -128,9 +128,7 @@ class RoomRepositoryImpl : RoomRepository {
                 request = AddVotesRequestDto(movieIds = movieIds)
             )
 
-            if (response.message != null) {
-                throw Exception(response.message)
-            }
+            Log.d("addUserVotes: ", response)
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to add votes: ${ex.message}")
@@ -149,9 +147,7 @@ class RoomRepositoryImpl : RoomRepository {
                 request = AddSuggestionsRequestDto(movieIds = movieIds)
             )
 
-            if (response.message != null) {
-                throw Exception(response.message)
-            }
+            Log.d("addRoomSuggestions: ", response)
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to add suggestions: ${ex.message}")
@@ -170,9 +166,7 @@ class RoomRepositoryImpl : RoomRepository {
                 userId = userId
             )
 
-            if (response.message != null) {
-                throw Exception(response.message)
-            }
+            Log.d("removeUserFromRoom: ", response)
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to remove user from room: ${ex.message}")
@@ -186,9 +180,7 @@ class RoomRepositoryImpl : RoomRepository {
                 userId = userId
             )
 
-            if (response.message != null) {
-                throw Exception(response.message)
-            }
+            Log.d("deleteRoom: ", response)
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to delete room: ${ex.message}")

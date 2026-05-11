@@ -69,8 +69,8 @@
         android:name="com.thedach.kinovod.presentation.room.VotingRoomFragment"
         android:label="VotingRoomFragment" >
         <argument
-            android:name="Room"
-            app:argType="com.thedach.kinovod.domain.model.room.Room" />
+            android:name="roomId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

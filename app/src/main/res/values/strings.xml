@@ -102,6 +102,10 @@
 
     <string name="room_info_format">%1$d участников · %2$d/%3$d фильмов</string>
     <string name="tv_voting_count">🗳 %s голосов</string>
+    <string name="label_vote">Голосовать</string>
+    <string name="btn_submit_votes">Поддтвердить голос</string>
+    <string name="hint_enter_id_room">ID комнаты</string>
+    <string name="label_connect_to_room">Подключение к комнате</string>
 
 
 </resources>

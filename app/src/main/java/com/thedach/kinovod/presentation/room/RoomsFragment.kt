@@ -1,5 +1,6 @@
 package com.thedach.kinovod.presentation.room
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentRoomsBinding
 import com.thedach.kinovod.domain.model.room.Room
@@ -52,8 +55,12 @@ class RoomsFragment: Fragment() {
             launchNewRoomFragment()
         }
 
+        binding.buttonConnectRooms.setOnClickListener {
+            showConnectRoomDialog()
+        }
+
         roomsAdapter.onRoomClickListener = {room ->
-            launchVotingRoomFragment(room)
+            launchVotingRoomFragment(room.roomId)
         }
     }
 
@@ -82,6 +89,13 @@ class RoomsFragment: Fragment() {
             }
         }
 
+        viewModel.isSuccessAddMember.observe(viewLifecycleOwner) {isSuccessAddMember ->
+            if(isSuccessAddMember.second) {
+                launchVotingRoomFragment(isSuccessAddMember.first)
+                viewModel.refreshRooms()
+            }
+        }
+
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), "Ошибка: $it", Toast.LENGTH_SHORT).show()
@@ -101,13 +115,48 @@ class RoomsFragment: Fragment() {
         }
     }
 
+    private fun showConnectRoomDialog() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_connect_room, null)
+        val etRoomId = dialogView.findViewById<TextInputEditText>(R.id.et_room_id)
+        val btnCancel = dialogView.findViewById<MaterialButton>(R.id.btn_cancel)
+        val btnConnect = dialogView.findViewById<MaterialButton>(R.id.btn_connect)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnConnect.setOnClickListener {
+            val roomIdText = etRoomId.text.toString().trim()
+            if (roomIdText.isEmpty()) {
+                etRoomId.error = "Введите ID комнаты"
+                return@setOnClickListener
+            }
+
+            val roomId = roomIdText.toIntOrNull()
+            if (roomId == null) {
+                etRoomId.error = "Введите корректный ID комнаты"
+                return@setOnClickListener
+            }
+
+            dialog.dismiss()
+            viewModel.connectToRoom(roomId)
+        }
+
+        dialog.show()
+    }
+
 
     private fun launchNewRoomFragment() {
         findNavController().navigate(R.id.action_roomsFragment_to_newRoomFragment)
     }
-    private fun launchVotingRoomFragment(room: Room) {
+    private fun launchVotingRoomFragment(roomId: Int) {
         findNavController().navigate(
-            RoomsFragmentDirections.actionRoomsFragmentToVotingRoomFragment(room)
+            RoomsFragmentDirections.actionRoomsFragmentToVotingRoomFragment(roomId)
         )
     }
 

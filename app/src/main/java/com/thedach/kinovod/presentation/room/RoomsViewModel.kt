@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.RoomRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.domain.model.room.Room
+import com.thedach.kinovod.domain.usecase.room.AddMembersToRoomUseCase
 import com.thedach.kinovod.domain.usecase.room.GetUserRoomsUseCase
 import kotlinx.coroutines.launch
 
@@ -16,10 +17,13 @@ class RoomsViewModel : ViewModel() {
     private val roomsRepository = RoomRepositoryImpl()
 
     private val getUserRoomsUseCase = GetUserRoomsUseCase(roomsRepository)
+    private val addMembersToRoomUseCase = AddMembersToRoomUseCase(roomsRepository)
 
     private val _roomsList = MutableLiveData<List<Room>>()
     val roomsList: LiveData<List<Room>> = _roomsList
 
+    private val _isSuccessAddMember = MutableLiveData<Pair<Int, Boolean>>()
+    val isSuccessAddMember: LiveData<Pair<Int, Boolean>> = _isSuccessAddMember
 
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -50,6 +54,26 @@ class RoomsViewModel : ViewModel() {
             } finally {
                 _isRefreshing.value = false
                 _isLoading.value = false
+            }
+        }
+    }
+
+    fun connectToRoom(roomId: Int) {
+        viewModelScope.launch {
+            _error.value = null
+            _isSuccessAddMember.value = Pair(-1, false)
+
+            try {
+                addMembersToRoomUseCase(
+                    UserRepository.getUserId(),
+                    roomId,
+                    listOf(UserRepository.getUserId())
+                )
+                _isSuccessAddMember.value = Pair(roomId, true)
+
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+                _error.value = ex.message
             }
         }
     }

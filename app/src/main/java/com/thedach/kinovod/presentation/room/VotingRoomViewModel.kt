@@ -10,10 +10,11 @@ import com.thedach.kinovod.data.repository.RoomRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.room.Room
-import com.thedach.kinovod.domain.model.room.RoomSuggestion
 import com.thedach.kinovod.domain.model.room.SuggestionWithMovie
 import com.thedach.kinovod.domain.usecase.movie.GetMovieListByIdUseCase
+import com.thedach.kinovod.domain.usecase.room.AddUserVotesUseCase
 import com.thedach.kinovod.domain.usecase.room.GetRoomDetailsUseCase
+import com.thedach.kinovod.domain.usecase.room.RemoveUserFromRoomUseCase
 import kotlinx.coroutines.launch
 
 class VotingRoomViewModel(
@@ -24,6 +25,8 @@ class VotingRoomViewModel(
     private val movieRepository = MovieRepositoryImpl
 
     private val getRoomDetailsUseCase = GetRoomDetailsUseCase(roomRepository)
+    private val addUserVotesUseCase = AddUserVotesUseCase(roomRepository)
+    private val removeUserFromRoomUseCase = RemoveUserFromRoomUseCase(roomRepository)
     private val getMovieListByIdUseCase = GetMovieListByIdUseCase(movieRepository)
 
     private val _room = MutableLiveData<Room>()
@@ -32,6 +35,9 @@ class VotingRoomViewModel(
 
     private val _suggestionWithMovie = MutableLiveData<List<SuggestionWithMovie>>()
     val suggestionWithMovie: LiveData<List<SuggestionWithMovie>> = _suggestionWithMovie
+
+    private val _isSuccessLeaving = MutableLiveData<Boolean>()
+    val isSuccessLeaving: LiveData<Boolean> = _isSuccessLeaving
 
     private val _movies = MutableLiveData<List<Movie>>()
 
@@ -81,6 +87,10 @@ class VotingRoomViewModel(
         }
     }
 
+    private fun refreshRoomData(){
+        loadRoom()
+    }
+
     private fun calculateProgressPercent(maxMembers: Int, votersCount: Int): Int {
         if (maxMembers <= 0) return 0
         return ((votersCount.toDouble() / maxMembers) * PERCENT_100).toInt()
@@ -112,9 +122,51 @@ class VotingRoomViewModel(
         }
     }
 
+    fun leaveRoom() {
+        viewModelScope.launch {
+
+            _error.value = null
+            _isSuccessLeaving.value = false
+
+            try {
+                removeUserFromRoomUseCase(
+                    UserRepository.getUserId(),
+                    _room.value?.roomId ?: throw Exception("Room is empty"),
+                    UserRepository.getUserId()
+                )
+
+                _isSuccessLeaving.value = true
+
+            } catch (ex: Exception) {
+                _error.value = ex.message
+                ex.printStackTrace()
+            }
+        }
+    }
+
+    fun submitVote(movieIds: List<Int>) {
+        viewModelScope.launch {
+            try {
+                Log.d("submitVote: ", movieIds.toString())
+                addUserVotesUseCase(
+                    UserRepository.getUserId(),
+                    _room.value?.roomId ?: throw Exception("Room is empty"),
+                    movieIds
+                )
+
+                refreshRoomData()
+
+            } catch (ex: Exception) {
+                _error.value = ex.message
+                ex.printStackTrace()
+            }
+        }
+    }
+
     init {
         loadRoom()
     }
+
 
     companion object {
         private const val PERCENT_100 = 100
