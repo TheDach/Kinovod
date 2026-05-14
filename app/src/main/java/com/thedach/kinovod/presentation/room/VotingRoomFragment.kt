@@ -2,6 +2,7 @@ package com.thedach.kinovod.presentation.room
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,8 @@ import com.thedach.kinovod.domain.model.room.RoomMember
 import com.thedach.kinovod.domain.model.room.VotingType
 import com.thedach.kinovod.presentation.adapters.VotingAdapter
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
 
@@ -308,21 +311,36 @@ class VotingRoomFragment : Fragment() {
     }
 
     private fun formatExpiresAt(expiresAt: String): String {
+        if (expiresAt == null || expiresAt == "null" || expiresAt.isEmpty()) {
+            return "без срока"
+        }
+        // Нормализуем строку
+        var normalized = expiresAt.trim()
+        normalized = normalized.replace('T', ' ')
         return try {
-            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-            inputFormat.timeZone = TimeZone.getTimeZone("UTC")
 
-            val outputFormat = SimpleDateFormat("dd.MM", Locale.getDefault())
 
-            val date = inputFormat.parse(expiresAt)
-            if (date != null) {
-                "до ${outputFormat.format(date)}"
-            } else {
+            // Убираем миллисекунды
+            if (normalized.contains(".")) {
+                normalized = normalized.substringBefore(".")
+            }
+
+            // Парсим дату
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val localDateTime = LocalDateTime.parse(normalized, formatter)
+
+            // Форматируем вывод
+            "до ${localDateTime.format(DateTimeFormatter.ofPattern("dd.MM"))}"
+        } catch (ex: Exception) {
+            try {
+                // Пробуем другой формат (без секунд)
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+                val localDateTime = LocalDateTime.parse(normalized, formatter)
+                "до ${localDateTime.format(DateTimeFormatter.ofPattern("dd.MM"))}"
+            } catch (ex2: Exception) {
+                Log.e("RoomsAdapter", "Error parsing date: $expiresAt", ex2)
                 expiresAt
             }
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            expiresAt
         }
     }
     // ==================================================================

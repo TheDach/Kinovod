@@ -106,6 +106,7 @@
     <string name="btn_submit_votes">Поддтвердить голос</string>
     <string name="hint_enter_id_room">ID комнаты</string>
     <string name="label_connect_to_room">Подключение к комнате</string>
+    <string name="label_select_friends">Выберите друзей</string>
 
 
 </resources>

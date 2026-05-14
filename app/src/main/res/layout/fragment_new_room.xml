@@ -96,6 +96,7 @@
                 android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_friends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingVertical="4dp"
@@ -120,6 +121,8 @@
                         android:text="Анна"
                         android:textColor="@color/dark_purple_movie"
                         android:textSize="13sp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         app:chipBackgroundColor="@color/bg_chip_choice"
                         app:chipCornerRadius="30dp"
                         app:chipMinHeight="36dp"
@@ -133,19 +136,8 @@
                         android:text="Игорь"
                         android:textColor="@color/dark_purple_movie"
                         android:textSize="13sp"
-                        app:chipBackgroundColor="@color/bg_chip_choice"
-                        app:chipCornerRadius="30dp"
-                        app:chipMinHeight="36dp"
-                        app:closeIconEnabled="true"
-                        app:closeIconSize="16dp"
-                        app:closeIconTint="@color/dark_purple_movie" />
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Мария"
-                        android:textColor="@color/dark_purple_movie"
-                        android:textSize="13sp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         app:chipBackgroundColor="@color/bg_chip_choice"
                         app:chipCornerRadius="30dp"
                         app:chipMinHeight="36dp"
@@ -344,6 +336,8 @@
                     android:text="Фантастика"
                     android:textColor="@color/dark_purple_movie"
                     android:textSize="13sp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     app:chipBackgroundColor="@color/bg_chip_choice"
                     app:chipCornerRadius="30dp"
                     app:chipMinHeight="36dp"
@@ -355,6 +349,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Боевик"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     android:textColor="@color/dark_purple_movie"
                     android:textSize="13sp"
                     app:chipBackgroundColor="@color/bg_chip_choice"
@@ -364,31 +360,6 @@
                     app:closeIconSize="16dp"
                     app:closeIconTint="@color/dark_purple_movie" />
 
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Драма"
-                    android:textColor="@color/dark_purple_movie"
-                    android:textSize="13sp"
-                    app:chipBackgroundColor="@color/bg_chip_choice"
-                    app:chipCornerRadius="30dp"
-                    app:chipMinHeight="36dp"
-                    app:closeIconEnabled="true"
-                    app:closeIconSize="16dp"
-                    app:closeIconTint="@color/dark_purple_movie" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="IMDb >7"
-                    android:textColor="@color/dark_purple_movie"
-                    android:textSize="13sp"
-                    app:chipBackgroundColor="@color/bg_chip_choice"
-                    app:chipCornerRadius="30dp"
-                    app:chipMinHeight="36dp"
-                    app:closeIconEnabled="true"
-                    app:closeIconSize="16dp"
-                    app:closeIconTint="@color/dark_purple_movie" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
@@ -396,6 +367,8 @@
                     android:text="Мультфильмы"
                     android:textColor="@color/dark_purple_movie"
                     android:textSize="13sp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     app:chipBackgroundColor="@color/bg_chip_choice"
                     app:chipCornerRadius="30dp"
                     app:chipMinHeight="36dp"

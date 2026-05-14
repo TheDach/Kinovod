@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.thedach.kinovod.data.network.model.SyncUserDataRequest
+import com.thedach.kinovod.domain.model.profile.Friend
 import com.thedach.kinovod.domain.model.profile.User
 import com.thedach.network.ApiFactory
 import kotlinx.coroutines.CoroutineScope
@@ -49,6 +50,10 @@ object UserRepository {
 
     fun getIdListWishMovies(): List<Int> {
         return currentUser.value?.wishList ?: emptyList()
+    }
+
+    fun getUserFriends(): List<Friend> {
+        return currentUser.value?.friends ?: emptyList()
     }
 
     fun addIdToListWishMovie(movieId: Int) {
