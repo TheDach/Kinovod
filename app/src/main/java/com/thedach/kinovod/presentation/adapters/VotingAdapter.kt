@@ -119,41 +119,51 @@ class VotingAdapter(
         with(holder.binding) {
             when (votingType) {
                 VotingType.SINGLE -> {
-
-
                     radioButtonVote.visibility = View.VISIBLE
                     checkBoxVote.visibility = View.GONE
 
-                    // Если пользователь уже голосовал, показываем что он голосовал за этот фильм
-                    if (hasUserVoted) {
-                        radioButtonVote.isChecked = true
-                        radioButtonVote.isEnabled = false
-                        radioButtonVote.text = "Вы проголосовали"
+                    // Проверяем, голосовал ли пользователь за ЛЮБОЙ фильм в этом голосовании
+                    val hasVotedInThisSession = currentList.any { suggestionWithMovie ->
+                        suggestionWithMovie.suggestion.voters.contains(UserRepository.getUserId())
+                    }
+
+                    if (hasVotedInThisSession) {
+                        // Если пользователь уже голосовал в этом голосовании
+                        if (hasUserVoted) {
+                            // Показываем, что он голосовал именно за этот фильм
+                            radioButtonVote.isChecked = true
+                            radioButtonVote.isEnabled = false
+                            radioButtonVote.text = "Вы проголосовали"
+                        } else {
+                            // За этот фильм не голосовал, но голосовал за другой - блокируем
+                            radioButtonVote.isChecked = false
+                            radioButtonVote.isEnabled = false
+                            radioButtonVote.text = "Голосование завершено"
+                        }
                     } else {
+                        // Пользователь ещё не голосовал - разрешаем выбор
                         radioButtonVote.isChecked = (singleSelectedVote?.first == suggestionId)
                         radioButtonVote.isEnabled = true
                         radioButtonVote.text = "Голосовать"
 
                         radioButtonVote.setOnClickListener {
-                            if (!hasUserVoted) {
-                                val previousSelected = singleSelectedVote
-                                singleSelectedVote = Pair(suggestionId, movieId)
+                            val previousSelected = singleSelectedVote
+                            singleSelectedVote = Pair(suggestionId, movieId)
 
-                                // Обновляем предыдущий выбранный элемент
-                                previousSelected?.let { (oldId, _) ->
-                                    val oldPosition =
-                                        currentList.indexOfFirst { it.suggestion.suggestionId == oldId }
-                                    if (oldPosition != -1) {
-                                        notifyItemChanged(oldPosition)
-                                    }
+                            // Обновляем предыдущий выбранный элемент
+                            previousSelected?.let { (oldId, _) ->
+                                val oldPosition = currentList.indexOfFirst {
+                                    it.suggestion.suggestionId == oldId
                                 }
-
-                                onVoteClick(suggestionId, movieId, true)
-                                notifyItemChanged(holder.adapterPosition)
+                                if (oldPosition != -1) {
+                                    notifyItemChanged(oldPosition)
+                                }
                             }
+
+                            onVoteClick(suggestionId, movieId, true)
+                            notifyItemChanged(holder.adapterPosition)
                         }
                     }
-
                 }
 
 

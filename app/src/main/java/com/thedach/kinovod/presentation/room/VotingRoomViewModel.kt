@@ -18,7 +18,7 @@ import com.thedach.kinovod.domain.usecase.room.RemoveUserFromRoomUseCase
 import kotlinx.coroutines.launch
 
 class VotingRoomViewModel(
-    private val roomId : Int
+    private val roomId: Int
 ) : ViewModel() {
 
     private val roomRepository = RoomRepositoryImpl()
@@ -51,7 +51,7 @@ class VotingRoomViewModel(
     val error: LiveData<String?> = _error
 
 
-    private fun loadRoom(){
+    private fun loadRoom() {
         if (_isLoading.value == true) return
 
         viewModelScope.launch {
@@ -71,8 +71,8 @@ class VotingRoomViewModel(
                     _movies.value = getMovieListByIdUseCase(movieIdsList)
                 }
 
-                _suggestionWithMovie.value =  createSuggestionWithMovie(
-                    _room.value ?: throw  Exception("Error: room is empty"),
+                _suggestionWithMovie.value = createSuggestionWithMovie(
+                    _room.value ?: throw Exception("Error: room is empty"),
                     _movies.value ?: throw Exception("Error: movies is empty")
                 )
 
@@ -88,14 +88,14 @@ class VotingRoomViewModel(
         }
     }
 
-    fun refreshRoomData(){
+    fun refreshRoomData() {
         loadRoom()
     }
 
     private fun createSuggestionWithMovie(
         room: Room,
         movies: List<Movie>
-    ) : List<SuggestionWithMovie> {
+    ): List<SuggestionWithMovie> {
 
         val movieMap = movies.associateBy { it.id }
 
@@ -108,7 +108,7 @@ class VotingRoomViewModel(
                     suggestion = suggestion,
                     movie = movie,
                     progressPercent = calculateProgressPercent(
-                        room.maxMembers,
+                        room.members.size,
                         suggestion.voters.size
                     ),
                     votingAnonymous = room.votingAnonymous ?: false,
@@ -141,6 +141,7 @@ class VotingRoomViewModel(
             }
         }
     }
+
     fun submitVote(movieIds: List<Int>) {
         if (_isLoading.value == true) return
 
@@ -168,9 +169,9 @@ class VotingRoomViewModel(
         }
     }
 
-    private fun calculateProgressPercent(maxMembers: Int, votersCount: Int): Int {
-        if (maxMembers <= 0) return 0
-        return ((votersCount.toDouble() / maxMembers) * PERCENT_100).toInt()
+    private fun calculateProgressPercent(amountMembers: Int, votersCount: Int): Int {
+        if (amountMembers <= 0) return 0
+        return ((votersCount.toDouble() / amountMembers) * PERCENT_100).toInt()
     }
 
     init {
