@@ -11,9 +11,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
 import com.squareup.picasso.Picasso
 import com.thedach.kinovod.R
 import com.thedach.kinovod.data.repository.UserRepository
+import com.thedach.kinovod.databinding.DialogAddFriendsBinding
 import com.thedach.kinovod.databinding.FragmentProfileBinding
 import com.thedach.kinovod.databinding.ItemFriendBinding
 import com.thedach.kinovod.databinding.ItemMovieBinding
@@ -134,6 +137,10 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        binding.btnAddFriend.setOnClickListener {
+            showAddFriendDialog()
+        }
+
         binding.tvWishlistSeeAll.setOnClickListener {
 
         }
@@ -196,6 +203,32 @@ class ProfileFragment : Fragment() {
                 displayFriends(user.friends)
             }
         }
+    }
+
+    private fun showAddFriendDialog() {
+        val bindingFriendDialog = DialogAddFriendsBinding
+            .inflate(LayoutInflater.from(requireContext()))
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setView(bindingFriendDialog.root)
+            .create()
+
+        with(bindingFriendDialog) {
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            btnSubmit.setOnClickListener {
+                val userTag = etFriendTag.text.toString().trim()
+                if(userTag.isEmpty()) {
+                    etFriendTag.error = "Введите Tag пользователя"
+                    return@setOnClickListener
+                }
+
+                dialog.dismiss()
+                viewModel.addFriend(userTag)
+            }
+        }
+        dialog.show()
     }
 
     private fun displayWishlist(wishlist: List<Movie>) {

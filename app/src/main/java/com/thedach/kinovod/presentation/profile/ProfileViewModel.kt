@@ -11,6 +11,7 @@ import com.thedach.kinovod.domain.usecase.profile.DeleteAccountUseCase
 import com.thedach.kinovod.domain.usecase.movie.GetMovieListByIdUseCase
 import com.thedach.kinovod.domain.usecase.profile.LogoutUseCase
 import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.usecase.profile.LoginUseCase
 import kotlinx.coroutines.launch
 
 class ProfileViewModel : ViewModel() {
@@ -19,6 +20,7 @@ class ProfileViewModel : ViewModel() {
     private val getMovieListByIdUseCase = GetMovieListByIdUseCase(movieRepository)
 
     private val authRepository = AuthenticationRepositoryImpl()
+    private val login = LoginUseCase(authRepository)
     private val logoutUseCase = LogoutUseCase(authRepository)
     private val deleteAccountUseCase = DeleteAccountUseCase(authRepository)
 
@@ -71,6 +73,30 @@ class ProfileViewModel : ViewModel() {
 
     fun refreshMovies() {
         loadMovies()
+    }
+
+    fun refreshUser() {
+        if (_isLoading.value == true) return
+
+        viewModelScope.launch {
+
+            _isLoading.value = true
+            _error.value = null
+
+            try {
+                TODO()
+
+            } catch (ex: Exception) {
+                _error.value = ex.message
+                ex.printStackTrace()
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun addFriend(friendTag: String) {
+
     }
 
     fun deleteAccount() {

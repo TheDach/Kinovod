@@ -108,6 +108,8 @@
     <string name="label_connect_to_room">Подключение к комнате</string>
     <string name="label_select_friends">Выберите друзей</string>
     <string name="label_info_review_list_is_empty">Список отзывов пока что пуст! :(</string>
+    <string name="label_add_friend_by_tag">Добавить друга по тегу</string>
+    <string name="hint_tag_add_friend">\@volsidav</string>
 
 
 </resources>
