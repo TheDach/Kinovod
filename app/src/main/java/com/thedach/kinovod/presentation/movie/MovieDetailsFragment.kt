@@ -66,6 +66,9 @@ class MovieDetailsFragment: Fragment() {
             binding.tabKinopoisk.setTextColor(
                 resources.getColor(R.color.tags_text_grey_poster, null)
             )
+
+            binding.recyclerViewReviewsFriend.visibility = View.VISIBLE
+            binding.recyclerViewReviews.visibility = View.GONE
         }
         binding.tabKinopoisk.setOnClickListener {
             binding.tabKinopoisk.setTextColor(
@@ -74,6 +77,9 @@ class MovieDetailsFragment: Fragment() {
             binding.tabFriends.setTextColor(
                 resources.getColor(R.color.tags_text_grey_poster, null)
             )
+
+            binding.recyclerViewReviews.visibility = View.VISIBLE
+            binding.recyclerViewReviewsFriend.visibility = View.GONE
         }
 
         binding.btnWantWatch.setOnClickListener {
@@ -86,7 +92,12 @@ class MovieDetailsFragment: Fragment() {
 
     private fun observeViewModel() {
         viewModel.reviewList.observe(viewLifecycleOwner) {reviews ->
-            reviewAdapter.submitList(reviews)
+            if(!reviews.isNullOrEmpty()) {
+                binding.tvReviewIsEmpty.visibility = View.GONE
+                reviewAdapter.submitList(reviews)
+            } else {
+                binding.tvReviewIsEmpty.visibility = View.VISIBLE
+            }
         }
 
         viewModel.isInWishList.observe(viewLifecycleOwner) { isInWishList ->

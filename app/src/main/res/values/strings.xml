@@ -107,6 +107,7 @@
     <string name="hint_enter_id_room">ID комнаты</string>
     <string name="label_connect_to_room">Подключение к комнате</string>
     <string name="label_select_friends">Выберите друзей</string>
+    <string name="label_info_review_list_is_empty">Список отзывов пока что пуст! :(</string>
 
 
 </resources>
