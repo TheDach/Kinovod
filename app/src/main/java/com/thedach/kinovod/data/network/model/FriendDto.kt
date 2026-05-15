@@ -14,6 +14,9 @@ data class FriendDto(
     @SerialName("username")
     val username: String,
 
+    @SerialName("userTag")
+    val userTag: String,
+
     @SerialName("avatar")
     val avatar: String? = null,
 )

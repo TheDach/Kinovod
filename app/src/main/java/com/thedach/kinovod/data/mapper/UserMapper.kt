@@ -24,7 +24,8 @@ class UserMapper {
         return Friend(
             userId = dto.userId,
             username = dto.username,
-            avatar = dto.avatar,
+            userTag = dto.userTag,
+            avatar = dto.avatar
         )
     }
 
@@ -46,7 +47,8 @@ class UserMapper {
         return FriendDto(
             userId = domain.userId,
             username = domain.username,
-            avatar = domain.avatar,
+            userTag = domain.userTag,
+            avatar = domain.avatar
         )
     }
 }

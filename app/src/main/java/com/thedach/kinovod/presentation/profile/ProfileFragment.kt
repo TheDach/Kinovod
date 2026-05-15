@@ -336,6 +336,8 @@ class ProfileFragment : Fragment() {
     }
     private fun bindFriendData(binding: ItemFriendBinding, friend: Friend) {
         binding.tvFriendName.text = friend.username
+        binding.tvUserTag.text = getString(R.string.tv_friend_tag)
+            .format(friend.userTag)
 
         // Загрузка реального аватара если есть
         if (!friend.avatar.isNullOrEmpty()) {

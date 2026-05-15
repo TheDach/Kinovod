@@ -50,16 +50,15 @@
             tools:text="Мария" />
 
         <TextView
-            android:id="@+id/tv_common_movies"
+            android:id="@+id/tv_user_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_general_movies_friend_profile"
-            android:visibility="gone"
+            android:text="@string/tv_friend_tag"
+            android:visibility="visible"
             android:textColor="@color/gray_600"
             android:textSize="13sp"
 
-            tools:visibility="visible"
-            tools:text="4 общих фильма" />
+            tools:text="\@marishka" />
     </LinearLayout>
 
 </LinearLayout>

@@ -7,5 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class Friend(
     val userId: Int,
     val username: String,
+    val userTag: String,
     val avatar: String?
 ) : Parcelable
