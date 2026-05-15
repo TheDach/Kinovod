@@ -52,8 +52,10 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupObserver()
+        setupSwipeRefresh()
+
         setupClickListeners()
+        setupObserver()
     }
 
     private fun initIncludeBindings() {
@@ -116,6 +118,14 @@ class ProfileFragment : Fragment() {
                 viewModel.onNavigationComplete()
             }
         }
+
+        viewModel.isRefreshing.observe(viewLifecycleOwner) {isRefresh ->
+            if (isRefresh) {
+                binding.swipeRefreshLayoutProfile.isRefreshing = true
+            } else {
+                binding.swipeRefreshLayoutProfile.isRefreshing = false
+            }
+        }
     }
     private fun setupClickListeners() {
         wishlistMovieBindings.forEachIndexed { index, binding ->
@@ -157,6 +167,12 @@ class ProfileFragment : Fragment() {
 
         binding.btnDeleteAccount.setOnClickListener {
             showDeleteAccountConfirmationDialog()
+        }
+    }
+
+    private fun setupSwipeRefresh(){
+        binding.swipeRefreshLayoutProfile.setOnRefreshListener {
+            viewModel.refreshUser()
         }
     }
 

@@ -6,18 +6,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.AuthenticationRepositoryImpl
 import com.thedach.kinovod.data.repository.MovieRepositoryImpl
+import com.thedach.kinovod.data.repository.ProfileRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.domain.usecase.profile.DeleteAccountUseCase
 import com.thedach.kinovod.domain.usecase.movie.GetMovieListByIdUseCase
 import com.thedach.kinovod.domain.usecase.profile.LogoutUseCase
 import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.usecase.profile.AddFriendUseCase
 import com.thedach.kinovod.domain.usecase.profile.LoginUseCase
+import com.thedach.kinovod.domain.usecase.profile.RefreshUserDataUseCase
 import kotlinx.coroutines.launch
 
 class ProfileViewModel : ViewModel() {
 
     private val movieRepository = MovieRepositoryImpl
     private val getMovieListByIdUseCase = GetMovieListByIdUseCase(movieRepository)
+
+    private val profileRepository = ProfileRepositoryImpl()
+    private val addFriendUseCase = AddFriendUseCase(profileRepository)
+    private val refreshUserDataUseCase = RefreshUserDataUseCase(profileRepository)
 
     private val authRepository = AuthenticationRepositoryImpl()
     private val login = LoginUseCase(authRepository)
@@ -36,6 +43,9 @@ class ProfileViewModel : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _isRefreshing = MutableLiveData<Boolean>()
+    val isRefreshing: LiveData<Boolean> = _isRefreshing
 
     private val _isLoggingOut = MutableLiveData<Boolean>(false)
     val isLoggingOut: LiveData<Boolean> = _isLoggingOut
@@ -66,12 +76,14 @@ class ProfileViewModel : ViewModel() {
                 _error.value = ex.message
                 ex.printStackTrace()
             } finally {
+                _isRefreshing.value = false
                 _isLoading.value = false
             }
         }
     }
 
     fun refreshMovies() {
+        _isRefreshing.value = true
         loadMovies()
     }
 
@@ -84,19 +96,37 @@ class ProfileViewModel : ViewModel() {
             _error.value = null
 
             try {
-                TODO()
+                refreshUserDataUseCase.invoke(userRepository.getUserId())
 
             } catch (ex: Exception) {
                 _error.value = ex.message
                 ex.printStackTrace()
             } finally {
+                _isRefreshing.value = false
                 _isLoading.value = false
             }
         }
     }
 
     fun addFriend(friendTag: String) {
+        if (_isLoading.value == true) return
 
+        viewModelScope.launch {
+
+            _isLoading.value = true
+            _error.value = null
+
+            try {
+                addFriendUseCase.invoke(userRepository.getUserId(), friendTag)
+
+            } catch (ex: Exception) {
+                _error.value = ex.message
+                ex.printStackTrace()
+            } finally {
+                _isRefreshing.value = false
+                _isLoading.value = false
+            }
+        }
     }
 
     fun deleteAccount() {

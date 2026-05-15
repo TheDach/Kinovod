@@ -1,5 +1,6 @@
 package com.thedach.network
 
+import com.thedach.kinovod.data.network.model.AddFriendRequestDto
 import com.thedach.kinovod.data.network.model.BaseResponseDto
 import com.thedach.kinovod.data.network.model.LoginRequestDto
 import com.thedach.kinovod.data.network.model.RegisterRequestDto
@@ -69,6 +70,16 @@ interface ApiService {
         @Body userId: Int
     )
 
+    @GET("/user/profile/refresh_user_data")
+    suspend fun refreshUserData(
+        @Query(QUERY_PARAM_USER_ID) userId: Int
+    ): UserResponseDto
+
+    @POST("/user/profile/add_friend")
+    suspend fun addFriend(
+        @Body request: AddFriendRequestDto
+    ): UserResponseDto
+
     // ==================== SYNC =====================
 
     @POST("user/sync")
@@ -82,55 +93,54 @@ interface ApiService {
     @GET("room/all_room_details")
     suspend fun getAllRoomForUser(
         @Query(QUERY_PARAM_USER_ID) userId: Int
-    ) : UserRoomsResponseDto
+    ): UserRoomsResponseDto
 
     @GET("room/details")
     suspend fun getRoomDetails(
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Query(QUERY_PARAM_ROOM_ID) roomId: Int
-    ) : RoomDetailsResponseDto
+    ): RoomDetailsResponseDto
 
     @POST("room/create")
     suspend fun createNewRoom(
         @Query(QUERY_PARAM_USER_ID) userId: Int,
-        @Body request : CreateRoomRequestDto
-    ) : RoomDetailsResponseDto
+        @Body request: CreateRoomRequestDto
+    ): RoomDetailsResponseDto
 
     @POST("room/{roomId}/members")
     suspend fun addMembersToRoom(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Body request: AddMembersRequestDto
-    ) : String
+    ): String
 
     @POST("room/{roomId}/votes")
-    suspend fun addUserVotes (
+    suspend fun addUserVotes(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Body request: AddVotesRequestDto
-    ) : String
+    ): String
 
 
     @POST("room/{roomId}/suggestions")
-    suspend fun addRoomSuggestions (
+    suspend fun addRoomSuggestions(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Body request: AddSuggestionsRequestDto
-    ) : String
+    ): String
 
     @DELETE("room/{roomId}/members/{userIdToRemove}")
     suspend fun removeUserFromRoom(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Path(QUERY_PARAM_USER_ID_TO_REMOVE) userIdToRemove: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int
-    ) : String
+    ): String
 
     @DELETE("room/{roomId}")
-    suspend fun deleteRoom (
+    suspend fun deleteRoom(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int
-    ) : String
-
+    ): String
 
 
     companion object {
