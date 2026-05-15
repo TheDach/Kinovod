@@ -111,6 +111,7 @@
     <string name="label_add_friend_by_tag">Добавить друга по тегу</string>
     <string name="hint_tag_add_friend">\@volsidav</string>
     <string name="tv_friend_tag">\@%s</string>
+    <string name="label_host">хост</string>
 
 
 </resources>

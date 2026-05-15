@@ -67,6 +67,7 @@ class MovieDetailsFragment: Fragment() {
                 resources.getColor(R.color.tags_text_grey_poster, null)
             )
 
+            binding.tvReviewIsEmpty.visibility = View.VISIBLE // Сделать нормальное отображение
             binding.recyclerViewReviewsFriend.visibility = View.VISIBLE
             binding.recyclerViewReviews.visibility = View.GONE
         }
@@ -78,6 +79,7 @@ class MovieDetailsFragment: Fragment() {
                 resources.getColor(R.color.tags_text_grey_poster, null)
             )
 
+            binding.tvReviewIsEmpty.visibility = View.GONE // Сделать нормальное отображение
             binding.recyclerViewReviews.visibility = View.VISIBLE
             binding.recyclerViewReviewsFriend.visibility = View.GONE
         }

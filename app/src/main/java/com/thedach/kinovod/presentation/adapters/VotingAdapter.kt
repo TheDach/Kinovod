@@ -119,6 +119,8 @@ class VotingAdapter(
         with(holder.binding) {
             when (votingType) {
                 VotingType.SINGLE -> {
+
+
                     radioButtonVote.visibility = View.VISIBLE
                     checkBoxVote.visibility = View.GONE
 
@@ -151,7 +153,9 @@ class VotingAdapter(
                             }
                         }
                     }
+
                 }
+
 
                 VotingType.MULTIPLE -> {
                     radioButtonVote.visibility = View.GONE

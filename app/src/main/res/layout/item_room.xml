@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:gravity=""
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -46,6 +46,7 @@
                 android:textColor="@color/purple_500"
                 android:textSize="12sp"
                 android:visibility="gone"
+                android:text="@string/label_host"
 
                 tools:text="хост"
                 tools:visibility="visible" />

@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class RoomSuggestion(
     val suggestionId: Int,
     val movieId: Int,
-    val suggestedBy: Int?,
+    val suggestedBy: Int,
     val suggestedByUsername: String?,
     val voters: List<Int>
 ) : Parcelable

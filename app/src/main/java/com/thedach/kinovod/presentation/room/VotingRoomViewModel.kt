@@ -157,13 +157,13 @@ class VotingRoomViewModel(
                     movieIds
                 )
 
-                refreshRoomData()
-
             } catch (ex: Exception) {
                 _isLoading.value = false
                 _isRefreshing.value = false
                 _error.value = ex.message
                 ex.printStackTrace()
+            } finally {
+                refreshRoomData()
             }
         }
     }

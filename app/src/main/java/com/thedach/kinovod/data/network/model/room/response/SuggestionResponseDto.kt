@@ -13,7 +13,7 @@ data class SuggestionResponseDto(
     val movieId: Int,
 
     @SerialName("suggestedBy")
-    val suggestedBy: Int?,
+    val suggestedBy: Int,
 
     @SerialName("suggestedByUsername")
     val suggestedByUsername: String?,
