@@ -66,6 +66,7 @@ class VotingRoomFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+        setupSwipeRefresh()
 
         observeViewModel()
         setupClickListeners()
@@ -86,6 +87,14 @@ class VotingRoomFragment : Fragment() {
                 binding.progressBarLoadingVotes.visibility = View.VISIBLE
             } else {
                 binding.progressBarLoadingVotes.visibility = View.GONE
+            }
+        }
+
+        viewModel.isRefreshing.observe(viewLifecycleOwner) {isRefresh ->
+            if (isRefresh) {
+                binding.swipeRefreshLayoutVotingRoom.isRefreshing = true
+            } else {
+                binding.swipeRefreshLayoutVotingRoom.isRefreshing = false
             }
         }
 
@@ -136,13 +145,19 @@ class VotingRoomFragment : Fragment() {
         votingAdapter = VotingAdapter(
             requireContext(),
             onVoteClick = { suggestionId, movieId, isSelected ->
-                android.util.Log.d(
+                Log.d(
                     "Voting",
                     "Selected: suggestionId=$suggestionId, movieId=$movieId"
                 )
             }
         )
         binding.recyclerViewVoting.adapter = votingAdapter
+    }
+
+    private fun setupSwipeRefresh(){
+        binding.swipeRefreshLayoutVotingRoom.setOnRefreshListener {
+            viewModel.refreshRoomData()
+        }
     }
 
 

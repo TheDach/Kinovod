@@ -57,6 +57,7 @@ class VotingRoomViewModel(
         viewModelScope.launch {
 
             _isLoading.value = true
+            _isRefreshing.value = true
             _error.value = null
 
             try {
@@ -87,13 +88,8 @@ class VotingRoomViewModel(
         }
     }
 
-    private fun refreshRoomData(){
+    fun refreshRoomData(){
         loadRoom()
-    }
-
-    private fun calculateProgressPercent(maxMembers: Int, votersCount: Int): Int {
-        if (maxMembers <= 0) return 0
-        return ((votersCount.toDouble() / maxMembers) * PERCENT_100).toInt()
     }
 
     private fun createSuggestionWithMovie(
@@ -122,6 +118,7 @@ class VotingRoomViewModel(
         }
     }
 
+
     fun leaveRoom() {
         viewModelScope.launch {
 
@@ -136,6 +133,7 @@ class VotingRoomViewModel(
                 )
 
                 _isSuccessLeaving.value = true
+                refreshRoomData()
 
             } catch (ex: Exception) {
                 _error.value = ex.message
@@ -143,9 +141,14 @@ class VotingRoomViewModel(
             }
         }
     }
-
     fun submitVote(movieIds: List<Int>) {
+        if (_isLoading.value == true) return
+
         viewModelScope.launch {
+            _isLoading.value = true
+            _isRefreshing.value = true
+            _error.value = null
+
             try {
                 Log.d("submitVote: ", movieIds.toString())
                 addUserVotesUseCase(
@@ -157,10 +160,17 @@ class VotingRoomViewModel(
                 refreshRoomData()
 
             } catch (ex: Exception) {
+                _isLoading.value = false
+                _isRefreshing.value = false
                 _error.value = ex.message
                 ex.printStackTrace()
             }
         }
+    }
+
+    private fun calculateProgressPercent(maxMembers: Int, votersCount: Int): Int {
+        if (maxMembers <= 0) return 0
+        return ((votersCount.toDouble() / maxMembers) * PERCENT_100).toInt()
     }
 
     init {
