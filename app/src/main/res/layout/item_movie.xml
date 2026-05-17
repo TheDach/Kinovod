@@ -28,13 +28,26 @@
                 android:id="@+id/image_view_movie_poster"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="250dp"
+                android:layout_gravity="center"
                 android:adjustViewBounds="true"
 
-                android:layout_gravity="center"
                 android:contentDescription="@string/description_poster"
+                android:minHeight="250dp"
 
                 android:src="@drawable/ic_simple_image" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_movie_to_suggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:backgroundTint="@color/purple_500"
+                android:text="@string/btn_suggestion"
+                android:visibility="gone"
+
+                app:icon="@drawable/ic_plus_svg"
+
+                tools:visibility="visible" />
 
             <!-- Rating Badge -->
             <TextView
@@ -115,14 +128,14 @@
                     android:id="@+id/tv_rating_kinopoisk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_background_poster"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
                     android:text="@string/rating_poster_kinopoinsk_poster"
                     android:textColor="@color/text_rating_chips_poster"
                     android:textSize="10sp"
                     android:textStyle="bold"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="2dp"
-                    android:layout_marginEnd="6dp"
-                    android:background="@drawable/chip_background_poster"
 
                     tools:text="KP 8.7" />
 
@@ -130,15 +143,15 @@
                     android:id="@+id/tv_rating_imdb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rating_poster_IMDb_poster"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:textColor="#1e293b"
+                    android:background="@drawable/chip_background_poster"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
-                    android:background="@drawable/chip_background_poster"
+                    android:text="@string/rating_poster_IMDb_poster"
+                    android:textColor="#1e293b"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
 
-                    tools:text="IMDb 8.9"/>
+                    tools:text="IMDb 8.9" />
             </LinearLayout>
 
         </LinearLayout>

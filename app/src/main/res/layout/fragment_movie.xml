@@ -113,17 +113,38 @@
 
         </HorizontalScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_movie"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingBottom="16dp"
+            android:layout_height="wrap_content">
 
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_movie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"
 
-            tools:listitem="@layout/item_movie" />
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+
+                tools:listitem="@layout/item_movie" />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/button_confirm_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:text="@string/btn_submit"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:visibility="gone"
+                app:backgroundTint="@color/purple_500"
+                tools:visibility="visible"/>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
         <FrameLayout
             android:id="@+id/progressBar_movie"
