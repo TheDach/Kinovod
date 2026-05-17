@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MovieSelectionConfig(
-    val movieFilters: Settings,
-    val mode: SearchMode,
-    val roomId: Int
+    val movieFilters: Settings? = null,
+    val mode: SearchMode = SearchMode.ALL_MOVIES,
+    val roomId: Int? = null
 ) : Parcelable

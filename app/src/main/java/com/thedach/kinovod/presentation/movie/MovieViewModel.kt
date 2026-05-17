@@ -34,15 +34,18 @@ class MovieViewModel : ViewModel() {
     val error: LiveData<String?> = _error
 
     private var searchJob: Job? = null
+    private var loadJob: Job? = null
+
     private var currentQuery = ""
     private val selectedGenres = mutableListOf<String>()
     private val activeChips = mutableListOf<String>()
 
-    private fun loadMovies() {
+    private fun loadMovies(force: Boolean = false) {
+        if (_isLoading.value == true && !force) return
 
-        if (_isLoading.value == true) return
+        loadJob?.cancel()
 
-        viewModelScope.launch {
+        loadJob = viewModelScope.launch {
 
             _isLoading.value = true
             _error.value = null
@@ -65,7 +68,7 @@ class MovieViewModel : ViewModel() {
     fun loadMoviesByGenres(genres: List<String>) {
         selectedGenres.clear()
         selectedGenres.addAll(genres)
-        loadMovies()
+        loadMovies(force = true)
     }
 
     fun refreshMovies() {

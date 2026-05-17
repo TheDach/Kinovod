@@ -21,11 +21,15 @@ import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentVotingRoomBinding
+import com.thedach.kinovod.domain.model.movie.MovieSelectionConfig
+import com.thedach.kinovod.domain.model.movie.SearchMode
+import com.thedach.kinovod.domain.model.movie.Settings
 import com.thedach.kinovod.domain.model.room.MemberRole
 import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.model.room.RoomMember
 import com.thedach.kinovod.domain.model.room.VotingType
 import com.thedach.kinovod.presentation.adapters.VotingAdapter
+import com.thedach.kinovod.presentation.movie.MovieFragmentDirections
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -78,7 +82,7 @@ class VotingRoomFragment : Fragment() {
             setupRoomData(room)
         }
 
-        viewModel.isSuccessLeaving.observe(viewLifecycleOwner) {isSuccessLeaving ->
+        viewModel.isSuccessLeaving.observe(viewLifecycleOwner) { isSuccessLeaving ->
             launchRoomsFragment()
         }
 
@@ -90,7 +94,7 @@ class VotingRoomFragment : Fragment() {
             }
         }
 
-        viewModel.isRefreshing.observe(viewLifecycleOwner) {isRefresh ->
+        viewModel.isRefreshing.observe(viewLifecycleOwner) { isRefresh ->
             if (isRefresh) {
                 binding.swipeRefreshLayoutVotingRoom.isRefreshing = true
             } else {
@@ -111,9 +115,7 @@ class VotingRoomFragment : Fragment() {
         }
 
         binding.btnSuggestMovie.setOnClickListener {
-            // Заглушка
-            Toast.makeText(requireContext(), "Предложить фильм (в разработке)", Toast.LENGTH_SHORT)
-                .show()
+            launchMovieFragment()
         }
 
         binding.btnFindMatch.setOnClickListener {
@@ -154,7 +156,7 @@ class VotingRoomFragment : Fragment() {
         binding.recyclerViewVoting.adapter = votingAdapter
     }
 
-    private fun setupSwipeRefresh(){
+    private fun setupSwipeRefresh() {
         binding.swipeRefreshLayoutVotingRoom.setOnRefreshListener {
             viewModel.refreshRoomData()
         }
@@ -362,6 +364,22 @@ class VotingRoomFragment : Fragment() {
 
     private fun launchRoomsFragment() {
         findNavController().navigateUp()
+    }
+
+    private fun launchMovieFragment() {
+        findNavController().navigate(
+            VotingRoomFragmentDirections.actionVotingRoomFragmentToMovieFragment(
+                createMovieSelectionConfig(viewModel.room.value?.genres)
+            )
+        )
+    }
+
+    private fun createMovieSelectionConfig(genres: List<String>?): MovieSelectionConfig {
+        return MovieSelectionConfig(
+            movieFilters = Settings(genres = genres),
+            mode = SearchMode.ROOM_SUGGESTION,
+            roomId = roomArgs.roomId
+        )
     }
 
     override fun onDestroyView() {

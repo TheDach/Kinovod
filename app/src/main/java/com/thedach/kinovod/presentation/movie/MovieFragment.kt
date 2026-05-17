@@ -10,10 +10,12 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentMovieBinding
 import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.model.movie.SearchMode
 import com.thedach.kinovod.presentation.adapters.MovieAdapter
 
 class MovieFragment : Fragment() {
@@ -21,6 +23,8 @@ class MovieFragment : Fragment() {
     private var _binding: FragmentMovieBinding? = null
     private val binding: FragmentMovieBinding
         get() = _binding ?: throw RuntimeException("FragmentMovieBinding == null")
+
+    private val movieArgs by navArgs<MovieFragmentArgs>()
 
     private val viewModel: MovieViewModel by lazy {
         ViewModelProvider(this)[MovieViewModel::class.java]
@@ -41,6 +45,8 @@ class MovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupMovieConfig()
+
         setupRecyclerView()
         setupSwipeRefresh()
         setupSearchView()
@@ -60,14 +66,14 @@ class MovieFragment : Fragment() {
             }
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) {isLoading ->
-            if(isLoading) {
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
                 binding.progressBarMovie.visibility = View.VISIBLE
             } else {
                 binding.progressBarMovie.visibility = View.GONE
             }
         }
-        viewModel.isRefreshing.observe(viewLifecycleOwner) {isRefresh ->
+        viewModel.isRefreshing.observe(viewLifecycleOwner) { isRefresh ->
             if (isRefresh) {
                 binding.swipeRefreshLayoutMovie.isRefreshing = true
             } else {
@@ -80,7 +86,30 @@ class MovieFragment : Fragment() {
                 Toast.makeText(requireContext(), "Ошибка: $it", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
+    private fun setupMovieConfig() {
+        when(movieArgs.movieSelectionConfig.mode){
+            SearchMode.ALL_MOVIES -> {
+                // Ничего не делаем, init уже загрузил
+            }
+            SearchMode.ROOM_SUGGESTION -> {
+                val genres = movieArgs.movieSelectionConfig.movieFilters?.genres
+
+                binding.chipGroupFilters.removeAllViews()
+
+                if (!genres.isNullOrEmpty()) {
+                    genres.forEach {genre ->
+                        viewModel.addActiveChip(genre)
+                    }
+
+                    viewModel.loadMoviesByGenres(genres)
+                } //else {
+//                    viewModel.refreshMovies()
+//                    Вроде как это излишне так как при создании viewModel сразу грузит фильмы и если Genres==null то ничего и не надо грузить по новой
+//                }
+            }
+        }
 
     }
 
@@ -125,20 +154,35 @@ class MovieFragment : Fragment() {
     }
 
     private fun addFilterChip(genre: String) {
-        val chip = layoutInflater.inflate(R.layout.item_chip_genre, binding.chipGroupFilters, false) as Chip
+        val chip = layoutInflater.inflate(
+            R.layout.item_chip_genre,
+            binding.chipGroupFilters,
+            false
+        ) as Chip
         chip.text = genre
-        chip.isCloseIconVisible  = true
-        chip.setOnCloseIconClickListener {
 
-            binding.chipGroupFilters.removeView(chip)
-            viewModel.removeActiveChip(genre)
+        when(movieArgs.movieSelectionConfig.mode) {
 
-            val selectedGenres = binding.chipGroupFilters.children
-                .filterIsInstance<Chip>()
-                .map { it.text.toString() }
-                .toList()
+            SearchMode.ALL_MOVIES -> {
+                chip.isCloseIconVisible = true
 
-            viewModel.loadMoviesByGenres(selectedGenres)
+                chip.setOnCloseIconClickListener {
+
+                    binding.chipGroupFilters.removeView(chip)
+                    viewModel.removeActiveChip(genre)
+
+                    val selectedGenres = binding.chipGroupFilters.children
+                        .filterIsInstance<Chip>()
+                        .map { it.text.toString() }
+                        .toList()
+
+                    viewModel.loadMoviesByGenres(selectedGenres)
+                }
+            }
+
+            SearchMode.ROOM_SUGGESTION -> {
+                chip.isCloseIconVisible = false
+            }
         }
 
         binding.chipGroupFilters.addView(chip)
@@ -169,7 +213,7 @@ class MovieFragment : Fragment() {
         binding.recyclerViewMovie.adapter = movieAdapter
     }
 
-    private fun setupSwipeRefresh(){
+    private fun setupSwipeRefresh() {
         binding.swipeRefreshLayoutMovie.setOnRefreshListener {
             viewModel.refreshMovies()
             viewModel.clearSearch()

@@ -7,11 +7,13 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.thedach.kinovod.R
 import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.databinding.ActivityMainBinding
+import com.thedach.kinovod.domain.model.movie.MovieSelectionConfig
 import com.thedach.kinovod.presentation.auth.AuthActivity
 import kotlinx.coroutines.launch
 
@@ -27,15 +29,50 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupNavigationBar()
+        setupNavigation()
 
     }
 
-    private fun setupNavigationBar() {
+    private fun setupNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
         val navController: NavController = navHostFragment.navController
-        binding.bottomNavigationViewActivityMain.setupWithNavController(navController)
+
+        val defaultMovieConfig = MovieSelectionConfig()
+        val bundle = Bundle().apply {
+            putParcelable("MovieSelectionConfig", defaultMovieConfig)
+        }
+
+        navController.setGraph(R.navigation.navigation_main, bundle)
+
+        binding.bottomNavigationViewActivityMain.setupWithNavController(navController) // NavBar
+
+        binding.bottomNavigationViewActivityMain.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.roomsFragment -> {
+                    navController.navigate(R.id.roomsFragment, null, NavOptions.Builder()
+                        .setPopUpTo(R.id.roomsFragment, false)
+                        .setLaunchSingleTop(true)
+                        .build())
+                    true
+                }
+                R.id.movieFragment -> {
+                    navController.navigate(R.id.movieFragment, bundle, NavOptions.Builder()
+                        .setPopUpTo(R.id.movieFragment, false)
+                        .setLaunchSingleTop(true)
+                        .build())
+                    true
+                }
+                R.id.profileFragment -> {
+                    navController.navigate(R.id.profileFragment, null, NavOptions.Builder()
+                        .setPopUpTo(R.id.profileFragment, false)
+                        .setLaunchSingleTop(true)
+                        .build())
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
 
