@@ -86,6 +86,7 @@
     <string name="btn_clear">Очистить</string>
     <string name="btn_cancel">Отмена</string>
     <string name="btn_submit">Применить</string>
+    <string name="btn_sending">Отправка …</string>
     <string name="label_voting">🎯 Голосование</string>
     <string name="btn_leave_voting_room">Покинуть комнату</string>
     <string name="tv_tap_to_movie_see_details">👆 нажми на фильм — увидишь детали</string>

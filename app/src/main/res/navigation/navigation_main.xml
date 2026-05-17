@@ -39,6 +39,9 @@
         <argument
             android:name="MovieSelectionConfig"
             app:argType="com.thedach.kinovod.domain.model.movie.MovieSelectionConfig"/>
+        <action
+            android:id="@+id/action_movieFragment_to_votingRoomFragment"
+            app:destination="@id/votingRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/newRoomFragment"

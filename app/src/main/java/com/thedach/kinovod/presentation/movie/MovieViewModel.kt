@@ -30,6 +30,9 @@ class MovieViewModel : ViewModel() {
     private val _isRefreshing = MutableLiveData<Boolean>()
     val isRefreshing: LiveData<Boolean> = _isRefreshing
 
+    private val _isSendingSuggestion = MutableLiveData<Boolean>()
+    val isSendingSuggestion: LiveData<Boolean> = _isSendingSuggestion
+
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
 

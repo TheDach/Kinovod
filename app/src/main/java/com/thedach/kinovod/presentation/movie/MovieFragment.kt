@@ -80,6 +80,14 @@ class MovieFragment : Fragment() {
                 binding.swipeRefreshLayoutMovie.isRefreshing = false
             }
         }
+        viewModel.isSendingSuggestion.observe(viewLifecycleOwner) {isSending ->
+            if (isSending) {
+                binding.buttonConfirmMovie.text = getString(R.string.btn_sending)
+            } else {
+                binding.buttonConfirmMovie.text = getString(R.string.btn_submit)
+                launchVotingRoomFragment()
+            }
+        }
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
@@ -97,6 +105,7 @@ class MovieFragment : Fragment() {
                 val genres = movieArgs.movieSelectionConfig.movieFilters?.genres
 
                 binding.chipGroupFilters.removeAllViews()
+                binding.buttonConfirmMovie.visibility = View.VISIBLE
 
                 if (!genres.isNullOrEmpty()) {
                     genres.forEach {genre ->
@@ -116,6 +125,9 @@ class MovieFragment : Fragment() {
     private fun setupClickListeners() {
         binding.buttonSettings.setOnClickListener {
             showGenresDialog()
+        }
+        binding.buttonConfirmMovie.setOnClickListener {
+            // TODO(save suggestion)
         }
         movieAdapter.onMovieClickListener = { movie ->
             launchMovieDetailsFragment(movie)
@@ -225,6 +237,15 @@ class MovieFragment : Fragment() {
     private fun launchMovieDetailsFragment(movie: Movie) {
         findNavController().navigate(
             MovieFragmentDirections.actionMovieFragmentToMovieDetailsFragment(movie)
+        )
+    }
+
+    private fun launchVotingRoomFragment() {
+        findNavController().navigate(
+            MovieFragmentDirections.actionMovieFragmentToVotingRoomFragment(
+                movieArgs.movieSelectionConfig.roomId
+                    ?: throw Exception("Error: Почему в MovieFragment прилетел roomId == null???")
+            )
         )
     }
 
