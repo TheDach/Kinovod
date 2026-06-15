@@ -4,7 +4,7 @@ plugins {
 
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("androidx.navigation.safeargs")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp") version "2.3.9"
 }
 
 android {
@@ -66,6 +66,9 @@ dependencies {
     // Picasso
     implementation("com.squareup.picasso:picasso:2.71828")
 
+    // Dagger2
+    implementation ("com.google.dagger:dagger:2.48")
+    ksp ("com.google.dagger:dagger-compiler:2.48")
 
     implementation(libs.androidx.fragment)
 
