@@ -7,7 +7,7 @@ import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.movie.Review
 import com.thedach.network.ApiFactory
 
-object MovieRepositoryImpl: MovieRepository {
+class MovieRepositoryImpl: MovieRepository {
 
     private val apiService = ApiFactory.apiService
     private val mapperMovie = MovieMapper()

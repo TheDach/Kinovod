@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class MovieViewModel : ViewModel() {
 
-    private val movieRepository = MovieRepositoryImpl
+    private val movieRepository = MovieRepositoryImpl()
 
     private val getMovieListUseCase = GetMovieListUseCase(movieRepository)
 
