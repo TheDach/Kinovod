@@ -41,7 +41,10 @@
             app:argType="com.thedach.kinovod.domain.model.movie.MovieSelectionConfig"/>
         <action
             android:id="@+id/action_movieFragment_to_votingRoomFragment"
-            app:destination="@id/votingRoomFragment" />
+            app:destination="@id/votingRoomFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/roomsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/newRoomFragment"

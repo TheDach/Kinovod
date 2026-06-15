@@ -25,6 +25,7 @@ class MovieFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentMovieBinding == null")
 
     private val movieArgs by navArgs<MovieFragmentArgs>()
+    private val suggestionMovieIds = mutableListOf<Int>()
 
     private val viewModel: MovieViewModel by lazy {
         ViewModelProvider(this)[MovieViewModel::class.java]
@@ -45,9 +46,9 @@ class MovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
         setupMovieConfig()
 
-        setupRecyclerView()
         setupSwipeRefresh()
         setupSearchView()
         setupFiltersChipGroup()
@@ -107,6 +108,10 @@ class MovieFragment : Fragment() {
                 binding.chipGroupFilters.removeAllViews()
                 binding.buttonConfirmMovie.visibility = View.VISIBLE
 
+                viewModel.setupExcludedMovies(movieArgs.movieSelectionConfig.movieFilters?.suggestions)
+
+                movieAdapter.setupMovieSelectionConfig(movieArgs.movieSelectionConfig)
+
                 if (!genres.isNullOrEmpty()) {
                     genres.forEach {genre ->
                         viewModel.addActiveChip(genre)
@@ -127,10 +132,22 @@ class MovieFragment : Fragment() {
             showGenresDialog()
         }
         binding.buttonConfirmMovie.setOnClickListener {
-            // TODO(save suggestion)
+            viewModel.suggestMovie(
+                movieArgs.movieSelectionConfig.roomId
+                    ?: throw Exception("Error: Почему в MovieFragment прилетел roomId == null???"),
+                suggestionMovieIds
+            )
         }
         movieAdapter.onMovieClickListener = { movie ->
             launchMovieDetailsFragment(movie)
+        }
+        movieAdapter.onAddSuggestionClickListener = { movieIds ->
+            suggestionMovieIds.add(movieIds)
+            movieAdapter.updateSuggestedMovies(suggestionMovieIds)
+        }
+        movieAdapter.onRemoveSuggestionClickListener = {movieIds ->
+            suggestionMovieIds.remove(movieIds)
+            movieAdapter.updateSuggestedMovies(suggestionMovieIds)
         }
     }
 

@@ -109,7 +109,7 @@ class RoomRepositoryImpl : RoomRepository {
             )
 
 
-            Log.d("addMembersToRoom: ", response)
+            Log.d("RoomRepositoryImpl: ", response.message())
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to add members: ${ex.message}")
@@ -128,7 +128,7 @@ class RoomRepositoryImpl : RoomRepository {
                 request = AddVotesRequestDto(movieIds = movieIds)
             )
 
-            Log.d("addUserVotes: ", response)
+            Log.d("RoomRepositoryImpl: ", response.message())
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to add votes: ${ex.message}")
@@ -141,13 +141,15 @@ class RoomRepositoryImpl : RoomRepository {
         movieIds: List<Int>
     ) {
         try {
+            Log.d("RoomRepository", "Sending suggestions: roomId=$roomId, movieIds=$movieIds")
+
             val response = apiService.addRoomSuggestions(
                 roomId = roomId,
                 userId = userId,
                 request = AddSuggestionsRequestDto(movieIds = movieIds)
             )
 
-            Log.d("addRoomSuggestions: ", response)
+            Log.d("RoomRepository: ", response.message())
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to add suggestions: ${ex.message}")
@@ -166,7 +168,7 @@ class RoomRepositoryImpl : RoomRepository {
                 userId = userId
             )
 
-            Log.d("removeUserFromRoom: ", response)
+            Log.d("RoomRepositoryImpl: ", response.message())
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to remove user from room: ${ex.message}")
@@ -180,7 +182,7 @@ class RoomRepositoryImpl : RoomRepository {
                 userId = userId
             )
 
-            Log.d("deleteRoom: ", response)
+            Log.d("RoomRepositoryImpl: ", response.message())
         } catch (ex: Exception) {
             ex.printStackTrace()
             throw Exception("Failed to delete room: ${ex.message}")

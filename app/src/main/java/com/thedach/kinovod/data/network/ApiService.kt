@@ -112,14 +112,14 @@ interface ApiService {
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Body request: AddMembersRequestDto
-    ): String
+    ): Response<String>
 
     @POST("room/{roomId}/votes")
     suspend fun addUserVotes(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Body request: AddVotesRequestDto
-    ): String
+    ): Response<String>
 
 
     @POST("room/{roomId}/suggestions")
@@ -127,20 +127,20 @@ interface ApiService {
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int,
         @Body request: AddSuggestionsRequestDto
-    ): String
+    ): Response<String>
 
     @DELETE("room/{roomId}/members/{userIdToRemove}")
     suspend fun removeUserFromRoom(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Path(QUERY_PARAM_USER_ID_TO_REMOVE) userIdToRemove: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int
-    ): String
+    ): Response<String>
 
     @DELETE("room/{roomId}")
     suspend fun deleteRoom(
         @Path(QUERY_PARAM_ROOM_ID) roomId: Int,
         @Query(QUERY_PARAM_USER_ID) userId: Int
-    ): String
+    ): Response<String>
 
 
     companion object {

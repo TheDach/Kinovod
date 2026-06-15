@@ -369,16 +369,19 @@ class VotingRoomFragment : Fragment() {
     private fun launchMovieFragment() {
         findNavController().navigate(
             VotingRoomFragmentDirections.actionVotingRoomFragmentToMovieFragment(
-                createMovieSelectionConfig(viewModel.room.value?.genres)
+                createMovieSelectionConfig(
+                    viewModel.room.value?.genres,
+                )
             )
         )
     }
 
     private fun createMovieSelectionConfig(genres: List<String>?): MovieSelectionConfig {
+        val suggestions = viewModel.room.value?.suggestions?.map { it.movieId }
         return MovieSelectionConfig(
-            movieFilters = Settings(genres = genres),
+            movieFilters = Settings(genres = genres, suggestions = suggestions),
             mode = SearchMode.ROOM_SUGGESTION,
-            roomId = roomArgs.roomId
+            roomId = roomArgs.roomId,
         )
     }
 
