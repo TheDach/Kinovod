@@ -5,10 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.data.repository.RoomRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
-import com.thedach.kinovod.di.RoomIdQualifier
+import com.thedach.kinovod.di.qualifiers.RoomIdQualifier
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.model.room.SuggestionWithMovie

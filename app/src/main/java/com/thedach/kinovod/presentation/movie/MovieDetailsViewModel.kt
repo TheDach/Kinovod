@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
-import com.thedach.kinovod.di.MovieIdQualifier
+import com.thedach.kinovod.di.qualifiers.MovieIdQualifier
 import com.thedach.kinovod.domain.usecase.movie.GetReviewListMovieUseCase
 import com.thedach.kinovod.domain.model.movie.Review
 import kotlinx.coroutines.launch

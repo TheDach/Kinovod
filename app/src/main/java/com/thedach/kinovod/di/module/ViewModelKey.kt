@@ -1,4 +1,4 @@
-package com.thedach.kinovod.di
+package com.thedach.kinovod.di.module
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

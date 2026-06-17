@@ -1,6 +1,6 @@
 package com.thedach.kinovod.domain.usecase.movie
 
-import com.thedach.kinovod.di.MovieIdQualifier
+import com.thedach.kinovod.di.qualifiers.MovieIdQualifier
 import com.thedach.kinovod.domain.repository.MovieRepository
 import javax.inject.Inject
 

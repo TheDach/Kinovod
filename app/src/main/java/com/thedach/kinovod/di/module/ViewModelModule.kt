@@ -1,10 +1,8 @@
-package com.thedach.kinovod.di
+package com.thedach.kinovod.di.module
 
 import androidx.lifecycle.ViewModel
-import com.thedach.kinovod.presentation.movie.MovieDetailsViewModel
 import com.thedach.kinovod.presentation.movie.MovieViewModel
 import com.thedach.kinovod.presentation.profile.ProfileViewModel
-import com.thedach.kinovod.presentation.room.VotingRoomViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

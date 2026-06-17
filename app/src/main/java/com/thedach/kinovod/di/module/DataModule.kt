@@ -1,6 +1,7 @@
-package com.thedach.kinovod.di
+package com.thedach.kinovod.di.module
 
 import com.thedach.kinovod.data.repository.MovieRepositoryImpl
+import com.thedach.kinovod.di.ApplicationScope
 import com.thedach.kinovod.domain.repository.MovieRepository
 import com.thedach.network.ApiFactory
 import com.thedach.network.ApiService

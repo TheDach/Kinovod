@@ -1,5 +1,7 @@
 package com.thedach.kinovod.di
 
+import com.thedach.kinovod.di.module.MovieDetailsModule
+import com.thedach.kinovod.di.qualifiers.MovieIdQualifier
 import com.thedach.kinovod.presentation.movie.MovieDetailsFragment
 import dagger.BindsInstance
 import dagger.Subcomponent

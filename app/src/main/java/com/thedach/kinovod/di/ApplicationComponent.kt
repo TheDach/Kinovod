@@ -1,6 +1,7 @@
 package com.thedach.kinovod.di
 
-import android.app.Activity
+import com.thedach.kinovod.di.module.DataModule
+import com.thedach.kinovod.di.module.ViewModelModule
 import com.thedach.kinovod.presentation.movie.MainActivity
 import com.thedach.kinovod.presentation.movie.MovieFragment
 import com.thedach.kinovod.presentation.profile.ProfileFragment
