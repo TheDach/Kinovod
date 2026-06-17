@@ -1,5 +1,6 @@
 package com.thedach.kinovod.presentation.movie
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +17,16 @@ import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentMovieBinding
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.movie.SearchMode
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
 import com.thedach.kinovod.presentation.adapters.MovieAdapter
+import javax.inject.Inject
 
 class MovieFragment : Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+    }
 
     private var _binding: FragmentMovieBinding? = null
     private val binding: FragmentMovieBinding
@@ -26,12 +34,19 @@ class MovieFragment : Fragment() {
 
     private val movieArgs by navArgs<MovieFragmentArgs>()
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: MovieViewModel by lazy {
-        ViewModelProvider(this)[MovieViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[MovieViewModel::class.java]
     }
 
     private lateinit var movieAdapter: MovieAdapter
     private val chipGroupFilters = mutableListOf<Chip>()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,7 +95,7 @@ class MovieFragment : Fragment() {
                 binding.swipeRefreshLayoutMovie.isRefreshing = false
             }
         }
-        viewModel.isSendingSuggestion.observe(viewLifecycleOwner) {isSending ->
+        viewModel.isSendingSuggestion.observe(viewLifecycleOwner) { isSending ->
             if (isSending) {
                 binding.buttonConfirmMovie.text = getString(R.string.btn_sending)
             } else {
@@ -97,10 +112,11 @@ class MovieFragment : Fragment() {
     }
 
     private fun setupMovieConfig() {
-        when(movieArgs.movieSelectionConfig.mode){
+        when (movieArgs.movieSelectionConfig.mode) {
             SearchMode.ALL_MOVIES -> {
                 // Ничего не делаем, init уже загрузил
             }
+
             SearchMode.ROOM_SUGGESTION -> {
                 val genres = movieArgs.movieSelectionConfig.movieFilters?.genres
 
@@ -108,7 +124,7 @@ class MovieFragment : Fragment() {
                 binding.buttonConfirmMovie.visibility = View.VISIBLE
 
                 if (!genres.isNullOrEmpty()) {
-                    genres.forEach {genre ->
+                    genres.forEach { genre ->
                         viewModel.addActiveChip(genre)
                     }
 
@@ -173,7 +189,7 @@ class MovieFragment : Fragment() {
         ) as Chip
         chip.text = genre
 
-        when(movieArgs.movieSelectionConfig.mode) {
+        when (movieArgs.movieSelectionConfig.mode) {
 
             SearchMode.ALL_MOVIES -> {
                 chip.isCloseIconVisible = true

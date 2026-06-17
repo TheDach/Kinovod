@@ -1,5 +1,6 @@
 package com.thedach.kinovod.presentation.room
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,8 @@ import com.thedach.kinovod.domain.model.room.MemberRole
 import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.model.room.RoomMember
 import com.thedach.kinovod.domain.model.room.VotingType
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
 import com.thedach.kinovod.presentation.adapters.VotingAdapter
 import com.thedach.kinovod.presentation.movie.MovieFragmentDirections
 import java.text.SimpleDateFormat
@@ -35,8 +38,15 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import java.util.TimeZone
+import javax.inject.Inject
 
 class VotingRoomFragment : Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+            .votingRoomComponent()
+            .create(roomArgs.roomId)
+    }
 
     private var _binding: FragmentVotingRoomBinding? = null
     private val binding: FragmentVotingRoomBinding
@@ -44,18 +54,19 @@ class VotingRoomFragment : Fragment() {
 
     private val roomArgs by navArgs<VotingRoomFragmentArgs>()
 
-    private val viewModelFactory: VotingRoomViewModelFactory by lazy {
-        VotingRoomViewModelFactory(
-            roomArgs.roomId
-        )
-    }
-
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: VotingRoomViewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[VotingRoomViewModel::class.java]
     }
 
-
     private lateinit var votingAdapter: VotingAdapter
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

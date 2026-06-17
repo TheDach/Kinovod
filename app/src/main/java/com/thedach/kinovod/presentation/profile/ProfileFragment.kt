@@ -1,6 +1,7 @@
 package com.thedach.kinovod.presentation.profile
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,20 +24,35 @@ import com.thedach.kinovod.databinding.ItemMovieBinding
 import com.thedach.kinovod.domain.model.profile.Friend
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.profile.User
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
 import com.thedach.kinovod.presentation.movie.MainActivity
+import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+    }
 
     private var _binding: FragmentProfileBinding? = null
     private val binding: FragmentProfileBinding
         get() = _binding ?: throw RuntimeException("FragmentProfileBinding == null")
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: ProfileViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
+    }
+
     private val wishlistMovieBindings = mutableListOf<ItemMovieBinding>()
     private val watchedMovieBindings = mutableListOf<ItemMovieBinding>()
     private val friendBindings = mutableListOf<ItemFriendBinding>()
 
-    private val viewModel: ProfileViewModel by lazy {
-        ViewModelProvider(this)[ProfileViewModel::class.java]
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
     }
 
     override fun onCreateView(

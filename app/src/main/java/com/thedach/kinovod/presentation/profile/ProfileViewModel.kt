@@ -16,11 +16,11 @@ import com.thedach.kinovod.domain.usecase.profile.AddFriendUseCase
 import com.thedach.kinovod.domain.usecase.profile.LoginUseCase
 import com.thedach.kinovod.domain.usecase.profile.RefreshUserDataUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
-
-    private val movieRepository = MovieRepositoryImpl
-    private val getMovieListByIdUseCase = GetMovieListByIdUseCase(movieRepository)
+class ProfileViewModel @Inject constructor(
+    private val getMovieListByIdUseCase: GetMovieListByIdUseCase
+) : ViewModel() {
 
     private val profileRepository = ProfileRepositoryImpl()
     private val addFriendUseCase = AddFriendUseCase(profileRepository)

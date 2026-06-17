@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.data.repository.RoomRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
+import com.thedach.kinovod.di.RoomIdQualifier
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.model.room.SuggestionWithMovie
@@ -16,18 +17,18 @@ import com.thedach.kinovod.domain.usecase.room.AddUserVotesUseCase
 import com.thedach.kinovod.domain.usecase.room.GetRoomDetailsUseCase
 import com.thedach.kinovod.domain.usecase.room.RemoveUserFromRoomUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class VotingRoomViewModel(
-    private val roomId: Int
+class VotingRoomViewModel @Inject constructor(
+    @RoomIdQualifier private val roomId: Int,
+    private val getMovieListByIdUseCase: GetMovieListByIdUseCase
 ) : ViewModel() {
 
     private val roomRepository = RoomRepositoryImpl()
-    private val movieRepository = MovieRepositoryImpl
 
     private val getRoomDetailsUseCase = GetRoomDetailsUseCase(roomRepository)
     private val addUserVotesUseCase = AddUserVotesUseCase(roomRepository)
     private val removeUserFromRoomUseCase = RemoveUserFromRoomUseCase(roomRepository)
-    private val getMovieListByIdUseCase = GetMovieListByIdUseCase(movieRepository)
 
     private val _room = MutableLiveData<Room>()
     val room: LiveData<Room>

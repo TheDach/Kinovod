@@ -1,5 +1,6 @@
 package com.thedach.kinovod.presentation.movie
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,19 @@ import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentMovieDetailBinding
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
 import com.thedach.kinovod.presentation.adapters.ActorsAdapter
 import com.thedach.kinovod.presentation.adapters.ReviewAdapter
+import javax.inject.Inject
 
 class MovieDetailsFragment: Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+            .movieDetailsComponent()
+            .create(args.movie.id)
+    }
 
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding: FragmentMovieDetailBinding
@@ -23,19 +33,20 @@ class MovieDetailsFragment: Fragment() {
 
     private val args by navArgs<MovieDetailsFragmentArgs>()
 
-    private lateinit var actorsAdapter: ActorsAdapter
-    private lateinit var reviewAdapter: ReviewAdapter
-
-    private val viewModelFactory: MovieDetailsViewModelFactory by lazy {
-        MovieDetailsViewModelFactory(
-            args.movie.id
-        )
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: MovieDetailsViewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[MovieDetailsViewModel::class.java]
     }
 
+    private lateinit var actorsAdapter: ActorsAdapter
+    private lateinit var reviewAdapter: ReviewAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

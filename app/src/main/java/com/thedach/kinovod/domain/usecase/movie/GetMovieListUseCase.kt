@@ -1,8 +1,9 @@
 package com.thedach.kinovod.domain.usecase.movie
 
 import com.thedach.kinovod.domain.repository.MovieRepository
+import javax.inject.Inject
 
-class GetMovieListUseCase(
+class GetMovieListUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
 

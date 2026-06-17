@@ -4,18 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.domain.usecase.movie.GetMovieListUseCase
 import com.thedach.kinovod.domain.model.movie.Movie
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieViewModel : ViewModel() {
-
-    private val movieRepository = MovieRepositoryImpl()
-
-    private val getMovieListUseCase = GetMovieListUseCase(movieRepository)
+class MovieViewModel @Inject constructor(
+    private val getMovieListUseCase: GetMovieListUseCase
+)  : ViewModel() {
 
     private val _movieList = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>>
