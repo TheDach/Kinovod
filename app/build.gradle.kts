@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
 
-    id("org.jetbrains.kotlin.plugin.parcelize")
     id("androidx.navigation.safeargs")
     id("com.google.devtools.ksp") version "2.3.9"
+    id("kotlin-parcelize")
 }
+
+/*apply(plugin = "org.jetbrains.kotlin.plugin.parcelize")*/
 
 android {
     namespace = "com.thedach.kinovod"
@@ -71,6 +73,8 @@ dependencies {
     // Dagger2
     implementation (libs.dagger)
     ksp (libs.dagger.compiler)
+
+    implementation("org.jetbrains.kotlin:kotlin-parcelize-runtime")
 
     implementation(libs.androidx.fragment)
 
