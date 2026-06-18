@@ -11,13 +11,12 @@ import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.usecase.room.AddMembersToRoomUseCase
 import com.thedach.kinovod.domain.usecase.room.GetUserRoomsUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RoomsViewModel : ViewModel() {
-
-    private val roomsRepository = RoomRepositoryImpl()
-
-    private val getUserRoomsUseCase = GetUserRoomsUseCase(roomsRepository)
-    private val addMembersToRoomUseCase = AddMembersToRoomUseCase(roomsRepository)
+class RoomsViewModel @Inject constructor(
+    private val getUserRoomsUseCase: GetUserRoomsUseCase,
+    private val addMembersToRoomUseCase: AddMembersToRoomUseCase
+) : ViewModel() {
 
     private val _roomsList = MutableLiveData<List<Room>>()
     val roomsList: LiveData<List<Room>> = _roomsList
@@ -78,7 +77,7 @@ class RoomsViewModel : ViewModel() {
         }
     }
 
-    fun refreshRooms(){
+    fun refreshRooms() {
         loadRooms()
     }
 

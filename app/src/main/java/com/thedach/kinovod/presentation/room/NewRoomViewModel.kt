@@ -13,12 +13,11 @@ import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.model.room.VotingType
 import com.thedach.kinovod.domain.usecase.room.CreateRoomUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NewRoomViewModel : ViewModel() {
-
-    private val roomsRepository = RoomRepositoryImpl()
-
-    private val createRoomUseCase = CreateRoomUseCase(roomsRepository)
+class NewRoomViewModel @Inject constructor(
+    private val createRoomUseCase: CreateRoomUseCase
+) : ViewModel() {
 
     private val _room = MutableLiveData<Room>()
     val room: LiveData<Room> = _room

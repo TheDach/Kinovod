@@ -12,8 +12,9 @@ import com.thedach.kinovod.domain.model.room.RoomMatch
 import com.thedach.kinovod.domain.model.room.RoomMember
 import com.thedach.kinovod.domain.model.room.RoomSuggestion
 import com.thedach.kinovod.domain.model.room.VotingType
+import javax.inject.Inject
 
-class RoomMapper {
+class RoomMapper @Inject constructor() {
 
     fun mapUserRoomsDtoToDomain(
         userRoomsDto: UserRoomsResponseDto

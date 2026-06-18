@@ -10,11 +10,13 @@ import com.thedach.kinovod.domain.model.room.CreateRoom
 import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.repository.RoomRepository
 import com.thedach.network.ApiFactory
+import com.thedach.network.ApiService
+import javax.inject.Inject
 
-class RoomRepositoryImpl : RoomRepository {
-
-    private val mapperRoom = RoomMapper()
-    private val apiService = ApiFactory.apiService
+class RoomRepositoryImpl @Inject constructor(
+    private val mapperRoom: RoomMapper,
+    private val apiService: ApiService
+) : RoomRepository {
 
     override suspend fun getUserRooms(userId: Int): List<Room> {
         return try {

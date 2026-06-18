@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thedach.kinovod.data.repository.RoomRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.di.qualifiers.RoomIdQualifier
 import com.thedach.kinovod.domain.model.movie.Movie
@@ -20,14 +19,11 @@ import javax.inject.Inject
 
 class VotingRoomViewModel @Inject constructor(
     @RoomIdQualifier private val roomId: Int,
-    private val getMovieListByIdUseCase: GetMovieListByIdUseCase
+    private val getMovieListByIdUseCase: GetMovieListByIdUseCase,
+    private val getRoomDetailsUseCase: GetRoomDetailsUseCase,
+    private val addUserVotesUseCase: AddUserVotesUseCase,
+    private val removeUserFromRoomUseCase: RemoveUserFromRoomUseCase
 ) : ViewModel() {
-
-    private val roomRepository = RoomRepositoryImpl()
-
-    private val getRoomDetailsUseCase = GetRoomDetailsUseCase(roomRepository)
-    private val addUserVotesUseCase = AddUserVotesUseCase(roomRepository)
-    private val removeUserFromRoomUseCase = RemoveUserFromRoomUseCase(roomRepository)
 
     private val _room = MutableLiveData<Room>()
     val room: LiveData<Room>

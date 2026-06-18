@@ -1,8 +1,9 @@
 package com.thedach.kinovod.domain.usecase.room
 
 import com.thedach.kinovod.domain.repository.RoomRepository
+import javax.inject.Inject
 
-class RemoveUserFromRoomUseCase(
+class RemoveUserFromRoomUseCase @Inject constructor(
     private val repository: RoomRepository
 ) {
 
