@@ -5,6 +5,7 @@ import com.thedach.kinovod.domain.model.movie.Review
 
 interface MovieRepository {
 
+
     suspend fun getMovieList(
         selectFields: String? = null,
         ratingKp: String? = null,

@@ -7,13 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.AuthenticationRepositoryImpl
 import com.thedach.kinovod.domain.usecase.profile.RegistrationUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RegistrationViewModel : ViewModel() {
-
-    private val authRepository = AuthenticationRepositoryImpl()
-
-    private val register = RegistrationUseCase(authRepository)
-
+class RegistrationViewModel @Inject constructor(
+    private val register: RegistrationUseCase
+) : ViewModel() {
 
     private val _isRegister = MutableLiveData<Boolean>()
     val isRegister: LiveData<Boolean>

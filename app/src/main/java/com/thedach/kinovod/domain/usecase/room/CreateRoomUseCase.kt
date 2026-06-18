@@ -3,8 +3,9 @@ package com.thedach.kinovod.domain.usecase.room
 import com.thedach.kinovod.domain.model.room.CreateRoom
 import com.thedach.kinovod.domain.model.room.Room
 import com.thedach.kinovod.domain.repository.RoomRepository
+import javax.inject.Inject
 
-class CreateRoomUseCase(
+class CreateRoomUseCase @Inject constructor(
     private val repository: RoomRepository
 ) {
 

@@ -7,13 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.AuthenticationRepositoryImpl
 import com.thedach.kinovod.domain.usecase.profile.LoginUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
-
-    private val authRepository = AuthenticationRepositoryImpl()
-
-    private val login = LoginUseCase(authRepository)
-
+class LoginViewModel @Inject constructor(
+    private val login: LoginUseCase
+): ViewModel() {
 
     private val _isLogin = MutableLiveData<Boolean>()
     val isLogin: LiveData<Boolean>

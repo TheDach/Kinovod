@@ -4,7 +4,6 @@ import com.thedach.kinovod.data.network.model.AddFriendRequestDto
 import com.thedach.kinovod.data.network.model.BaseResponseDto
 import com.thedach.kinovod.data.network.model.LoginRequestDto
 import com.thedach.kinovod.data.network.model.RegisterRequestDto
-import com.thedach.kinovod.data.network.model.SimpleMessageResponse
 import com.thedach.kinovod.data.network.model.SyncUserDataRequest
 import com.thedach.kinovod.data.network.model.UserResponseDto
 import com.thedach.kinovod.data.network.model.movie.ReviewResponseDto

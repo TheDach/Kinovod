@@ -6,12 +6,14 @@ import com.thedach.kinovod.domain.repository.MovieRepository
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.movie.Review
 import com.thedach.network.ApiFactory
+import com.thedach.network.ApiService
+import javax.inject.Inject
 
-object MovieRepositoryImpl: MovieRepository {
-
-    private val apiService = ApiFactory.apiService
-    private val mapperMovie = MovieMapper()
-    private val mapperReview = ReviewMapper()
+class MovieRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val mapperMovie: MovieMapper,
+    private val mapperReview: ReviewMapper
+): MovieRepository {
 
     private var nextCursor: String? = null
     private var hasNext = true

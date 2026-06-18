@@ -3,6 +3,7 @@ package com.thedach.kinovod.presentation.room
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,21 +24,31 @@ import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.databinding.FragmentNewRoomBinding
 import com.thedach.kinovod.domain.model.profile.Friend
 import com.thedach.kinovod.domain.model.room.VotingType
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
 import com.thedach.kinovod.presentation.movie.GenresDialogFragment
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
+import javax.inject.Inject
 
 class NewRoomFragment : Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+    }
 
     private var _binding: FragmentNewRoomBinding? = null
     private val binding: FragmentNewRoomBinding
         get() = _binding ?: throw RuntimeException("FragmentNewRoomBinding == null")
 
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: NewRoomViewModel by lazy {
-        ViewModelProvider(this)[NewRoomViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[NewRoomViewModel::class.java]
     }
 
     private val selectedFriends = mutableListOf<Friend>()
@@ -48,6 +59,12 @@ class NewRoomFragment : Fragment() {
     private var votingDeadline = "до завтра 20:00 ⌄"
     private var selectedVotingDeadline: String? = null
     private var moviesLimit = 5
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

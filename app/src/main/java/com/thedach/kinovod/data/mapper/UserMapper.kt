@@ -4,8 +4,9 @@ import com.thedach.kinovod.data.network.model.FriendDto
 import com.thedach.kinovod.data.network.model.UserDto
 import com.thedach.kinovod.domain.model.profile.Friend
 import com.thedach.kinovod.domain.model.profile.User
+import javax.inject.Inject
 
-class UserMapper {
+class UserMapper @Inject constructor() {
 
     fun mapUserToDomain(dto: UserDto): User {
         return User(

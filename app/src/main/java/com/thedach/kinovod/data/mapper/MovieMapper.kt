@@ -12,8 +12,9 @@ import com.thedach.network.models.TrailersListDto
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
+import javax.inject.Inject
 
-class MovieMapper {
+class MovieMapper @Inject constructor() {
 
 
     fun mapMovieDtoToDomainModel(dto: MovieDto) = Movie(

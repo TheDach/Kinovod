@@ -4,19 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thedach.kinovod.data.repository.MovieRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
+import com.thedach.kinovod.di.qualifiers.MovieIdQualifier
 import com.thedach.kinovod.domain.usecase.movie.GetReviewListMovieUseCase
 import com.thedach.kinovod.domain.model.movie.Review
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieDetailsViewModel(
-    movieId: Int
+class MovieDetailsViewModel @Inject constructor (
+    @MovieIdQualifier private val movieId: Int,
+    private val getReviewListMovieUseCase: GetReviewListMovieUseCase
 ) : ViewModel() {
-
-    private val movieRepository = MovieRepositoryImpl
-
-    private val getReviewListMovieUseCase = GetReviewListMovieUseCase(movieRepository, movieId)
 
     private val _reviewList = MutableLiveData<List<Review>>()
     val reviewList: LiveData<List<Review>>

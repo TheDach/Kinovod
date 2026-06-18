@@ -1,6 +1,7 @@
 package com.thedach.kinovod.presentation.room
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,21 +16,34 @@ import com.google.android.material.textfield.TextInputEditText
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentRoomsBinding
 import com.thedach.kinovod.domain.model.room.Room
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
 import com.thedach.kinovod.presentation.adapters.RoomsAdapter
 import java.lang.RuntimeException
+import javax.inject.Inject
 
 class RoomsFragment: Fragment() {
 
-
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+    }
     private var _binding: FragmentRoomsBinding? = null
     private val binding: FragmentRoomsBinding
         get() = _binding ?: throw RuntimeException("FragmentRoomsBinding == null")
 
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: RoomsViewModel by lazy {
-        ViewModelProvider(this)[RoomsViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[RoomsViewModel::class.java]
     }
 
     private lateinit var roomsAdapter: RoomsAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

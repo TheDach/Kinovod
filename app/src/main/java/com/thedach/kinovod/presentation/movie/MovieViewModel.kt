@@ -6,9 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thedach.kinovod.data.repository.MovieRepositoryImpl
-import com.thedach.kinovod.data.repository.RoomRepositoryImpl
-import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.domain.usecase.movie.GetMovieListUseCase
 import com.thedach.kinovod.domain.model.movie.Movie
 import com.thedach.kinovod.domain.model.room.RoomSuggestion
@@ -16,13 +13,11 @@ import com.thedach.kinovod.domain.usecase.room.AddRoomSuggestionsUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieViewModel : ViewModel() {
-
-    private val movieRepository = MovieRepositoryImpl
-    private val roomRepository = RoomRepositoryImpl()
-
-    private val getMovieListUseCase = GetMovieListUseCase(movieRepository)
+class MovieViewModel @Inject constructor(
+    private val getMovieListUseCase: GetMovieListUseCase
+)  : ViewModel() {
 
     private val addRoomSuggestions = AddRoomSuggestionsUseCase(roomRepository)
 

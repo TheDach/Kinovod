@@ -4,9 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thedach.kinovod.data.repository.AuthenticationRepositoryImpl
-import com.thedach.kinovod.data.repository.MovieRepositoryImpl
-import com.thedach.kinovod.data.repository.ProfileRepositoryImpl
 import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.domain.usecase.profile.DeleteAccountUseCase
 import com.thedach.kinovod.domain.usecase.movie.GetMovieListByIdUseCase
@@ -16,20 +13,16 @@ import com.thedach.kinovod.domain.usecase.profile.AddFriendUseCase
 import com.thedach.kinovod.domain.usecase.profile.LoginUseCase
 import com.thedach.kinovod.domain.usecase.profile.RefreshUserDataUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
-
-    private val movieRepository = MovieRepositoryImpl
-    private val getMovieListByIdUseCase = GetMovieListByIdUseCase(movieRepository)
-
-    private val profileRepository = ProfileRepositoryImpl()
-    private val addFriendUseCase = AddFriendUseCase(profileRepository)
-    private val refreshUserDataUseCase = RefreshUserDataUseCase(profileRepository)
-
-    private val authRepository = AuthenticationRepositoryImpl()
-    private val login = LoginUseCase(authRepository)
-    private val logoutUseCase = LogoutUseCase(authRepository)
-    private val deleteAccountUseCase = DeleteAccountUseCase(authRepository)
+class ProfileViewModel @Inject constructor(
+    private val getMovieListByIdUseCase: GetMovieListByIdUseCase,
+    private val addFriendUseCase: AddFriendUseCase,
+    private val refreshUserDataUseCase: RefreshUserDataUseCase,
+    private val login: LoginUseCase,
+    private val logoutUseCase: LogoutUseCase,
+    private val deleteAccountUseCase: DeleteAccountUseCase
+) : ViewModel() {
 
     private val userRepository = UserRepository
 
@@ -69,7 +62,8 @@ class ProfileViewModel : ViewModel() {
             _isLoading.value = true
 
             try {
-                _movieWatchedList.value = getMovieListByIdUseCase(userRepository.getIdListWatchedMovies())
+                _movieWatchedList.value =
+                    getMovieListByIdUseCase(userRepository.getIdListWatchedMovies())
                 _movieWishList.value = getMovieListByIdUseCase(userRepository.getIdListWishMovies())
 
             } catch (ex: Exception) {

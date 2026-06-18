@@ -1,20 +1,21 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
 
-    id("org.jetbrains.kotlin.plugin.parcelize")
     id("androidx.navigation.safeargs")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp") version "2.3.9"
+    id("kotlin-parcelize")
 }
+
+/*apply(plugin = "org.jetbrains.kotlin.plugin.parcelize")*/
 
 android {
     namespace = "com.thedach.kinovod"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.thedach.kinovod"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -31,11 +32,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
 
     buildFeatures {
@@ -53,19 +57,24 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     // Jetpack Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.9.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.7")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // SwipeRefreshLayout
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0")
+    implementation(libs.androidx.swiperefreshlayout)
 
     // RxJava Gson
-    implementation("com.squareup.retrofit2:adapter-rxjava2:3.0.0")
-    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    implementation(libs.adapter.rxjava2)
+    implementation(libs.converter.gson)
 
     // Picasso
-    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation(libs.picasso)
 
+    // Dagger2
+    implementation (libs.dagger)
+    ksp (libs.dagger.compiler)
+
+    implementation("org.jetbrains.kotlin:kotlin-parcelize-runtime")
 
     implementation(libs.androidx.fragment)
 
