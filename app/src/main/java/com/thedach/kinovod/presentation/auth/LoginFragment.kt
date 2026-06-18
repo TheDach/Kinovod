@@ -1,5 +1,6 @@
 package com.thedach.kinovod.presentation.auth
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -12,15 +13,30 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentLoginBinding
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
+import javax.inject.Inject
 
-class LoginFragment: Fragment() {
+class LoginFragment : Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+    }
 
     private var _binding: FragmentLoginBinding? = null
     private val binding: FragmentLoginBinding
         get() = _binding ?: throw RuntimeException("FragmentLoginBinding == null")
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: LoginViewModel by lazy {
-        ViewModelProvider(this)[LoginViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
     }
 
     override fun onCreateView(
@@ -45,13 +61,13 @@ class LoginFragment: Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.isLogin.observe(viewLifecycleOwner) {isLogin ->
-            if(isLogin) {
+        viewModel.isLogin.observe(viewLifecycleOwner) { isLogin ->
+            if (isLogin) {
                 launchMovieFragment()
             }
         }
 
-        viewModel.error.observe(viewLifecycleOwner) {error ->
+        viewModel.error.observe(viewLifecycleOwner) { error ->
             error?.let {
                 Toast.makeText(requireContext(), "Ошибка: $it", Toast.LENGTH_SHORT).show()
             }
@@ -98,7 +114,10 @@ class LoginFragment: Fragment() {
             showErrorForField(binding.textInputLayoutPasswordLogin, "Пароль обязателен")
             isValid = false
         } else if (password.length < 6) {
-            showErrorForField(binding.textInputLayoutPasswordLogin, "Пароль должен содержать минимум 6 символов")
+            showErrorForField(
+                binding.textInputLayoutPasswordLogin,
+                "Пароль должен содержать минимум 6 символов"
+            )
             isValid = false
         } else {
             clearErrorForField(binding.textInputLayoutPasswordLogin)
@@ -125,6 +144,7 @@ class LoginFragment: Fragment() {
     private fun launchRegistrationFragment() {
         findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
     }
+
     private fun launchMovieFragment() {
         if (activity is AuthActivity) {
             (activity as AuthActivity).navigateToMainActivity()

@@ -6,11 +6,13 @@ import com.thedach.kinovod.data.network.model.RegisterRequestDto
 import com.thedach.kinovod.domain.repository.AuthenticationRepository
 import com.thedach.kinovod.domain.model.profile.User
 import com.thedach.network.ApiFactory
+import com.thedach.network.ApiService
+import javax.inject.Inject
 
-class AuthenticationRepositoryImpl : AuthenticationRepository {
-
-    private val apiService = ApiFactory.apiService
-    private val userMapper = UserMapper()
+class AuthenticationRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val userMapper: UserMapper
+) : AuthenticationRepository {
 
     private var userRepository = UserRepository
 

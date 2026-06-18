@@ -1,8 +1,9 @@
 package com.thedach.kinovod.domain.usecase.profile
 
 import com.thedach.kinovod.domain.repository.AuthenticationRepository
+import javax.inject.Inject
 
-class LoginUseCase(
+class LoginUseCase @Inject constructor(
     private val repository: AuthenticationRepository
 ) {
 

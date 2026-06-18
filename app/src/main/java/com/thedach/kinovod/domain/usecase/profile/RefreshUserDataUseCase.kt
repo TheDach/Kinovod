@@ -1,8 +1,9 @@
 package com.thedach.kinovod.domain.usecase.profile
 
 import com.thedach.kinovod.domain.repository.ProfileRepository
+import javax.inject.Inject
 
-class RefreshUserDataUseCase(
+class RefreshUserDataUseCase @Inject constructor(
     private val repository: ProfileRepository
 ) {
 

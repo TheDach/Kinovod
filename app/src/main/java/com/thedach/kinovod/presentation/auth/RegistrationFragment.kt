@@ -1,5 +1,6 @@
 package com.thedach.kinovod.presentation.auth
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -13,16 +14,31 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.thedach.kinovod.R
 import com.thedach.kinovod.databinding.FragmentRegistrationBinding
+import com.thedach.kinovod.presentation.KinovodApp
+import com.thedach.kinovod.presentation.ViewModelFactory
 import java.lang.RuntimeException
+import javax.inject.Inject
 
 class RegistrationFragment: Fragment() {
+
+    private val component by lazy {
+        (requireActivity().application as KinovodApp).component
+    }
 
     private var _binding: FragmentRegistrationBinding? = null
     private val binding: FragmentRegistrationBinding
         get() = _binding ?: throw RuntimeException("FragmentRegistrationBinding == null")
 
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: RegistrationViewModel by lazy {
-        ViewModelProvider(this)[RegistrationViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[RegistrationViewModel::class.java]
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        component.inject(this)
     }
 
     override fun onCreateView(

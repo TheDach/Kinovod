@@ -5,11 +5,13 @@ import com.thedach.kinovod.data.network.model.AddFriendRequestDto
 import com.thedach.kinovod.domain.model.profile.User
 import com.thedach.kinovod.domain.repository.ProfileRepository
 import com.thedach.network.ApiFactory
+import com.thedach.network.ApiService
+import javax.inject.Inject
 
-class ProfileRepositoryImpl : ProfileRepository {
-
-    private val apiService = ApiFactory.apiService
-    private val userMapper = UserMapper()
+class ProfileRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val userMapper: UserMapper
+) : ProfileRepository {
 
     override suspend fun addFriend(
         userId: Int,
@@ -23,7 +25,7 @@ class ProfileRepositoryImpl : ProfileRepository {
                     friendTag = friendTag
                 )
             )
-            saveUser( userMapper.mapUserToDomain(response.user) )
+            saveUser(userMapper.mapUserToDomain(response.user))
 
         } catch (ex: Exception) {
             ex.printStackTrace()
@@ -35,7 +37,7 @@ class ProfileRepositoryImpl : ProfileRepository {
         try {
 
             val response = apiService.refreshUserData(userId)
-            saveUser( userMapper.mapUserToDomain(response.user) )
+            saveUser(userMapper.mapUserToDomain(response.user))
 
         } catch (ex: Exception) {
             ex.printStackTrace()
