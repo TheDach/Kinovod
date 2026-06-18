@@ -1,8 +1,9 @@
 package com.thedach.kinovod.domain.usecase.room
 
 import com.thedach.kinovod.domain.repository.RoomRepository
+import javax.inject.Inject
 
-class AddRoomSuggestionsUseCase(
+class AddRoomSuggestionsUseCase @Inject constructor(
     private val repository: RoomRepository
 ) {
 
