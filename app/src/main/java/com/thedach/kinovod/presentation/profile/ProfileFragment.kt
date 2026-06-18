@@ -23,6 +23,9 @@ import com.thedach.kinovod.databinding.ItemFriendBinding
 import com.thedach.kinovod.databinding.ItemMovieBinding
 import com.thedach.kinovod.domain.model.profile.Friend
 import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.model.movie.MovieSelectionConfig
+import com.thedach.kinovod.domain.model.movie.SearchMode
+import com.thedach.kinovod.domain.model.movie.Settings
 import com.thedach.kinovod.domain.model.profile.User
 import com.thedach.kinovod.presentation.KinovodApp
 import com.thedach.kinovod.presentation.ViewModelFactory
@@ -168,10 +171,12 @@ class ProfileFragment : Fragment() {
         }
 
         binding.tvWishlistSeeAll.setOnClickListener {
-
+            val wishMovieIds = viewModel.movieWishList.value?.map { it.id }
+            launchMovieFragment(wishMovieIds)
         }
         binding.tvWatchedSeeAllProfile.setOnClickListener {
-
+            val watchedMovieIds = viewModel.movieWatchedList.value?.map { it.id }
+            launchMovieFragment(watchedMovieIds)
         }
         binding.tvFriendsSeeAllProfile.setOnClickListener {
 
@@ -197,11 +202,24 @@ class ProfileFragment : Fragment() {
             ProfileFragmentDirections.actionProfileFragmentToMovieDetailsFragment(movie)
         )
     }
-
     private fun launchLoginFragment() {
         if (activity is MainActivity) {
             (activity as MainActivity).navigateToAuthActivity()
         }
+    }
+    private fun launchMovieFragment(wishOrWatchedIds: List<Int>?) {
+        findNavController().navigate(
+            ProfileFragmentDirections.actionProfileFragmentToMovieFragment(
+                createMovieSelectionConfig(wishOrWatchedIds)
+            )
+        )
+    }
+
+    private fun createMovieSelectionConfig(wishOrWatchedIds: List<Int>?): MovieSelectionConfig {
+        return MovieSelectionConfig(
+            movieFilters = Settings(wishOrWatchedIds = wishOrWatchedIds),
+            mode = SearchMode.PROFILE_MOVIES,
+        )
     }
 
     private fun bindViewsUser(user: User) {
@@ -209,7 +227,7 @@ class ProfileFragment : Fragment() {
             // Основная информация
             tvUserNameProfile.text = user.username
             tvUserUsernameProfile.text = getString(R.string.tv_username_and_date)
-                .format(user.userTag, "апреля", "2026")
+                .format(user.userTag, "июня", "2026")
 
             // Статистика
             tvFriendsCountProfile.text = user.friends?.size?.toString() ?: "0"

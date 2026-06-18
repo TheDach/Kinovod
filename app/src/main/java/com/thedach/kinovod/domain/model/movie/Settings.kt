@@ -5,8 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Settings(
-    val genres: List<String>?,
-    val suggestions: List<Int>? = null
+    val genres: List<String>? = null,
+    val suggestions: List<Int>? = null,
+    val wishOrWatchedIds: List<Int>? = null
     /* В идеяле добавить еще настройки дя фильмров поиска фильмов */
     /* Жанры, тип кино, года, рейтинг и т.д. */
 

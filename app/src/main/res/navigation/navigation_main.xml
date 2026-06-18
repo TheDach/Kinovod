@@ -26,6 +26,9 @@
             android:id="@+id/action_profileFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment"
             app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"

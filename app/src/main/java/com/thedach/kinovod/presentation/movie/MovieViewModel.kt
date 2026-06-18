@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.thedach.kinovod.data.repository.UserRepository
 import com.thedach.kinovod.domain.usecase.movie.GetMovieListUseCase
 import com.thedach.kinovod.domain.model.movie.Movie
+import com.thedach.kinovod.domain.usecase.movie.GetMovieListByIdUseCase
 import com.thedach.kinovod.domain.usecase.room.AddRoomSuggestionsUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 class MovieViewModel @Inject constructor(
     private val getMovieListUseCase: GetMovieListUseCase,
+    private val getMovieListByIdUseCase: GetMovieListByIdUseCase,
     private val addRoomSuggestions: AddRoomSuggestionsUseCase
 )  : ViewModel() {
 
@@ -49,7 +51,10 @@ class MovieViewModel @Inject constructor(
 
     private val excludedMovieIds = mutableListOf<Int>()
 
-    private fun loadMovies(force: Boolean = false) {
+    private fun loadMovies(
+        force: Boolean = false,
+        movieIdsForVisible: List<Int> = emptyList()
+    ) {
         if (_isLoading.value == true && !force) return
 
         loadJob?.cancel()
@@ -60,12 +65,17 @@ class MovieViewModel @Inject constructor(
             _error.value = null
 
             try {
-                val movie = getMovieListUseCase(genreName = selectedGenres.toList())
 
-                if (!excludedMovieIds.isEmpty()) {
-                    _movieList.value = excludeMovies(movie)
+                if (movieIdsForVisible.isEmpty()) {
+                    val movie = getMovieListUseCase(genreName = selectedGenres.toList())
+
+                    if (!excludedMovieIds.isEmpty()) {
+                        _movieList.value = excludeMovies(movie)
+                    } else {
+                        _movieList.value = movie
+                    }
                 } else {
-                    _movieList.value = movie
+                    _movieList.value = getMovieListByIdUseCase(movieIdsForVisible)
                 }
 
                 applyFilters()
@@ -85,6 +95,14 @@ class MovieViewModel @Inject constructor(
         selectedGenres.clear()
         selectedGenres.addAll(genres)
         loadMovies(force = true)
+    }
+
+    fun loadMoviesByIds(movieIds: List<Int>?) {
+        selectedGenres.clear()
+
+        if(!movieIds.isNullOrEmpty()) {
+            loadMovies(movieIdsForVisible = movieIds)
+        }
     }
 
     fun setupExcludedMovies(movieIds: List<Int>?) {
@@ -194,10 +212,6 @@ class MovieViewModel @Inject constructor(
     fun clearGenres() {
         selectedGenres.clear()
         activeChips.clear()
-        loadMovies()
-    }
-
-    init {
         loadMovies()
     }
 }

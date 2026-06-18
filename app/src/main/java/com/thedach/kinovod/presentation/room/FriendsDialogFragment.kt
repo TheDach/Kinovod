@@ -116,7 +116,9 @@ class FriendsDialogFragment(
         tvFriendAvatar.text = firstLetter
 
         // Устанавливаем цвет фона аватара
-        cardAvatar.background = ContextCompat.getDrawable(requireContext(),R.drawable.default_avatar_image)
+        cardAvatar.background = ContextCompat.getDrawable(requireContext(),
+            R.drawable.bg_chip_genre
+        )
 
         // Устанавливаем стиль выделения
         updateSelectionStyle(view, isSelected)

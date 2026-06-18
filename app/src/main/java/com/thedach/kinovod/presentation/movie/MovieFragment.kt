@@ -115,7 +115,7 @@ class MovieFragment : Fragment() {
     private fun setupMovieConfig() {
         when (movieArgs.movieSelectionConfig.mode) {
             SearchMode.ALL_MOVIES -> {
-                // Ничего не делаем, init уже загрузил
+                viewModel.refreshMovies()
             }
 
             SearchMode.ROOM_SUGGESTION -> {
@@ -134,10 +134,14 @@ class MovieFragment : Fragment() {
                     }
 
                     viewModel.loadMoviesByGenres(genres)
-                } //else {
-//                    viewModel.refreshMovies()
-//                    Вроде как это излишне так как при создании viewModel сразу грузит фильмы и если Genres==null то ничего и не надо грузить по новой
-//                }
+                }
+            }
+
+            SearchMode.PROFILE_MOVIES -> {
+                binding.buttonSettings.visibility = View.INVISIBLE
+
+                val movieForVisible = movieArgs.movieSelectionConfig.movieFilters?.wishOrWatchedIds
+                viewModel.loadMoviesByIds(movieForVisible)
             }
         }
 
@@ -227,6 +231,9 @@ class MovieFragment : Fragment() {
 
             SearchMode.ROOM_SUGGESTION -> {
                 chip.isCloseIconVisible = false
+            }
+            SearchMode.PROFILE_MOVIES -> {
+                // Просто пусто будет :)))
             }
         }
 
