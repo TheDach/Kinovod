@@ -79,22 +79,6 @@
                         android:textSize="14sp"
                         tools:text="\@alex_films \· с марта 2024" />
                 </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_add_friend"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:paddingVertical="16dp"
-                    android:text="@string/chip_add_friends"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/purple_500"
-                    app:cornerRadius="60dp"
-                    app:strokeWidth="1.5dp" />
             </LinearLayout>
 
             <!-- Stat -->

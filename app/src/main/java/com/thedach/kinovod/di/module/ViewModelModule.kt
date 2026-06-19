@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.thedach.kinovod.presentation.auth.LoginViewModel
 import com.thedach.kinovod.presentation.auth.RegistrationViewModel
 import com.thedach.kinovod.presentation.movie.MovieViewModel
+import com.thedach.kinovod.presentation.profile.FriendListViewModel
 import com.thedach.kinovod.presentation.profile.ProfileViewModel
 import com.thedach.kinovod.presentation.room.NewRoomViewModel
 import com.thedach.kinovod.presentation.room.RoomsViewModel
@@ -23,6 +24,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FriendListViewModel::class)
+    fun bindFriendListViewModel(viewModel: FriendListViewModel): ViewModel
 
     @Binds
     @IntoMap

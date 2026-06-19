@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_profileFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_friendListFragment"
+            app:destination="@id/friendListFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
@@ -89,5 +92,9 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/friendListFragment"
+        android:name="com.thedach.kinovod.presentation.profile.FriendListFragment"
+        android:label="FriendListFragment" />
 
 </navigation>

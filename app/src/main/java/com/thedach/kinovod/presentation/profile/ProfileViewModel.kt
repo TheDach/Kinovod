@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
     private val getMovieListByIdUseCase: GetMovieListByIdUseCase,
-    private val addFriendUseCase: AddFriendUseCase,
     private val refreshUserDataUseCase: RefreshUserDataUseCase,
     private val login: LoginUseCase,
     private val logoutUseCase: LogoutUseCase,
@@ -91,27 +90,6 @@ class ProfileViewModel @Inject constructor(
 
             try {
                 refreshUserDataUseCase.invoke(userRepository.getUserId())
-
-            } catch (ex: Exception) {
-                _error.value = ex.message
-                ex.printStackTrace()
-            } finally {
-                _isRefreshing.value = false
-                _isLoading.value = false
-            }
-        }
-    }
-
-    fun addFriend(friendTag: String) {
-        if (_isLoading.value == true) return
-
-        viewModelScope.launch {
-
-            _isLoading.value = true
-            _error.value = null
-
-            try {
-                addFriendUseCase.invoke(userRepository.getUserId(), friendTag)
 
             } catch (ex: Exception) {
                 _error.value = ex.message

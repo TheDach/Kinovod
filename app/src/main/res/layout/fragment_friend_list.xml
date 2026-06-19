@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_friends"
+        style="@style/MainLabels"
+        />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view_movie"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/search_background"
+        android:paddingHorizontal="4dp"
+        android:layout_marginBottom="5dp"
+
+        app:iconifiedByDefault="false"
+        app:queryBackground="@null"
+        app:queryHint="Найти друга" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_friend"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:text="@string/chip_add_friends"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+
+        app:backgroundTint="@color/purple_500"
+        app:cornerRadius="60dp"
+        app:strokeWidth="1.5dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_friend_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+        tools:listitem="@layout/item_friend" />
+
+</LinearLayout>

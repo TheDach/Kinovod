@@ -166,10 +166,6 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        binding.btnAddFriend.setOnClickListener {
-            showAddFriendDialog()
-        }
-
         binding.tvWishlistSeeAll.setOnClickListener {
             val wishMovieIds = viewModel.movieWishList.value?.map { it.id }
             launchMovieFragment(wishMovieIds)
@@ -179,7 +175,7 @@ class ProfileFragment : Fragment() {
             launchMovieFragment(watchedMovieIds)
         }
         binding.tvFriendsSeeAllProfile.setOnClickListener {
-
+            launchFriendListFragment()
         }
 
         binding.btnLogout.setOnClickListener {
@@ -201,6 +197,9 @@ class ProfileFragment : Fragment() {
         findNavController().navigate(
             ProfileFragmentDirections.actionProfileFragmentToMovieDetailsFragment(movie)
         )
+    }
+    private fun launchFriendListFragment() {
+        findNavController().navigate(R.id.action_profileFragment_to_friendListFragment)
     }
     private fun launchLoginFragment() {
         if (activity is MainActivity) {
@@ -253,32 +252,6 @@ class ProfileFragment : Fragment() {
                 displayFriends(user.friends)
             }
         }
-    }
-
-    private fun showAddFriendDialog() {
-        val bindingFriendDialog = DialogAddFriendsBinding
-            .inflate(LayoutInflater.from(requireContext()))
-
-        val dialog = MaterialAlertDialogBuilder(requireContext())
-            .setView(bindingFriendDialog.root)
-            .create()
-
-        with(bindingFriendDialog) {
-            btnCancel.setOnClickListener {
-                dialog.dismiss()
-            }
-            btnSubmit.setOnClickListener {
-                val userTag = etFriendTag.text.toString().trim()
-                if(userTag.isEmpty()) {
-                    etFriendTag.error = "Введите Tag пользователя"
-                    return@setOnClickListener
-                }
-
-                dialog.dismiss()
-                viewModel.addFriend(userTag)
-            }
-        }
-        dialog.show()
     }
 
     private fun displayWishlist(wishlist: List<Movie>) {
