@@ -134,6 +134,8 @@ class MovieFragment : Fragment() {
                     }
 
                     viewModel.loadMoviesByGenres(genres)
+                } else {
+                    viewModel.refreshMovies()
                 }
             }
 
