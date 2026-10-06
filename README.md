@@ -99,21 +99,13 @@
 
 ## Скриншоты
 
-| Экран входа |              Экран регистрации               |
-|:---:|:--------------------------------------------:|
-| ![Вход](<img width="1182" height="2560" alt="login" src="https://github.com/user-attachments/assets/0f08d36d-940d-4440-9027-35fd63496c29" />) | ![Регистрация](<img width="1182" height="2560" alt="registration" src="https://github.com/user-attachments/assets/668ad79e-630c-4ec5-a44b-d81430493860" />) |
+| Экран входа | Экран регистрации | Каталог фильмов | Детальная информация о фильме |
+|:---:|:---:|:---:|:---:|
+| <img width="200" alt="login" src="https://github.com/user-attachments/assets/0f08d36d-940d-4440-9027-35fd63496c29" /> | <img width="200" alt="registration" src="https://github.com/user-attachments/assets/668ad79e-630c-4ec5-a44b-d81430493860" /> | <img width="200" alt="Movies" src="https://github.com/user-attachments/assets/5c4b2962-2982-4bdb-bcd3-716504ff51ed" /> | <img width="200" alt="MovieDetails" src="https://github.com/user-attachments/assets/c0babeb8-f9b5-4b8f-9b7d-19e1bd485b6c" /> |
 
-| Каталог фильмов | Детальная информация о фильме |
-|:---:|:---:|
-| ![Каталог](<img width="1182" height="2560" alt="Movies" src="https://github.com/user-attachments/assets/5c4b2962-2982-4bdb-bcd3-716504ff51ed" />) | ![Детали фильма](<img width="1182" height="2560" alt="MovieDetails" src="https://github.com/user-attachments/assets/c0babeb8-f9b5-4b8f-9b7d-19e1bd485b6c" />) |
-
-| Список комнат | Настройка комнаты |
-|:---:|:---:|
-| ![Комнаты](<img width="1182" height="2560" alt="Rooms" src="https://github.com/user-attachments/assets/83aadfae-5254-4cee-b9a6-a0d08e44fb6e" />) | ![Создание комнаты](<img width="1182" height="2560" alt="NewRoom" src="https://github.com/user-attachments/assets/67b12de1-cc8f-48aa-adfe-82e55e9d9b43" />) |
-
-| Комната голосования |              Профиль пользователя              |
-|:---:|:---------------------------------------:|
-| ![Голосование](<img width="1182" height="2560" alt="room_vote" src="https://github.com/user-attachments/assets/741119c0-1e6d-4c81-a7ac-53846ad4c8e0" />) | ![Профиль](<img width="1182" height="2560" alt="Profile" src="https://github.com/user-attachments/assets/7e68b147-10e7-4ea9-b95e-453a5ffaf176" />) |
+| Список комнат | Настройка комнаты | Комната голосования | Профиль пользователя |
+|:---:|:---:|:---:|:---:|
+| <img width="200" alt="Rooms" src="https://github.com/user-attachments/assets/83aadfae-5254-4cee-b9a6-a0d08e44fb6e" /> | <img width="200" alt="NewRoom" src="https://github.com/user-attachments/assets/67b12de1-cc8f-48aa-adfe-82e55e9d9b43" /> | <img width="200" alt="room_vote" src="https://github.com/user-attachments/assets/741119c0-1e6d-4c81-a7ac-53846ad4c8e0" /> | <img width="200" alt="Profile" src="https://github.com/user-attachments/assets/7e68b147-10e7-4ea9-b95e-453a5ffaf176" /> |
 
 ## Установка и запуск
 
