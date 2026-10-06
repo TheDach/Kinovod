@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiFactory {
-    private const val BASE_URL = "http://8.8.8.38:8080"
+    private const val BASE_URL = "http://111.1.11.111:1010" // URL до удаленного сервера kinovod-backend
 
     val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)  // Таймаут подключения
